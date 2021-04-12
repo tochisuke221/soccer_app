@@ -6,7 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       ##追加カラム
       t.string :name,               null: false
       t.string :team_name,          null: false
-      t.integer :carrer_id,          null: false
+      t.integer :career_id,          null: false
       t.string :phone_num,          null: false
       t.string :myphoto,            null: false
 

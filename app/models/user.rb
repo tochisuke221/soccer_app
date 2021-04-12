@@ -1,16 +1,20 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :career
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  with_options presence:true do
+
+  with_options presence: true do
     validates :name
     validates :team_name
-    validates :phone_num,format: { with: /\A\d{11}\z/ }
+    validates :phone_num, format: { with: /\A\d{11}\z/ }
+    validates :myphoto
   end
 
   with_options numericality: { other_than: 1 } do
     validates :career_id
-  end  
+  end
 end
