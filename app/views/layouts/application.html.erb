@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400;700&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <div id="global-container">
+      <div id="container">   <%#ハンバーガーメニューを押した際に横にずれる画面%>  
+       
+          <header class="header">
+            <div class="header__inner appear up">
+              <div>
+              仮タイトル
+              </div>
+              <nav class="header__nav"><%#展開時のメニュー%>
+                <ul class="header__ul">
+                  <li class="header__li item">
+                    <a href="#">新規登録</a>
+                  </li>
+                  <li class="header__li item">
+                    <a href="#">ログイン</a>
+                  </li>
+                  <li class="header__li item">
+                    <a class="btn filled" href="#">投稿</a>
+                  </li>
+                </ul>
+              </nav>        
+              <button class="mobile-menu__btn"><%#ハンーガーメニューボタン%>
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>  
+          </header>  
+
+            <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+          <%= yield %>  <%#本文%>
+      </div>
+
+      <nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
+        <ul class="mobile-menu__main">
+          <li class="mobile-menu__item">
+            <%= link_to "新規登録","#",class: "main-title"%>
+          </li>
+          <li class="mobile-menu__item">
+            <%= link_to "ログイン","#",class: "main-title"%>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <%= javascript_pack_tag 'navbar' %> <%#ここに記載すると共通のレイアウトとなる%>
+  </body>
+</html>
