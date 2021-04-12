@@ -40,17 +40,18 @@
             </div>  
           </header>  
 
-            <% if flash[:notice] %>
-      <div class="alert alert-info">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-          <%= yield %>  <%#本文%>
+       <% if flash[:notice] %><%#flashを表示する%>
+          <div class="alert alert-info">
+            <%= flash[:notice] %>
+          </div>
+       <% end %>
+       <% if flash[:alert] %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+       <% end %>
+        
+      <%= yield %>  <%#本文%>
       </div>
 
       <nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
