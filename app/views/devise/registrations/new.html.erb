@@ -24,20 +24,17 @@
         </div>
         <div class="form-group">
           <label>電話番号（ハイフンなし）</label>
-          <%= f.text_area :phone_num,  placeholder: "09012341234", class: "form-control" %>
+          <%= f.text_field :phone_num,  placeholder: "09012341234", class: "form-control" %>
         </div>
         <div class="form-group">
           <label>高校名（チーム名）</label>
-          <%= f.text_area :team_name,  autofocus: true,placeholder: "ABC高校サッカー部", class: "form-control" %>
+          <%= f.text_field :team_name,  autofocus: true,placeholder: "ABC高校サッカー部", class: "form-control" %>
         </div>
         <div class="form-group">
           <label>教師歴</label>
           <%= f.collection_select(:career_id, Career.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
-        <div class="form-group">
-          <label>プロフィール画像(必須)</label><br>
-            <%= f.file_field :myphoto %>
-         </div>
+       
         <div class="actions">
           <%= f.submit "登録する", class: "btn btn-primary registration-btn" %>
         </div>

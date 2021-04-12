@@ -11,7 +11,6 @@ class User < ApplicationRecord
     validates :name
     validates :team_name
     validates :phone_num, format: { with: /\A\d{11}\z/ }
-    validates :myphoto
   end
 
   with_options numericality: { other_than: 1 } do
