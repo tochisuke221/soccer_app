@@ -16,6 +16,20 @@ body {
   margin: 0;
 }
 
+.menu-open {
+  & #container {
+    transform: translate(-300px, 60px);
+    box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
+  }
+
+  & .mobile-menu {
+    &__cover {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
 .mobile-menu {
   position: fixed;
   right: 0;
