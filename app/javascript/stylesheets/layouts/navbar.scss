@@ -43,7 +43,7 @@ body {
     cursor: pointer;
 
     & > span {
-      background-color: $cMenuClose;
+      background-color: white;
       width: 35px;
       height: 2px;
       display: block;
@@ -106,7 +106,7 @@ body {
     }
     &__btn {
       & > span {
-        background-color: $cMenuOpen;
+        background-color: white;
 
         &:nth-child(1) {
           transition-delay: 70ms;
@@ -128,7 +128,7 @@ body {
 .main-title {
   font-weight: 600;
   font-size: 25px;
-  color: $cBlack;
+  color: black;
   &:hover {
     text-decoration: none;
   }
@@ -136,7 +136,7 @@ body {
 .sub-title {
   display: block;
   font-size: 14px;
-  color: $cSubTitle;
+  color: #535353;
   color: $cBlack;
   text-decoration: none;
 }
