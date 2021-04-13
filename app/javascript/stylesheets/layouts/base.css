@@ -1,7 +1,5 @@
 body {
   font-family: "kameron", "Noto Sans JP", "sana-serif";
-<<<<<<< Updated upstream
-=======
   background-color: #fafafa;
 }
 
@@ -14,8 +12,8 @@ body {
   transition: transform 0.5s, box-shadow 0.5s, -webkit-transform 0.5s, -webkit-box-shadow 0.5s;
 }
 
+
 .main-text {
   padding-top: 166px;
->>>>>>> Stashed changes
 }
 /*# sourceMappingURL=base.css.map */
