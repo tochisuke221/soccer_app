@@ -1,0 +1,7 @@
+<h1 class="page-title">マイページ</h1>
+
+<%if @user.myphoto.nil?%>
+  <%= image_tag avatar_url(@user), class: "round-img" %>
+<%else%>
+  <%= image_tag @user.myphoto, class: "round-img" %>
+<%end%>

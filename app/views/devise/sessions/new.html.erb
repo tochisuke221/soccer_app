@@ -1,9 +1,11 @@
 <div class="main">
 
   <div class="form_box">
-    <h2 class=form-title>ログイン</h2>
+
+    <h2 class=page-title>ログイン</h2>
        <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-         <%=render 'devise/shared/error_messages', model: f.object %>
+         <%=render 'partial/error_messages', model: f.object %>
+
         <div class="form-group">
           <label>メールアドレス</label>
           <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>

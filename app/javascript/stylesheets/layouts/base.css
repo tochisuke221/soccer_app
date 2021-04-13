@@ -12,7 +12,8 @@ body {
   transition: transform 0.5s, box-shadow 0.5s, -webkit-transform 0.5s, -webkit-box-shadow 0.5s;
 }
 
-.flash {
-  padding-top: 100px;
+
+.main-text {
+  padding-top: 166px;
 }
 /*# sourceMappingURL=base.css.map */

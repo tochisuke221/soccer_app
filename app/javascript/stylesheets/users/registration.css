@@ -1,12 +1,15 @@
 .form_box {
   width: 75%;
   height: 100%;
-  padding: 150px 0 50px;
+
+  padding-bottom: 50px;
+
   margin: 0px auto;
   max-width: 700px;
 }
 
-.form-title {
+.page-title {
+
   margin-bottom: 30px;
   text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
 }

@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400;700&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,39 +15,14 @@
     <div id="global-container">
       <div id="container">   <%#ハンバーガーメニューを押した際に横にずれる画面%>  
         <div class="mobile-menu__cover"></div><%#ずれた時に暗くするための薄膜の役目%>
-        <%= render partial: 'devise/shared/header'%>
-        <div class="flash">
-            <% if flash[:notice] %><%#flashを表示する%>
-               <div class="alert alert-info">
-                 <%= flash[:notice] %>
-               </div>
-            <% end %>
-            <% if flash[:alert] %>
-               <div class="alert alert-danger">
-                 <%= flash[:alert] %>
-               </div>
-            <% end %>
-        </div>
+        <%= render partial: 'partial/header'%><%#headerメニュー%>
+        <%= render partial: 'partial/flash'%><%#フラッシュ部分%>
         
-       <%= yield %>  <%#本文%>
+      <div class="main-text">
+        <%= yield %>  <%#本文%>
       </div>
-
-      <nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
-        <ul class="mobile-menu__main">
-         <%if user_signed_in?%>
-              <li class="mobile-menu__item">
-                <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
-              </li>
-         <%else%>
-            <li class="mobile-menu__item">
-              <%= link_to "新規登録",new_user_registration_path,class: "main-title"%>
-            </li>
-            <li class="mobile-menu__item">
-              <%= link_to "ログイン",new_user_session_path,class: "main-title"%>
-            </li>
-         <%end%> 
-        </ul>
-      </nav>
+    </div>
+       <%= render partial: 'partial/backmenu'%><%#ハンバーガーメニューの裏側分%>
     </div>
     <%= javascript_pack_tag 'navbar' %> <%#ここに記載すると共通のレイアウトとなる%>
   </body>

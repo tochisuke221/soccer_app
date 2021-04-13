@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="header__inner appear up">
+    <div>
+    仮タイトル
+    </div>
+    <nav class="header__nav"><%#展開時のメニュー%>
+      <ul class="header__ul">
+        <%if user_signed_in?%>
+          <li class="header__li item">
+            <%=link_to("ログアウト",destroy_user_session_path,method: :delete)%>
+          </li>
+          <li class="header__li item">
+            <a class="btn filled" href="#">投稿</a>
+          </li>
+          <li class="header__li item">
+            <%# <i class="far fa-user-circle fa-2x"></i>
+            <%= link_to "", "#", class: "icpn fa-user-circle" %> 
+            <%= link_to(content_tag(:i, '', class: 'fa fa-user-circle fa-lg'),user_path(current_user))%>
+
+          </li>
+        <%else%>
+          <li class="header__li item">
+            <%=link_to("新規登録",new_user_registration_path)%>
+          </li>
+          <li class="header__li item">
+            <%=link_to("ログイン",new_user_session_path)%>
+          </li>
+        <%end%>
+      </ul>
+    </nav>        
+    <button class="mobile-menu__btn"><%#ハンーガーメニューボタン%>
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>  
+</header> 
+  
