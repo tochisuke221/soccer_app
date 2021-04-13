@@ -1,10 +1,14 @@
 body {
   font-family: "kameron", "Noto Sans JP", "sana-serif";
+  background-color: #fafafa;
 }
 
 #container {
-  background-color: $cWhite;
   position: relative;
   z-index: 10;
   transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.flash {
+  padding-top: 100px;
 }

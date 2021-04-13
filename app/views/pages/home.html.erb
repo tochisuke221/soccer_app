@@ -1,4 +1,16 @@
-<p>このページは仮のトップページです。</p>
 
-<%# ここに追加する %>
-<%= link_to "仮のボタンです", "#", class: "btn btn-primary" %>
+<%if user_signed_in?%>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+<p><%=current_user.name%></p>
+
+<%= image_tag avatar_url(current_user) %>
+
+<%end%>

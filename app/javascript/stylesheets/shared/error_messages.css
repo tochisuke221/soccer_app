@@ -1,0 +1,20 @@
+.error-alert {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 5vh;
+}
+
+.error-message {
+  font-size: 1.3vw;
+  list-style: circle;
+  color: #b63000;
+}
+
+#error_explanation {
+  color: red;
+}
+/*# sourceMappingURL=error_messages.css.map */

@@ -1,0 +1,25 @@
+<div class="main">
+
+  <div class="form_box">
+    <h2 class=form-title>ログイン</h2>
+       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+         <%=render 'devise/shared/error_messages', model: f.object %>
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>パスワード</label>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "パスワード", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "ログイン", class: "btn btn-primary registration-btn" %>
+        </div>
+      <% end %>
+      <p class="sign-link">
+        登録はまだしていませんか？<br>
+        <%= link_to "新規登録をする", new_user_registration_path %>
+      </p>
+  </div>
+</div>

@@ -13,54 +13,38 @@
   <body>
     <div id="global-container">
       <div id="container">   <%#ハンバーガーメニューを押した際に横にずれる画面%>  
-       <div class="mobile-menu__cover"></div>
-          <header class="header">
-            <div class="header__inner appear up">
-              <div>
-              仮タイトル
-              </div>
-              <nav class="header__nav"><%#展開時のメニュー%>
-                <ul class="header__ul">
-                  <li class="header__li item">
-                    <a href="#">新規登録</a>
-                  </li>
-                  <li class="header__li item">
-                    <a href="#">ログイン</a>
-                  </li>
-                  <li class="header__li item">
-                    <a class="btn filled" href="#">投稿</a>
-                  </li>
-                </ul>
-              </nav>        
-              <button class="mobile-menu__btn"><%#ハンーガーメニューボタン%>
-                <span></span>
-                <span></span>
-                <span></span>
-              </button>
-            </div>  
-          </header>  
-
-            <% if flash[:notice] %>
-      <div class="alert alert-info">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-          <%= yield %>  <%#本文%>
+        <div class="mobile-menu__cover"></div><%#ずれた時に暗くするための薄膜の役目%>
+        <%= render partial: 'devise/shared/header'%>
+        <div class="flash">
+            <% if flash[:notice] %><%#flashを表示する%>
+               <div class="alert alert-info">
+                 <%= flash[:notice] %>
+               </div>
+            <% end %>
+            <% if flash[:alert] %>
+               <div class="alert alert-danger">
+                 <%= flash[:alert] %>
+               </div>
+            <% end %>
+        </div>
+        
+       <%= yield %>  <%#本文%>
       </div>
 
       <nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
         <ul class="mobile-menu__main">
-          <li class="mobile-menu__item">
-            <%= link_to "新規登録","#",class: "main-title"%>
-          </li>
-          <li class="mobile-menu__item">
-            <%= link_to "ログイン","#",class: "main-title"%>
-          </li>
+         <%if user_signed_in?%>
+              <li class="mobile-menu__item">
+                <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
+              </li>
+         <%else%>
+            <li class="mobile-menu__item">
+              <%= link_to "新規登録",new_user_registration_path,class: "main-title"%>
+            </li>
+            <li class="mobile-menu__item">
+              <%= link_to "ログイン",new_user_session_path,class: "main-title"%>
+            </li>
+         <%end%> 
         </ul>
       </nav>
     </div>
