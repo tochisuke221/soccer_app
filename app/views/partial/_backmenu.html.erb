@@ -2,6 +2,9 @@
   <ul class="mobile-menu__main">
    <%if user_signed_in?%>
         <li class="mobile-menu__item">
+          <%= link_to "マイページ",user_path(current_user),class: "main-title"%>
+        </li>
+        <li class="mobile-menu__item">
           <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
         </li>
    <%else%>
