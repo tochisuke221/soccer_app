@@ -1,5 +1,6 @@
 
-
+<%if user_signed_in?%>
+<p><%=current_user%></p>
 <p><%=current_user.name%></p>
 <p><%=current_user.name%></p>
 <p><%=current_user.name%></p>
@@ -11,5 +12,5 @@
 <p><%=current_user.name%></p>
 
 
-
+<%end%>
 

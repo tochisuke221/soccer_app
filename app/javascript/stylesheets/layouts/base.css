@@ -12,8 +12,13 @@ body {
   transition: transform 0.5s, box-shadow 0.5s, -webkit-transform 0.5s, -webkit-box-shadow 0.5s;
 }
 
-
 .main-text {
   padding-top: 166px;
+}
+
+.round-img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
 }
 /*# sourceMappingURL=base.css.map */
