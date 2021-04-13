@@ -1,0 +1,51 @@
+<div class="main">
+
+  <div class="form_box">
+    <h2 class=page-title>さあ、はじめよう</h2>
+       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+         <%=render 'partial/error_messages', model: f.object %>
+         
+        <div class="form-group">
+          <label>名前</label>
+          <%= f.text_field :name, autofocus: true, placeholder: "サッカー太郎", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>パスワード（6文字以上）</label>
+          <%= f.password_field :password, autocomplete: "off", placeholder: "パスワード", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>パスワード再確認</label>
+          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードの確認", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>電話番号（ハイフンなし）</label>
+          <%= f.text_field :phone_num,  placeholder: "09012341234", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>高校名（チーム名）</label>
+          <%= f.text_field :team_name,  autofocus: true,placeholder: "ABC高校サッカー部", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>教師歴</label>
+          <%= f.collection_select(:career_id, Career.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+        <div class="form-group">
+          <label>プロフィール写真</label><br>
+          <%= f.file_field :myphoto %>
+        </div>
+       
+        <div class="actions">
+          <%= f.submit "登録する", class: "btn btn-primary registration-btn" %>
+        </div>
+      <% end %>
+      <p class="sign-link">
+        アカウントをお持ちですか？<br>
+        <%= link_to "サインインする", new_user_session_path %>
+      </p>
+  </div>
+</div>

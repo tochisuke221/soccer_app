@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@400;700&family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +14,7 @@
   <body>
     <div id="global-container">
       <div id="container">   <%#ハンバーガーメニューを押した際に横にずれる画面%>  
+<<<<<<< Updated upstream
        <div class="mobile-menu__cover"></div>
           <header class="header">
             <div class="header__inner appear up">
@@ -51,8 +53,18 @@
       </div>
     <% end %>
           <%= yield %>  <%#本文%>
+=======
+        <div class="mobile-menu__cover"></div><%#ずれた時に暗くするための薄膜の役目%>
+        <%= render partial: 'partial/header'%><%#headerメニュー%>
+        <%= render partial: 'partial/flash'%><%#フラッシュ部分%>
+        
+      <div class="main-text">
+        <%= yield %>  <%#本文%>
+>>>>>>> Stashed changes
       </div>
+    </div>
 
+<<<<<<< Updated upstream
       <nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
         <ul class="mobile-menu__main">
           <li class="mobile-menu__item">
@@ -63,6 +75,10 @@
           </li>
         </ul>
       </nav>
+=======
+        <%= render partial: 'partial/backmenu'%><%#ハンバーガーメニューの裏側分%>
+      
+>>>>>>> Stashed changes
     </div>
     <%= javascript_pack_tag 'navbar' %> <%#ここに記載すると共通のレイアウトとなる%>
   </body>

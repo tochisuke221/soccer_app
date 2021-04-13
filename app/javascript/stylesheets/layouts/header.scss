@@ -47,12 +47,12 @@
     align-items: center;
     width: 90%;
     margin: 0 auto;
-    max-width: 1070px;
+    //max-width: 1070px;
   }
 }
 
 //以下でメニューの展開方法を切り替えている
-@media (min-width: 960px) {
+@media (min-width: 900px) {
   .header {
     &__nav {
       display: block;

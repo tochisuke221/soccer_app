@@ -1,6 +1,10 @@
 {
     "version": 3,
+<<<<<<< Updated upstream
     "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,uCAAuC;CACrD",
+=======
+    "mappings": "AAAA,AAAA,IAAI,CAAC;EACH,WAAW,EAAE,uCAAuC;EACpD,gBAAgB,EAAE,OAAO;CAC1B;;AAED,AAAA,UAAU,CAAC;EACT,QAAQ,EAAE,QAAQ;EAClB,OAAO,EAAE,EAAE;EACX,UAAU,EAAE,+BAA+B;CAC5C;;AAED,AAAA,UAAU,CAAC;EACT,WAAW,EAAE,KAAK;CACnB",
+>>>>>>> Stashed changes
     "sources": [
         "base.scss"
     ],

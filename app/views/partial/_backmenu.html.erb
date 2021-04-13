@@ -1,0 +1,16 @@
+<nav class="mobile-menu"><%# ハンバーガーメニュー中身（裏側に設置）%>
+  <ul class="mobile-menu__main">
+   <%if user_signed_in?%>
+        <li class="mobile-menu__item">
+          <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
+        </li>
+   <%else%>
+      <li class="mobile-menu__item">
+        <%= link_to "新規登録",new_user_registration_path,class: "main-title"%>
+      </li>
+      <li class="mobile-menu__item">
+        <%= link_to "ログイン",new_user_session_path,class: "main-title"%>
+      </li>
+   <%end%> 
+  </ul>
+</nav>
