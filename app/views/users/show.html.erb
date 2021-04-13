@@ -1,27 +1,30 @@
-<h1 class="page-title">マイページ</h1>
+<div class="main">
 
-<div class="user_intro">
-  <div class="profile_image">
-    <%if @user.myphoto.attached?%>
-      <%= image_tag @user.myphoto, class: "lground-img" %>
-    <%else%>
-      <%= image_tag '/default_myphoto.png' ,class: "lground-img"%>
-    <%end%>
-  </div>
+  <h1 class="page-title">マイページ</h1>
 
-  <div class="user_info">
-    <p>名前：<%=@user.name%></p>
-    <p>高校名：<%=@user.team_name%></p>
-    <p>教師歴：<%=@user.career.name%></p>
+  <div class="user_intro">
+    <div class="profile_image">
+      <%if @user.myphoto.attached?%>
+        <%= image_tag @user.myphoto, class: "lground-img" %>
+      <%else%>
+        <%= image_tag '/default_myphoto.png' ,class: "lground-img"%>
+      <%end%>
+    </div>
+
+    <div class="user_info">
+      <p>名前：<%=@user.name%></p>
+      <p>高校名：<%=@user.team_name%></p>
+      <p>教師歴：<%=@user.career.name%></p>
+    </div>
   </div>
+  <%if @user.id==current_user.id%>
+    <div class="btn-zone">
+      <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
+      <%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
+    </div>
+    <div class="btn-zone">
+      <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
+    </div>
+  <%end%>
 </div>
-<%if @user.id==current_user.id%>
-  <div class="btn-zone">
-    <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
-    <%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
-  </div>
-  <div class="btn-zone">
-    <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
-  </div>
-<%end%>
 

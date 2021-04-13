@@ -17,11 +17,11 @@
         <div class="mobile-menu__cover"></div><%#ずれた時に暗くするための薄膜の役目%>
         <%= render partial: 'partial/header'%><%#headerメニュー%>
         <%= render partial: 'partial/flash'%><%#フラッシュ部分%>
-        
-      <div class="main-text">
-        <%= yield %>  <%#本文%>
+       <div class="main-text">
+         <%= yield %>  <%#本文%>
+       </div>
+       
       </div>
-    </div>
        <%= render partial: 'partial/backmenu'%><%#ハンバーガーメニューの裏側分%>
     </div>
     <%= javascript_pack_tag 'navbar' %> <%#ここに記載すると共通のレイアウトとなる%>
