@@ -15,8 +15,13 @@
     <p>教師歴：<%=@user.career.name%></p>
   </div>
 </div>
-<div class="btn-zone">
-<%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
-<%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
-</div>
+<%if @user.id==current_user.id%>
+  <div class="btn-zone">
+    <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
+    <%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
+  </div>
+  <div class="btn-zone">
+    <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
+  </div>
+<%end%>
 
