@@ -1,8 +1,9 @@
 class PracticesController < ApplicationController
   
   def index
+    @practices=Practice.all
   end
-  
+
   def new
     @practice=Practice.new
   end
