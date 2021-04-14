@@ -3,7 +3,7 @@ class Practice < ApplicationRecord
   belongs_to :user
   belongs_to :hardlevel
   belongs_to :career
-  has_many_attached :images
+  has_one_attached :image
   
   with_options presence: true do
     validates :user_id

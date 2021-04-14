@@ -1,4 +1,9 @@
 class PracticesController < ApplicationController
+  
+  def index
+    @practices=Practice.includes(:user).order("created_at DESC")
+  end
+
   def new
     @practice=Practice.new
   end
@@ -17,6 +22,6 @@ class PracticesController < ApplicationController
 
   private
   def new_params
-    params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,images: []).merge(user_id:current_user.id)
+    params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,:image).merge(user_id:current_user.id)
   end
 end

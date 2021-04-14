@@ -1,6 +1,5 @@
 @import "layouts/reset";
 @import "~bootstrap/scss/bootstrap";
-@import "pages/home";
 @import "layouts/navbar";
 @import "layouts/header";
 @import "layouts/base";
@@ -8,3 +7,4 @@
 @import "users/show";
 @import "shared/error_messages";
 @import "shared/flash";
+@import "shared/tweet";

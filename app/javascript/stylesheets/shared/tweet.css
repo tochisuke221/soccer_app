@@ -1,0 +1,112 @@
+.tweet_box {
+  background-color: white;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tweet_box__user {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.tweet_box__img {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  height: 300px;
+  position: relative;
+}
+
+.tweet_box__img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(62%, rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.85)));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.tweet_box__info {
+  padding: 8px;
+  font-size: 15px;
+}
+
+.tweet_box__info div {
+  margin: 5px 0;
+}
+
+.tweet_title {
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+  border-bottom: double 5px #ffc778;
+  font-size: 25px;
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  right: 0%;
+  z-index: 1;
+}
+
+.tweet_user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: 25px;
+}
+
+.tweet_user__img {
+  margin: 0 10px 0 5px;
+}
+
+.tweet_user__name {
+  font-size: 12px;
+  vertical-align: baseline;
+}
+
+.tweet_name {
+  color: black;
+}
+
+.tweet_name:hover {
+  text-decoration: none;
+  color: black;
+}
+
+@media (min-width: 900px) {
+  .tweet_box__info {
+    font-size: 17px;
+  }
+  .tweet_box__flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .tweet_user {
+    height: 30px;
+  }
+  .tweet_user__img {
+    margin: 0 10px 0 5px;
+  }
+  .tweet_user__name {
+    font-size: 15px;
+  }
+}
+/*# sourceMappingURL=tweet.css.map */
