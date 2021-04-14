@@ -7,7 +7,7 @@
 }
 
 .tweet_box__user {
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -32,7 +32,7 @@
 }
 
 .tweet_box__info {
-  padding: 5px;
+  padding: 8px;
   font-size: 15px;
 }
 
