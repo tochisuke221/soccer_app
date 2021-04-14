@@ -3,7 +3,7 @@
   width: 80%;
   max-width: 800px;
   margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
 }
 
 .tweet_box__user {
@@ -12,8 +12,10 @@
 }
 
 .tweet_box__img {
+  background-image: url("/images/a.png");
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  background-color: rgba(221, 222, 241, 0.2);
   background-repeat: no-repeat;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   height: 300px;

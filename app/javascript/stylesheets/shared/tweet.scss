@@ -3,7 +3,7 @@
   width: 80%;
   max-width: 800px;
   margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
 
   &__user {
     padding: 15px 0;
@@ -11,9 +11,11 @@
   }
 
   &__img {
-    // background-image: url("/images/a.png");
+    background-image: url("/images/a.png");
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
+    background-color: rgba(221, 222, 241, 0.2);
+    // background-size: cover;
     background-repeat: no-repeat;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     height: 300px;
