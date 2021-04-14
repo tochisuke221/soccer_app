@@ -12,7 +12,6 @@
 }
 
 .tweet_box__img {
-  background-image: url("/images/a.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -76,6 +75,15 @@
   vertical-align: baseline;
 }
 
+.tweet_name {
+  color: black;
+}
+
+.tweet_name:hover {
+  text-decoration: none;
+  color: black;
+}
+
 @media (min-width: 900px) {
   .tweet_box__info {
     font-size: 17px;
@@ -90,6 +98,15 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+  .tweet_user {
+    height: 30px;
+  }
+  .tweet_user__img {
+    margin: 0 10px 0 5px;
+  }
+  .tweet_user__name {
+    font-size: 15px;
   }
 }
 /*# sourceMappingURL=tweet.css.map */

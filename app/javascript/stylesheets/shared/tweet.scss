@@ -11,7 +11,7 @@
   }
 
   &__img {
-    background-image: url("/images/a.png");
+    // background-image: url("/images/a.png");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -68,7 +68,13 @@
     vertical-align: baseline;
   }
 }
-
+.tweet_name {
+  color: black;
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
 @media (min-width: 900px) {
   .tweet_box {
     &__info {
@@ -79,6 +85,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+  }
+
+  .tweet_user {
+    height: 30px;
+    &__img {
+      margin: 0 10px 0 5px;
+    }
+    &__name {
+      font-size: 15px; //あとでフォントごとに分ける
     }
   }
 }
