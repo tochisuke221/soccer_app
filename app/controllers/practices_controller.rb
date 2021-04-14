@@ -24,18 +24,15 @@ class PracticesController < ApplicationController
 
   def edit
     @practice=Practice.find(params[:id])
-
+  end
+  
+  def update
+    @practice=Practice.find(params[:id])
     if @practice.update(practice_params)
       redirect_to practice_path(@practice)
     else
       render :edit
     end
-    
-
-  end
-
-  def update
-    
   end
   
 
