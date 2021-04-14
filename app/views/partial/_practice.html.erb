@@ -11,11 +11,14 @@
       </div>
     </div>
   </div>
-  <div class="tweet_box__img" style="background-image: url(<%= rails_blob_path(practice.image) if practice.image.present?%>);"> <%#投稿写真とタイトル%>
-    <div class="tweet_title">
-      <%=practice.title%>
-    </div>   
-  </div>
+  <%=link_to(practice_path(practice)) do%>
+    <div class="tweet_box__img" style="background-image: url(<%= rails_blob_path(practice.image) if practice. image.present?%>);"> <%#投稿写真とタイトル%>
+      <div class="tweet_title">
+        <%=practice.title%>
+      </div> 
+    </div>
+  <%end%>  
+  
   <div class="tweet_box__info"><%#投稿についてのミニ情報%>
     <div class="tag_info">タグ:中連 効率 最強</div>
     <div class="tweet_box__flex">
