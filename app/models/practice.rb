@@ -2,6 +2,7 @@ class Practice < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
   belongs_to :hardlevel
+  belongs_to :category
   belongs_to :career
   has_one_attached :image
   

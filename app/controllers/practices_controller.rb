@@ -4,6 +4,10 @@ class PracticesController < ApplicationController
     @practices=Practice.includes(:user).order("created_at DESC")
   end
 
+  def show
+    @practice=Practice.find(params[:id])
+  end
+
   def new
     @practice=Practice.new
   end
@@ -11,13 +15,11 @@ class PracticesController < ApplicationController
 
   def create 
     @practice=Practice.new(new_params)
-
     if @practice.save
       redirect_to root_path
     else
       render :new
     end
-
   end
 
   private
