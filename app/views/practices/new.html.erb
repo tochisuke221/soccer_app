@@ -1,2 +1,47 @@
-<h1>Practices#new</h1>
-<p>Find me in app/views/practices/new.html.erb</p>
+<div class="main">
+<div class="form_box">
+
+  <h1 class="page-title">練習を共有しよう</h1>
+<%= form_with model: @practice, url: practices_path(@practice), multipart: true,local: true do |f| %>
+         <%=render 'partial/error_messages', model: f.object %>
+
+         
+        <div class="form-group">
+          <label>タイトル</label>
+          <%= f.text_field :title, autofocus: true, placeholder: "例）短い時間で集中して効率ミニトレ！", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>練習カテゴリー</label>
+          <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+
+        <div class="form-group">
+          <label>練習の内容(現在の文字数：<span id="char-count">0</span>文字)</label>
+          <%= f.text_area :content, autofocus: true,size: "20x10", placeholder: "例）この日は文化祭終了後だったので、短時間で高負荷のトレーニングを行いました。30メートル区間のダッシュを30本行い、1本毎のインターバルを10秒としました。選手からは相当きついとの声があり、、、", class: "form-control",id: "lesson-content" %>
+        </div>
+
+
+        <div class="form-group">
+          <label>負荷のレベル</label>
+          <%= f.collection_select(:hardlevel_id, Hardlevel.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+
+        <div class="form-group">
+          <label>練習風景の写真等（複数枚OK）</label><br>
+          <%= f.file_field :image %>
+        </div>
+
+       
+        <div class="actions">
+          <%= f.submit "登録する", class: "btn btn-primary registration-btn" %>
+        </div>
+      <% end %>
+</div>
+
+    
+ 
+</div>
+
+<%= javascript_pack_tag 'count' %>
+

@@ -1,6 +1,9 @@
 class Practice < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  has_one_attached :image
+  belongs_to :hardlevel
+  belongs_to :career
+  has_many_attached :images
   
   with_options presence: true do
     validates :user_id
