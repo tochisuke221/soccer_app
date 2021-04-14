@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
   def profile_is_yourself?
     unless @user.id==current_user.id
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(@user)
     end
   end
 end
