@@ -1,3 +1,18 @@
+.img_black::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
 .tweet_box {
   background-color: white;
   width: 80%;
@@ -20,25 +35,12 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     height: 300px;
     position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 62%,
-        rgba(0, 0, 0, 0.85) 100%
-      );
-    }
   }
   &__info {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     padding: 8px;
     font-size: 15px;
-    & div {
+    & .m {
       margin: 5px 0;
     }
   }

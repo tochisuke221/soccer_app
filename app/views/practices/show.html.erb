@@ -1,0 +1,67 @@
+
+<div class="tweet_box">
+
+  <div class="tweet_box__user"> <%#投稿上部の投稿者表示%>
+    <div class="tweet_user">
+      <div class="tweet_user__img">
+        <%=link_to (image_tag @practice.user.myphoto, class: "smround-img"),user_path(@practice.user)%>
+      </div>
+      <div class="tweet_user__name">
+        <%=link_to "#{@practice.user.name}さんが投稿",user_path(@practice.user),class:"tweet_name"%>
+      </div>
+    </div>
+  </div>
+  
+    <div class="tweet_box__img show_img" style="background-image: url(<%= rails_blob_path(@practice.image) if @practice. image.present?%>);"> <%#投稿写真とタイトル%> 
+    </div>
+ 
+  
+  <div class="tweet_box__info"><%#練習詳細%>
+    <div class="practice_info"><%#練習内容本文%>
+      <p>練習の詳細</p>
+      <div class="practice_info__content">
+        <%=@practice.content%>
+      </div>
+      <div class="practice_info__content">
+        <div class="hardlevel">
+          <p>
+            <i class="fas fa-dumbbell"></i> 負荷のレベル 
+          </p>
+          <p>
+            <%=@practice.hardlevel.name%>
+          </p>
+        </div>
+        <div class="category">
+          <p>
+            <i class="fas fa-futbol"></i> カテゴリー
+          </p>
+          <p>
+            <%=@practice.category.name%>
+          </p> 
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="tweet_box__info">
+    <div class="m tag_info">タグ:中連 効率 最強</div>
+    <div class="m tweet_box__flex">
+      <div class="m like_info"><i class="far fa-heart"></i>: 1  <i class="far fa-comments"></i>: 2</div>
+      <div class="m created_at_info"><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(@practice.created_at) %>前
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="comments">
+    <h2>コメント欄</h2>
+  <div class="comments__form">
+    <div class="comment_box">
+      <div class="comment_box__user">顔写真</div>
+      <div class="comment_box__comment">コメントしますね</div>
+    </div>
+  </div>
+</div>
+
+
