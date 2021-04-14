@@ -1,0 +1,84 @@
+.tweet_box {
+  background-color: white;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  &__user {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  &__img {
+    background-image: url("/images/a.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    height: 300px;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 62%,
+        rgba(0, 0, 0, 0.85) 100%
+      );
+    }
+  }
+  &__info {
+    padding: 5px;
+    font-size: 15px;
+    & div {
+      margin: 5px 0;
+    }
+  }
+}
+.tweet_title {
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+  border-bottom: double 5px #ffc778;
+  font-size: 25px;
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  right: 0%;
+  z-index: 1;
+}
+
+.tweet_user {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 25px;
+
+  &__img {
+    margin: 0 10px 0 5px;
+  }
+  &__name {
+    font-size: 12px; //あとでフォントごとに分ける
+    vertical-align: baseline;
+  }
+}
+
+@media (min-width: 900px) {
+  .tweet_box {
+    &__info {
+      font-size: 17px;
+    }
+
+    &__flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
