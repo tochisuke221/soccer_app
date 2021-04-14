@@ -1,7 +1,7 @@
 class PracticesController < ApplicationController
   
   def index
-    @practices=Practice.all
+    @practices=Practice.includes(:user).order("created_at DESC")
   end
 
   def new

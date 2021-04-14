@@ -3,19 +3,19 @@
   <div class="tweet_box__user"> <%#投稿上部の投稿者表示%>
     <div class="tweet_user">
       <div class="tweet_user__img">写真</div>
-      <div class="tweet_user__name">名前</div>
+      <div class="tweet_user__name"><%=practice.user.name%></div>
     </div>
   </div>
   <div class="tweet_box__img"> <%#投稿写真とタイトル%>
     <div class="tweet_title">
-      超効率的な中練
+      <%=practice.title%>
     </div>   
   </div>
-  <div class="tweet_box__info">
+  <div class="tweet_box__info"><%#投稿についてのミニ情報%>
     <div class="tag_info">タグ:中連 効率 最強</div>
     <div class="tweet_box__flex">
       <div class="like_info">いいね: 1  コメント: 2</div>
-      <div class="created_at_info">投稿日時:2021年1月1日</div>
+      <div class="created_at_info">投稿日時:<%=practice.created_at%></div>
     </div>
   </div>
 </div>
