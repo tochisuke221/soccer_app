@@ -18,6 +18,16 @@
 }
 
 .tweet_box__user {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
@@ -57,6 +67,7 @@
 }
 
 .tweet_user {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -85,6 +96,48 @@
 .tweet_name:hover {
   text-decoration: none;
   color: black;
+}
+
+.gear_icon {
+  font-size: 20px;
+  margin-right: 30px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.menu {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: 10;
+  top: 56px;
+  right: 58px;
+}
+
+ul.menu-list {
+  list-style: none;
+  padding: 2px 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 8px gray;
+          box-shadow: 0 0 8px gray;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+ul.menu-list > li {
+  margin: 3px 0;
+}
+
+.gear_icon:hover + .menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu:hover {
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (min-width: 900px) {

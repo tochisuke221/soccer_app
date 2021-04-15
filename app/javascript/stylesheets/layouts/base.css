@@ -32,6 +32,16 @@ body {
   padding: 5px 0;
 }
 
+.link_decoration {
+  color: black;
+  cursor: pointer;
+}
+
+.link_decoration:hover {
+  color: black;
+  text-decoration: none;
+}
+
 @media (min-width: 900px) {
   .smround-img {
     width: 40px;

@@ -67,6 +67,14 @@
   }
 }
 
+.btn_field {
+  margin: 50px 0 0;
+}
+.flex_reverse {
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+}
 @media (min-width: 900px) {
   .practice_info__content {
     display: flex;

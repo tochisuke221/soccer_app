@@ -14,7 +14,7 @@ class PracticesController < ApplicationController
 
 
   def create 
-    @practice=Practice.new(new_params)
+    @practice=Practice.new(practice_params)
     if @practice.save
       redirect_to root_path
     else
@@ -22,8 +22,22 @@ class PracticesController < ApplicationController
     end
   end
 
+  def edit
+    @practice=Practice.find(params[:id])
+  end
+  
+  def update
+    @practice=Practice.find(params[:id])
+    if @practice.update(practice_params)
+      redirect_to practice_path(@practice)
+    else
+      render :edit
+    end
+  end
+  
+
   private
-  def new_params
+  def practice_params
     params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,:image).merge(user_id:current_user.id)
   end
 end
