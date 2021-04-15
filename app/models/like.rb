@@ -9,5 +9,5 @@ class Like < ApplicationRecord
     validates :practice
   end
 
-  validates_uniqueness_of :post_id, scope: :user_id #1組のみに絞る
+  validates_uniqueness_of :practice_id, scope: :user_id #1組のみに絞る
 end

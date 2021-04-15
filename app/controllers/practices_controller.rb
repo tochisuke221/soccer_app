@@ -5,6 +5,7 @@ class PracticesController < ApplicationController
 
   def index
     @practices=Practice.includes(:user).order("created_at DESC")
+    @like = Like.new
   end
 
   def show

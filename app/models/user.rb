@@ -20,4 +20,9 @@ class User < ApplicationRecord
   with_options numericality: { other_than: 1 } do
     validates :career_id
   end
+
+  def already_liked?(practice)
+    self.likes.exists?(practice_id: practice.id)
+  end
+
 end
