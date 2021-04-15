@@ -4,11 +4,27 @@
   <div class="tweet_box__user "> <%#投稿上部の投稿者表示%>
     <div class="tweet_user">
       <div class="tweet_user__img">
-        <%=link_to (image_tag practice.user.myphoto, class: "smround-img"),user_path(practice.user)%>
+         <%if practice.user.myphoto.attached?%>
+            <%=link_to (image_tag practice.user.myphoto, class: "smround-img"),user_path(practice.user)%>
+         <%else%>
+            <%=link_to (image_tag '/default_myphoto.png' , class: "smround-img"),user_path(practice.user)%>
+         <%end%>
       </div>
-      <div class="tweet_user__name">
-        <%=link_to practice.user.name,user_path(practice.user),class:"tweet_name"%>
+      <div class="tweet_user__name">      
+            <%=link_to practice.user.name,user_path(practice.user),class:"tweet_name"%>           
       </div>
+    </div>
+    <%if current_user.id==practice.user.id%>
+      <div class="gear_icon">
+        <i class="fas fa-cog"></i>
+      </div>
+    <%end%>
+      
+    <div class="menu">
+      <ul class="menu-list">
+        <li><%=link_to "編集",edit_practice_path(practice),class:"link_decoration"%></li>        
+        <li>削除</li>        
+      </ul>
     </div>
   </div>
   <%=link_to(practice_path(practice)) do%>

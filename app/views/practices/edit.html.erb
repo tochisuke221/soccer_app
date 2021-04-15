@@ -2,7 +2,7 @@
 <div class="form_box">
 
   <h1 class="page-title">編集</h1>
-<%= form_with model: @practice, url: practices_path(@practice), multipart: true,local: true do |f| %>
+<%= form_with model: @practice, url: practice_path(@practice),multipart: true,local: true do |f| %>
          <%=render 'partial/error_messages', model: f.object %>
 
          
@@ -34,7 +34,7 @@
 
        
         <div class="actions">
-          <%= f.submit "登録する", class: "btn btn-primary registration-btn" %>
+          <%= f.submit "更新する", class: "btn btn-primary registration-btn" %>
         </div>
       <% end %>
 </div>
