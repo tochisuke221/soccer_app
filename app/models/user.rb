@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_many :practices
+  has_many :practices,dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_practices, through: :likes, source: :practice
   has_one_attached :myphoto
   belongs_to :career
   devise :database_authenticatable, :registerable,
