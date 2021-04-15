@@ -23,7 +23,7 @@
     <div class="menu">
       <ul class="menu-list">
         <li><%=link_to "編集",edit_practice_path(practice),class:"link_decoration"%></li>        
-        <li>削除</li>        
+        <li><%=link_to "削除",practice_path(practice),method: :delete,class:"link_decoration"%></li>        
       </ul>
     </div>
   </div>

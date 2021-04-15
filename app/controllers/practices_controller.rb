@@ -35,6 +35,11 @@ class PracticesController < ApplicationController
     end
   end
   
+  def destroy
+    @practice=Practice.find(params[:id])
+    @practice.destroy
+    redirect_to root_path
+  end
 
   private
   def practice_params
