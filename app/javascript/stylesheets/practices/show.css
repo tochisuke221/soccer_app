@@ -83,6 +83,10 @@
   margin: 50px 0 0;
 }
 
+.delete_btn {
+  text-align: center;
+}
+
 .flex_reverse {
   display: -webkit-box;
   display: -ms-flexbox;
