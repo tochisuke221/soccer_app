@@ -1,0 +1,13 @@
+
+<% if user_signed_in? && current_user.already_liked?(practice) %>
+
+    <%=link_to  practice_like_path(practice,current_user), method: :delete, remote:true,class:"practice_like link_decoration" do %>
+      <i class="fas fa-heart unlike-btn"></i> 
+    <%end%>
+    : <%= practice.liked_users.count %>
+<% else %>  
+    <%= link_to  practice_likes_path(practice) ,method: :post,remote:true,class: "practice_like link_decoration" do %>
+     <i class="far fa-heart like-btn" ></i> 
+    <%end%>
+    : <%= practice.liked_users.count %>
+<% end %>
