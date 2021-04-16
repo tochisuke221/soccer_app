@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_many :practices
+  has_many :practices,dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_practices, through: :likes, source: :practice
   has_one_attached :myphoto
   belongs_to :career
   devise :database_authenticatable, :registerable,
@@ -18,4 +20,9 @@ class User < ApplicationRecord
   with_options numericality: { other_than: 1 } do
     validates :career_id
   end
+
+  def already_liked?(practice)
+    self.likes.exists?(practice_id: practice.id)
+  end
+
 end
