@@ -3,7 +3,7 @@ class PcommentsController < ApplicationController
     @pcomment=Pcomment.new(pcomment_params)
     @practice=Practice.find(params[:practice_id])  
     if @pcomment.save
-      redirect_to root_path
+      redirect_to practice_path(@practice)
     else
       render "practices/show"
     end
