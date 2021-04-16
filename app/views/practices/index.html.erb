@@ -1,3 +1,10 @@
 <div class="contents">
- <%=render partial: 'partial/practice', collection: @practices %>
+
+<% @practices.each do |practice| %>
+<% practice.images.each do |image| %>
+  <%=practice.id%>
+  <%= image_tag image, class: 'images' %>
+<% end %>
+<% end %>
+  <%=render partial: 'partial/practice', collection: @practices %> 
 </div>
