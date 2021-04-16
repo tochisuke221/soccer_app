@@ -10,6 +10,7 @@ class PracticesController < ApplicationController
 
   def show
     @pcomment=Pcomment.new
+    @pcomments=Pcomment.all
   end
 
   def new

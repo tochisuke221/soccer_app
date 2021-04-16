@@ -5,6 +5,7 @@ class PcommentsController < ApplicationController
     if @pcomment.save
       redirect_to practice_path(@practice)
     else
+      @pcomments=Pcomment.all
       render "practices/show"
     end
   end
