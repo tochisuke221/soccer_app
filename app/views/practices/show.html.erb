@@ -74,8 +74,17 @@
 
 
 <div class="comments">
-    <h2>コメント欄</h2>
+    <h2 class="comment_title">コメント</h2>
   <div class="comments__form">
+    <div class="comments__input">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@practice, @pcomment], local: true) do |f| %>
+          <%=render 'partial/error_messages', model: f.object%>
+          <%= f.text_area :comment, placeholder: "例）その練習とても参考になります！", class: "form-control",rows: "4" %>
+          <%= f.submit "コメントする",class:"btn btn-outline-success comment-btn" %>
+        <% end %>
+      <% end %>  
+    </div>
     <div class="comment_box">
       <div class="comment_box__user">顔写真</div>
       <div class="comment_box__comment">コメントしますね</div>
