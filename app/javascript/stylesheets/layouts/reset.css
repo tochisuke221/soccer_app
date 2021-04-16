@@ -12,6 +12,11 @@
           box-sizing: border-box;
 }
 
+ul,
+li {
+  list-style: none;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
