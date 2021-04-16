@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_063050) do
+ActiveRecord::Schema.define(version: 2021_04_16_015810) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_04_15_063050) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["practice_id"], name: "index_likes_on_practice_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "pcomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "practice_id", null: false
+    t.bigint "user_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["practice_id"], name: "index_pcomments_on_practice_id"
+    t.index ["user_id"], name: "index_pcomments_on_user_id"
   end
 
   create_table "practices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,5 +82,7 @@ ActiveRecord::Schema.define(version: 2021_04_15_063050) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "practices"
   add_foreign_key "likes", "users"
+  add_foreign_key "pcomments", "practices"
+  add_foreign_key "pcomments", "users"
   add_foreign_key "practices", "users"
 end
