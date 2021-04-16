@@ -38,7 +38,7 @@
   <div class="tweet_box__info"><%#投稿についてのミニ情報%>
     <div class="m tag_info">タグ:中連 効率 最強</div>
     <div class="m tweet_box__flex">
-      <div id="like" class="m like_info">
+      <div id="like-<%=practice.id%>" class="m like_info">
         <%=render partial: 'likes/like',locals: {practice:practice}%>
         <%# <i class="far fa-comments"></i>:  %>
       </div>
