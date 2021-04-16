@@ -10,7 +10,7 @@ class PracticesController < ApplicationController
 
   def show
     @pcomment=Pcomment.new
-    @pcomments=Pcomment.all
+    @pcomments=Pcomment.where(practice_id:@practice.id)
   end
 
   def new
