@@ -15,6 +15,10 @@
   margin: 30px 0;
 }
 
+.practice_text {
+  word-wrap: break-word;
+}
+
 .btn_field {
   margin: 50px 0 0;
 }

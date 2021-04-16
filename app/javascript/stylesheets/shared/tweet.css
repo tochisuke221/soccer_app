@@ -58,7 +58,7 @@
   text-align: center;
   padding-top: 20px;
   border-bottom: double 5px #ffc778;
-  font-size: 25px;
+  font-size: 17px;
   position: absolute;
   bottom: 30px;
   left: 0px;
@@ -154,11 +154,10 @@ ul.menu-list > li {
   color: #e54747;
 }
 
-.unlike-btn:hover {
-  text-decoration: none;
-}
-
 @media (min-width: 900px) {
+  .tweet_title {
+    font-size: 25px;
+  }
   .tweet_box__info {
     font-size: 17px;
   }

@@ -10,6 +10,7 @@ $cSubTitle: #535353;
   //height: 100vh;
   z-index: 2;
   transition: all 0.5s;
+  overflow: hidden;
 }
 
 body {
@@ -59,7 +60,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     opacity: 0;
@@ -139,4 +140,15 @@ body {
   color: #535353;
   color: $cBlack;
   text-decoration: none;
+}
+
+@media (max-width: 400px) {
+  .menu-open {
+    & #container {
+      transform: translate(-220px, 60px);
+    }
+  }
+  .mobile-menu {
+    right: -65px;
+  }
 }

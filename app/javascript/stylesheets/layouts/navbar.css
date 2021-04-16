@@ -4,6 +4,7 @@
   z-index: 2;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  overflow: hidden;
 }
 
 body {
@@ -37,7 +38,7 @@ body {
 }
 
 .mobile-menu__btn > span {
-  background-color: black;
+  background-color: white;
   width: 35px;
   height: 2px;
   display: block;
@@ -56,7 +57,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
   opacity: 0;
@@ -132,7 +133,7 @@ body {
 }
 
 .menu-open .mobile-menu__btn > span {
-  background-color: black;
+  background-color: white;
 }
 
 .menu-open .mobile-menu__btn > span:nth-child(1) {
@@ -172,5 +173,15 @@ body {
   color: #535353;
   color: black;
   text-decoration: none;
+}
+
+@media (max-width: 400px) {
+  .menu-open #container {
+    -webkit-transform: translate(-220px, 60px);
+            transform: translate(-220px, 60px);
+  }
+  .mobile-menu {
+    right: -65px;
+  }
 }
 /*# sourceMappingURL=navbar.css.map */

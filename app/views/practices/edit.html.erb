@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-          <label>練習の内容(現在の文字数：<span id="char-count">0</span>文字)</label>
+          <label>練習の内容(現在の文字数：<span id="char-count"><%=@practice.content.length%></span>文字)</label>
           <%= f.text_area :content, autofocus: true,size: "20x10", placeholder: "例）この日は文化祭終了後だったので、短時間で高負荷のトレーニングを行いました。30メートル区間のダッシュを30本行い、1本毎のインターバルを10秒としました。選手からは相当きついとの声があり、、、", class: "form-control",id: "lesson-content" %>
         </div>
 
