@@ -22,6 +22,12 @@ body {
   height: 200px;
 }
 
+.mdround-img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
 .smround-img {
   border-radius: 50%;
   width: 35px;

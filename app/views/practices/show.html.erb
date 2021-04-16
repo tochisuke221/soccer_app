@@ -85,10 +85,18 @@
         <% end %>
       <% end %>  
     </div>
-    <div class="comment_box">
-      <div class="comment_box__user">顔写真</div>
-      <div class="comment_box__comment">コメントしますね</div>
-    </div>
+      <%@pcomments.each do |pcomment|%>
+        <div class="comment_box">
+          <div class="comment_box__user">
+            <%if pcomment.user.myphoto.attached?%>
+                <%= image_tag pcomment.user.myphoto, class: "smround-img" %>
+            <%else%>
+                <%= image_tag '/default_myphoto.png' ,class: "smround-img"%>
+            <%end%>
+          </div>
+          <div class="comment_box__comment"><%=pcomment.comment%></div>
+        </div>
+      <%end%> 
   </div>
 </div>
 
