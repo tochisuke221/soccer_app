@@ -48,7 +48,10 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-
+.center_margin {
+  margin: 0px auto 10px;
+  text-align: center;
+}
 @media (min-width: 900px) {
   .smround-img {
     width: 40px;

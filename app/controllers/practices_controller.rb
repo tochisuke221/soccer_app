@@ -1,12 +1,13 @@
 class PracticesController < ApplicationController
   before_action :set_practice,only:[:show,:update,:destroy,:edit]
-  before_action :authenticate_user!,only:[:new,:show,:edit,:create,:update,:destroy]
+  before_action :authenticate_user!,only:[:rank,:new,:show,:edit,:create,:update,:destroy]
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
   def index
     @practices=Practice.includes(:user).order("created_at DESC")
     @like = Like.new
   end
+
 
   def show
     @pcomment=Pcomment.new
@@ -42,6 +43,12 @@ class PracticesController < ApplicationController
     @practice.destroy
     redirect_to root_path
   end
+
+
+  def rank
+    @practices=Practice.includes(:liked_users).limit(5).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
+  end
+
 
   private
   def practice_params
