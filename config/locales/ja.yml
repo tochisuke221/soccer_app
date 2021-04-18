@@ -136,7 +136,7 @@ ja:
       not_a_number: は数値で入力してください
       not_an_integer: は整数で入力してください
       odd: は奇数にしてください
-      other_than: は%{count}以外の値にしてください
+      other_than: を入力してください
       present: は入力しないでください
       required: を入力してください
       taken: はすでに存在します
