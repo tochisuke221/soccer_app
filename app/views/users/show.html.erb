@@ -33,7 +33,7 @@
 
 <div class="like">
   <div class="like__box">
-    <div class="like__tweet">いいね一覧</div>
+    <div class="like__title">いいね一覧</div>
     <% @user.liked_practices.each do |practice| %>
       <div class="like__tweet">
         <div class="like_tweet__user">
@@ -45,7 +45,7 @@
         </div>
         <div class=like_tweet__info>
           <div class="like_tweet__title"><%=link_to practice.title,practice_path(practice),class:"link_decoration"%></div>
-          <div class="flex_space_between">
+          <div class="like_mini_info flex_space_between">
             <div id="like-<%=practice.id%>" class="m like_info">
             <%=render partial: 'likes/like',locals: {practice:practice}%>
             </div>
