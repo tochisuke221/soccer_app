@@ -28,13 +28,14 @@
         </div>
 
         <div class="form-group">
-          <label>練習風景の写真等（複数枚OK）</label><br>
-          <%= f.file_field :images,multiple: true %>
+          <label>練習風景の写真等（4枚までOK）</label><br>
+          <%= f.file_field :images,id: "practice_image",multiple: true %>
         </div>
+        <div id="practice-views"></div>
 
        
         <div class="actions">
-          <%= f.submit "更新する", class: "btn btn-primary registration-btn" %>
+          <%= f.submit "更新する", id: "submit",class: "btn btn-primary registration-btn" %>
         </div>
       <% end %>
 </div>
@@ -44,4 +45,4 @@
 </div>
 
 <%= javascript_pack_tag 'count' %>
-
+<%= javascript_pack_tag 'practice_preview' %>
