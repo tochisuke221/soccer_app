@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :practices do
     resources :likes, only: [:create, :destroy]
     resources :pcomments, only: [:create, :destroy]
+    collection do
+      get "rank"
+    end
   end
 
 end

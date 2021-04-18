@@ -8,6 +8,7 @@ class PracticesController < ApplicationController
     @like = Like.new
   end
 
+
   def show
     @pcomment=Pcomment.new
     @pcomments=Pcomment.where(practice_id:@practice.id)
@@ -42,6 +43,12 @@ class PracticesController < ApplicationController
     @practice.destroy
     redirect_to root_path
   end
+
+
+  def rank
+    @practices=Practice.includes(:liked_users).sort{|a.b| b.liked_users.size <=> a.liked_users.size}
+  end
+
 
   private
   def practice_params
