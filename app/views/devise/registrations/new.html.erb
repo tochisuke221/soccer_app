@@ -42,6 +42,8 @@
           <%= f.file_field :myphoto %>
         </div>
 
+        <div id="image-list">
+        </div>
        
         <div class="actions">
           <%= f.submit "登録する", class: "btn btn-primary registration-btn" %>
@@ -53,3 +55,7 @@
       </p>
   </div>
 </div>
+
+<%= javascript_pack_tag 'preview' %>
+
+

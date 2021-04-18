@@ -21,6 +21,7 @@ body {
   border-radius: 50%;
   width: 200px;
   height: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .mdround-img {
