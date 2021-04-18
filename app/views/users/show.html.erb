@@ -23,6 +23,9 @@
       <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
       <%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
     </div>
+    <div class="center_margin">
+    <%= link_to "戻る",root_path, method: :get, class: "btn btn-secondary center_margin" %>
+    </div>
     <div class="btn-zone">
       <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
     </div>

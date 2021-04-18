@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice,only:[:show,:update,:destroy,:edit]
-  before_action :authenticate_user!,only:[:new,:show,:edit,:create,:update,:destroy]
+  before_action :authenticate_user!,only:[:rank,:new,:show,:edit,:create,:update,:destroy]
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
   def index
