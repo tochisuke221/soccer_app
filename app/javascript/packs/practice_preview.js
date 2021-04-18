@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function(){
       submit.setAttribute("disabled",true);
       return false;
     }else{
-      submit.setAttribute("disabled",false);
+      if(submit.disabled){
+        submit.removeAttribute("disabled",true);
+      }
     }
     Array.from(files).forEach(file => {
       const blob = window.URL.createObjectURL(file);
@@ -26,20 +28,5 @@ document.addEventListener('DOMContentLoaded', function(){
        imageElement.appendChild(blobImage);
        ImageList.appendChild(imageElement);
     });
-    
-    // const blob = window.URL.createObjectURL(file);
-     // 画像を表示するためのdiv要素を生成
-    //  const imageElement = document.createElement('div');
-
-    //  // 表示する画像を生成
-    //  const blobImage = document.createElement('img');
-    //  blobImage.setAttribute('src', blob);
-    //  imageElement.appendChild(blobImage);
-    //  console.log(imageElement);
-    //  console.log(ImageList);
-    //  ImageList.appendChild(imageElement);
-    //  document.getElementById('practice_image').addEventListener('change', (e)=>{
-    //   imageElement.remove();
-    //  });
   });
 });
