@@ -46,7 +46,7 @@ class PracticesController < ApplicationController
 
 
   def rank
-    @practices=Practice.includes(:liked_users).sort{|a.b| b.liked_users.size <=> a.liked_users.size}
+    @practices=Practice.includes(:liked_users).limit(5).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
   end
 
 

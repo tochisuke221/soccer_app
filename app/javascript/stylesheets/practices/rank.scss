@@ -1,0 +1,39 @@
+.rank_title {
+  display: block;
+  width: fit-content;
+  position: relative;
+  margin: 0 auto 30px;
+  height: 50px; /*リボンの高さ*/
+  line-height: 50px; /*リボンの高さ*/
+  text-align: center;
+  padding: 0 30px; /*横の大きさ*/
+  font-size: 18px; /*文字の大きさ*/
+  background: #f57a78; /*塗りつぶし色*/
+  color: #fff; /*文字色*/
+  box-sizing: border-box;
+}
+
+.rank_title:before,
+.rank_title:after {
+  position: absolute;
+  content: "";
+  width: 0px;
+  height: 0px;
+  z-index: 1;
+}
+
+.rank_title:before {
+  top: 0;
+  left: 0;
+  border-width: 25px 0px 25px 15px;
+  border-color: transparent transparent transparent #fff;
+  border-style: solid;
+}
+
+.rank_title:after {
+  top: 0;
+  right: 0;
+  border-width: 25px 15px 25px 0px;
+  border-color: transparent #fff transparent transparent;
+  border-style: solid;
+}
