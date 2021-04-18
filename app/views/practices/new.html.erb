@@ -29,8 +29,10 @@
 
         <div class="form-group">
           <label>練習風景の写真等（複数枚OK）</label><br>
-          <%= f.file_field :images,name: 'practice[images][]' %>
+          <%= f.file_field :images,name: 'practice[images][]' ,multiple: true,id:"practice_image"%>
         </div>
+
+        <div id="practice-views"></div>
 
        
         <div class="actions">
@@ -44,4 +46,5 @@
 </div>
 
 <%= javascript_pack_tag 'count' %>
+<%= javascript_pack_tag 'practice_preview' %>
 

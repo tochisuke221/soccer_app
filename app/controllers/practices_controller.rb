@@ -52,7 +52,7 @@ class PracticesController < ApplicationController
 
   private
   def practice_params
-    params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,:image).merge(user_id:current_user.id)
+    params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,images:[]).merge(user_id:current_user.id)
   end
 
   def set_practice
