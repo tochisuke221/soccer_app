@@ -29,3 +29,32 @@
   <%end%>
 </div>
 
+<%#事故いいね一覧%>
+
+<div class="like">
+  <div class="like__box">
+    <div class="like__title">いいね一覧</div>
+    <% @user.liked_practices.each do |practice| %>
+      <div class="like__tweet">
+        <div class="like_tweet__user">
+         <%if practice.user.myphoto.attached?%>
+            <%=link_to (image_tag practice.user.myphoto, class: "mdround-img"),user_path(practice.user)%>
+         <%else%>
+            <%=link_to (image_tag '/default_myphoto.png' , class: "mdround-img"),user_path(practice.user)%>
+         <%end%>
+        </div>
+        <div class=like_tweet__info>
+          <div class="like_tweet__title"><%=link_to practice.title,practice_path(practice),class:"link_decoration"%></div>
+          <div class="like_mini_info flex_space_between">
+            <div id="like-<%=practice.id%>" class="m like_info">
+            <%=render partial: 'likes/like',locals: {practice:practice}%>
+            </div>
+            <div class="created_at"><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(practice.created_at) %>前</div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
+
+

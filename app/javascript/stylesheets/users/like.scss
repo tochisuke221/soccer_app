@@ -1,0 +1,41 @@
+.like {
+  &__box {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 1px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    margin: 25px auto;
+  }
+  &__title {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 30px 20px;
+  }
+  &__tweet {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 30px 20px;
+    font-size: 15px;
+    display: flex;
+  }
+  &_tweet {
+    &__user {
+      margin-right: 30px;
+    }
+    &__info {
+      width: 100%;
+    }
+    &__title {
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.created_at {
+  display: none;
+}
+
+@media (min-width: 500px) {
+  .created_at {
+    display: block;
+  }
+}

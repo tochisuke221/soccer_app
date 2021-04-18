@@ -43,6 +43,12 @@ body {
   }
 }
 
+.flex_space_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (min-width: 900px) {
   .smround-img {
     width: 40px;
