@@ -40,7 +40,6 @@
     <div class="m tweet_box__flex">
       <div id="like-<%=practice.id%>" class="m like_info">
         <%=render partial: 'likes/like',locals: {practice:practice}%>
-        <%# <i class="far fa-comments"></i>:  %>
       </div>
       <div class="m created_at_info"><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(practice.created_at) %>前
       </div>

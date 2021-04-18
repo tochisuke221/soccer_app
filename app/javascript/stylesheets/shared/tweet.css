@@ -154,6 +154,11 @@ ul.menu-list > li {
   color: #e54747;
 }
 
+.comment-mark {
+  font-size: 22px;
+  margin-left: 7px;
+}
+
 @media (min-width: 900px) {
   .tweet_title {
     font-size: 25px;
