@@ -51,7 +51,9 @@
   <div class="tweet_box__info">
     <div class="m tag_info">タグ:中連 効率 最強</div>
     <div class="m tweet_box__flex">
-      <div class="m like_info"><i class="far fa-heart"></i>: 1  <i class="far fa-comments"></i>: 2</div>
+      <div id="like-<%=@practice.id%>" class="m like_info">
+        <%=render partial: 'likes/like',locals: {practice:@practice}%>
+      </div>
       <div class="m created_at_info"><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(@practice.created_at) %>前
       </div>
     </div>
