@@ -1,5 +1,6 @@
+
+
 document.addEventListener('DOMContentLoaded', function(){
-  console.log("ok");
   const ImageList = document.getElementById('image-list');
   document.getElementById('user_myphoto').addEventListener('change', (e)=>{
     const file = e.target.files[0];

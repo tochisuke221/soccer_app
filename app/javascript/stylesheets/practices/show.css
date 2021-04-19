@@ -6,7 +6,7 @@
   text-align: center;
   margin: 0 auto;
   width: 150px;
-  padding: 15px 15px 3px;
+  padding: 35px 15px 3px;
   border-bottom: solid 1px chartreuse;
   margin-bottom: 25px;
 }
@@ -40,6 +40,53 @@
           flex-direction: row-reverse;
 }
 
+.slider-img {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.slick-track {
+  height: 300px;
+}
+
+.slick-slide {
+  height: 30vw;
+  max-height: 400px;
+  min-height: 350px;
+}
+
+.slick-prev,
+.slick-next {
+  background: #4bb242 !important;
+  border-radius: 50%;
+}
+
+.prev-arrow {
+  background: transparent;
+  left: -40px;
+  top: 140px;
+  width: 0;
+  height: 17px;
+  border-left: 0 solid transparent;
+  border-right: 15px solid #32cd32;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  position: absolute;
+}
+
+.next-arrow {
+  background: transparent;
+  right: -40px;
+  width: 0;
+  height: 0;
+  border-right: 0 solid transparent;
+  border-left: 15px solid #32cd32;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  position: absolute;
+  top: 140px;
+}
+
 @media (min-width: 900px) {
   .practice_info__content {
     display: -webkit-box;
@@ -47,6 +94,13 @@
     display: flex;
     -ms-flex-pack: distribute;
         justify-content: space-around;
+  }
+}
+
+@media (max-width: 400px) {
+  .prev-arrow,
+  .next-arrow {
+    display: none !important;
   }
 }
 /*# sourceMappingURL=show.css.map */

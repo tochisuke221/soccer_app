@@ -16,7 +16,12 @@
     </div>
   </div>
   
-    <div class="tweet_box__img show_img" style="background-image: url(<%= rails_blob_path(@practice.images[1]) if @practice. images[0].present?%>);"> <%#投稿写真とタイトル%> 
+    <div class="tweet_box__img show_img" >
+      <div class="slick-images">
+        <%@practice.images.each do |image|%>
+        <%=image_tag image ,class: "slider-img"%>
+        <%end%>
+      </div>
     </div>
  
   
@@ -101,5 +106,6 @@
       <%end%> 
   </div>
 </div>
+
 
 

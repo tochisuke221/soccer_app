@@ -33,7 +33,6 @@
 }
 
 .tweet_box__img {
-  background-image: url("/images/a.png");
   background-position: center center;
   background-size: contain;
   background-color: rgba(221, 222, 241, 0.2);
