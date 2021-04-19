@@ -6,11 +6,14 @@ ja:
         team_name: 高校名（チーム名）
         phone_num: 電話番号
         career_id: 教師歴
+  activemodel:
+    attributes:
       practices_ptag:
         title: タイトル
         content: 練習の内容
         category_id: 練習カテゴリー
         hardlevel_id: 負荷のレベル
+        name: タグ
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
