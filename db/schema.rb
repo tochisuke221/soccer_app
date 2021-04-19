@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_074827) do
+ActiveRecord::Schema.define(version: 2021_04_19_080347) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2021_04_19_074827) do
     t.index ["user_id"], name: "index_pcomments_on_user_id"
   end
 
+  create_table "practice_ptag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "practice_id"
+    t.bigint "ptag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["practice_id"], name: "index_practice_ptag_relations_on_practice_id"
+    t.index ["ptag_id"], name: "index_practice_ptag_relations_on_ptag_id"
+  end
+
   create_table "practices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -90,5 +99,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_074827) do
   add_foreign_key "likes", "users"
   add_foreign_key "pcomments", "practices"
   add_foreign_key "pcomments", "users"
+  add_foreign_key "practice_ptag_relations", "practices"
+  add_foreign_key "practice_ptag_relations", "ptags"
   add_foreign_key "practices", "users"
 end

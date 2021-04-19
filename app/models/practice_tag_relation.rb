@@ -1,2 +1,0 @@
-class PracticeTagRelation < ApplicationRecord
-end

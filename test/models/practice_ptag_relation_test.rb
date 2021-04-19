@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PracticeTagRelationTest < ActiveSupport::TestCase
+class PracticePtagRelationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
