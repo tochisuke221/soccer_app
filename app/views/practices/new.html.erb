@@ -30,10 +30,17 @@
           <label>負荷のレベル</label>
           <%= f.collection_select(:hardlevel_id, Hardlevel.all, :id, :name, {}, {class:"select-box"}) %>
         </div>
+        
+        <div class="form-group">
+          <label>タグ</label>
+          <%= f.text_field :name, placeholder:",で区切ってください",class: "form-control" %>
+        </div>
+
+     
 
         <div class="form-group">
           <label>練習風景の写真等（4枚までOK）</label><br>
-          <%= f.file_field :images,name: 'practice[images][]' ,multiple: true,id:"practice_image"%>
+          <%= f.file_field :images,name: 'practices_ptag[images][]' ,multiple: true,id:"practice_image"%>
         </div>
 
         <div id="practice-views"></div>

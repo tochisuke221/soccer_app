@@ -23,4 +23,5 @@ class Practice < ApplicationRecord
     validates :hardlevel_id
   end
 
+
 end

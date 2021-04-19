@@ -1,5 +1,5 @@
 class PracticesController < ApplicationController
-  before_action :set_practice,only:[:show,:update,:destroy,:edit]
+  before_action :set_practice,only:[:show,:destroy,:edit,:update]
   before_action :authenticate_user!,only:[:rank,:new,:show,:edit,:create,:update,:destroy]
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
@@ -15,13 +15,15 @@ class PracticesController < ApplicationController
   end
 
   def new
-    @practice=Practice.new
+    @practice=PracticesPtag.new
   end
 
 
   def create 
-    @practice=Practice.new(practice_params)
-    if @practice.save
+    @practices_ptag=PracticesPtag.new(create_params)
+
+    if @practice.valid?
+      @practice.save
       redirect_to root_path
     else
       render :new
@@ -29,10 +31,13 @@ class PracticesController < ApplicationController
   end
 
   def edit
+    @practices_ptag=PracticesPtag.new(title:@practice.title,content:@practice.content,category_id:@practice.category_id,hardlevel_id:@practice.hardlevel_id)
   end
   
   def update
-    if @practice.update(practice_params)
+    @practices_ptag=PracticesPtag.new(update_params)
+    if @practices_ptag.valid?
+      @practices_ptag.update
       redirect_to practice_path(@practice)
     else
       render :edit
@@ -51,8 +56,11 @@ class PracticesController < ApplicationController
 
 
   private
-  def practice_params
-    params.require(:practice).permit(:title,:content,:hardlevel_id,:category_id,images:[]).merge(user_id:current_user.id)
+  def create_params
+    params.require(:practices_ptag).permit(:title,:content,:hardlevel_id,:name,:category_id,images:[]).merge(user_id:current_user.id)
+  end
+  def update_params
+    params.require(:practices_ptag).permit(:title, :content,:hardlevel_id,:name,:category_id,images:[]).merge(user_id: current_user.id, practice_id: params[:id])
   end
 
   def set_practice
