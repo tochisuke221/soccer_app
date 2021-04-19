@@ -40,18 +40,19 @@
           flex-direction: row-reverse;
 }
 
-.slick-current {
-  height: 300px;
-  display: block;
+.slider-img {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
-.slider-img {
-  display: block;
-  max-width: 100%;
-  max-height: 300px !important;
-  width: auto;
-  height: auto;
-  margin: auto 0 !important;
+.slick-track {
+  height: 300px;
+}
+
+.slick-slide {
+  height: 30vw;
+  max-height: 400px;
+  min-height: 350px;
 }
 
 .slick-prev,
