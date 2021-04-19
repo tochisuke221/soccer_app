@@ -49,12 +49,6 @@
   height: 300px;
 }
 
-.slick-slide {
-  height: 30vw;
-  max-height: 400px;
-  min-height: 350px;
-}
-
 .slick-prev,
 .slick-next {
   background: #4bb242 !important;
