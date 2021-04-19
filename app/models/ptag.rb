@@ -1,0 +1,2 @@
+class Ptag < ApplicationRecord
+end

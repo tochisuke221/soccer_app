@@ -1,0 +1,2 @@
+class PracticeTagRelation < ApplicationRecord
+end
