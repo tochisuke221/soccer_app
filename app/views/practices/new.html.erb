@@ -35,7 +35,7 @@
           <label>タグ</label>
           <%= f.text_field :name, placeholder:",で区切ってください",class: "form-control" %>
         </div>
-
+        <div id="search-result"></div>
      
 
         <div class="form-group">
@@ -58,4 +58,5 @@
 
 <%= javascript_pack_tag 'count' %>
 <%= javascript_pack_tag 'practice_preview' %>
+<%= javascript_pack_tag 'ptag' %>
 

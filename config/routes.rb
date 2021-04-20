@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :pcomments, only: [:create, :destroy]
     collection do
       get "rank"
+      get "ptaglist"
     end
   end
 

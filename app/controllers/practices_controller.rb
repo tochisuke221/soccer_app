@@ -58,6 +58,12 @@ class PracticesController < ApplicationController
     @practices=Practice.includes(:liked_users).limit(5).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
   end
 
+  def ptaglist
+    
+    return nil if params[:keyword] == ""
+    ptag = Ptag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: ptag }
+  end
 
   private
   def create_params
