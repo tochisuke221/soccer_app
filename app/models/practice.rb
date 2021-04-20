@@ -26,15 +26,12 @@ class Practice < ApplicationRecord
   def self.search(keyword)
     if keyword != ""
       split_keyword = keyword.split(/[[:blank:]]+/)
-
       @practices = [] 
       split_keyword.each do |keyword|
         next if keyword == "" 
         @practices += Practice.where('title LIKE(?)', "%#{keyword}%")
       end 
-      @practices.uniq! #重複した商品を削除する
-    else
-      Practice.all
+      return @practices.uniq #重複した商品を削除する
     end
   end
 
