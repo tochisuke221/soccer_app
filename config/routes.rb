@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     collection do
       get "rank"
       get "ptaglist"
+      get "search"
     end
   end
 
