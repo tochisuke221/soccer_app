@@ -54,7 +54,12 @@
 
   </div>
   <div class="tweet_box__info">
-    <div class="m tag_info">タグ:中連 効率 最強</div>
+    <div class="m tag_info">
+       タグ:
+      <%@ptags.each do |ptag|%>
+       <%=ptag.name%>
+      <%end%>
+    </div>
     <div class="m tweet_box__flex">
       <div id="like-<%=@practice.id%>" class="m like_info">
         <%=render partial: 'likes/like',locals: {practice:@practice}%>

@@ -12,6 +12,7 @@ class PracticesController < ApplicationController
   def show
     @pcomment=Pcomment.new
     @pcomments=Pcomment.where(practice_id:@practice.id)
+    @ptags=@practice.ptags
   end
 
   def new
@@ -20,10 +21,11 @@ class PracticesController < ApplicationController
 
 
   def create 
-    @practices_ptag=PracticesPtag.new(create_params)
-
+    @practice=PracticesPtag.new(create_params)
+    ptag_list=params[:practices_ptag][:name].split(",")
+   
     if @practice.valid?
-      @practice.save
+      @practice.save(ptag_list)
       redirect_to root_path
     else
       render :new
@@ -36,8 +38,10 @@ class PracticesController < ApplicationController
   
   def update
     @practices_ptag=PracticesPtag.new(update_params)
+    ptag_list=params[:practices_ptag][:name].split(",")
+    
     if @practices_ptag.valid?
-      @practices_ptag.update
+      @practices_ptag.update(ptag_list)
       redirect_to practice_path(@practice)
     else
       render :edit

@@ -14,24 +14,37 @@ class PracticesPtag
     validates :hardlevel_id
   end
 
-  def save
+  def save(ptag_list)
     practice=Practice.create(title: title,content: content,category_id:category_id,hardlevel_id:hardlevel_id,user_id:user_id,images:images)
-    ptag = Ptag.where(name: name).first_or_initialize
+    #,区切りの配列をバラして1個づつPtagテーブルと中間テーブルに保存していくe
+    
+    ptag_list.each do |ptag_name|
+    ptag = Ptag.where(name: ptag_name).first_or_initialize
     ptag.save
-
     PracticePtagRelation.create(practice_id:practice.id,ptag_id:ptag.id)
+    end
+    
   end
 
-  def update
+  def update(ptag_list)
+    
+    #practiceの更新
     @practice = Practice.where(id: practice_id)
     practice = @practice.update(title: title,content: content,category_id:category_id,hardlevel_id:hardlevel_id,user_id:user_id,images:images)
-    ptag = Ptag.where(name: name).first_or_initialize
-    ptag.save
-
-    # 更新したpostとtagを紐付け、中間テーブルを更新する
-    map = PracticePtagRelation.where(practice_id: practice_id )
-    map.update(practice_id: practice_id, ptag_id: ptag.id)
-  end
-
+    @old_relations=PracticePtagRelation.where(practice_id:practice_id)
+    #この時点で一旦中間テーブルのデータ消す
+    @old_relations.each do |relation|
+      relation.delete
+    end  
     
+    #ptagの更新
+    ptag_list.each do |ptag_name|
+      @ptag = Ptag.where(name: ptag_name).first_or_initialize
+      @ptag.save
+      #再度1個づつ中間テーブルへ登録
+      new_relation=PracticePtagRelation.new(practice_id:practice_id,ptag_id:@ptag.id)
+      new_relation.save
+    end
+  end
+    #最後に更新した投稿とタグを結びつけ直
 end
