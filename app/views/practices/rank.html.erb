@@ -2,6 +2,10 @@
 みんながいいね！した投稿
 </div>
 
+<div class="to_ranking">
+一覧に<%=link_to "戻る",root_path%>
+</div>
+
 <div class="contents">
  <%=render partial: 'partial/practice', collection: @practices %>
 </div>

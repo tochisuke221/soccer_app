@@ -1,4 +1,21 @@
 .to_ranking {
-  margin: 0 auto 30px;
+  margin: 0 auto 20px;
   text-align: center;
+}
+
+.search-input {
+  width: 90%;
+}
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px auto 20px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.no-result {
+  text-align: center;
+  margin-top: 80px;
 }

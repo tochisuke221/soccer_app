@@ -1,6 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice,only:[:show,:destroy,:edit,:update]
-  before_action :authenticate_user!,only:[:rank,:new,:show,:edit,:create,:update,:destroy]
+  before_action :authenticate_user!,only:[:rank,:new,:show,:edit,:create,:update,:destroy,:search]
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
   def index
@@ -53,13 +53,16 @@ class PracticesController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @practices = Practice.search(params[:keyword])
+  end
+
 
   def rank
     @practices=Practice.includes(:liked_users).limit(5).sort{|a,b| b.liked_users.size <=> a.liked_users.size}
   end
 
   def ptaglist
-    
     return nil if params[:keyword] == ""
     ptag = Ptag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: ptag }

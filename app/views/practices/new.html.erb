@@ -1,6 +1,4 @@
-<% content_for(:body_attributes) do %>
-    data-turbolinks="false"
-<% end %>
+
 
 <div class="main">
 <div class="form_box">
@@ -12,7 +10,7 @@
          
         <div class="form-group">
           <label>タイトル</label>
-          <%= f.text_field :title, autofocus: true, placeholder: "例）超効率ミニトレ！", class: "form-control" %>
+          <%= f.text_field :title, autofocus: true, placeholder: "検索されやすいタイトルにしよう！", class: "form-control" %>
         </div>
 
         <div class="form-group">

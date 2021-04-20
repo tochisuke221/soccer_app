@@ -23,5 +23,13 @@ class Practice < ApplicationRecord
     validates :hardlevel_id
   end
 
+  def self.search(search)
+    if search != ""
+      Practice.where('title LIKE(?)', "%#{search}%")
+    else
+      Practice.all
+    end
+  end
+
 
 end
