@@ -29,8 +29,10 @@
 
         <div class="form-group">
           <label>タグ</label>
-          <%= f.text_field :name, placeholder:",で区切ってください",class: "form-control" ,value: "#{@practices_ptag.name}"%>
+          <%= f.text_field :name, placeholder:",で区切ってください",class: "form-control" %>
         </div>
+         <div id="search-result"></div>
+       
 
         <div class="form-group">
           <label>練習風景の写真等（4枚までOK）</label><br>
@@ -51,3 +53,4 @@
 
 <%= javascript_pack_tag 'count' %>
 <%= javascript_pack_tag 'practice_preview' %>
+<%= javascript_pack_tag 'ptag' %>
