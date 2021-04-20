@@ -3,6 +3,9 @@ class Practice < ApplicationRecord
   has_many :pcomments,dependent: :destroy
   has_many :likes,dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  has_many :practice_ptag_relations
+  has_many :ptags, through: :practice_ptag_relations
+  
   belongs_to :user
   belongs_to :hardlevel
   belongs_to :category
@@ -19,5 +22,6 @@ class Practice < ApplicationRecord
     validates :category_id
     validates :hardlevel_id
   end
+
 
 end
