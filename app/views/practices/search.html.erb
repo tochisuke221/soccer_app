@@ -1,0 +1,16 @@
+<div class="to_ranking">
+みんなが「いいね」した投稿は<%=link_to "こちら",rank_practices_path%>
+</div>
+<div class="to_ranking">
+一覧に<%=link_to "戻る",root_path%>
+</div>
+<div class="contents">
+<%if @practices.length!=0%>
+ <%=render partial: 'partial/practice', collection: @practices %>
+<%else %>
+  <div class="no-result">
+    <h4>検索結果は0件です</h4>
+  </div>
+  
+<%end%>
+</div>
