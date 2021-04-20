@@ -1,4 +1,4 @@
-if (location.pathname.match("/new")||location.pathname.match("/edit")||location.pathname.match("practices")){
+if (location.pathname.match("/new")/*||location.pathname.match("/edit")||location.pathname.match("practices")*/){
   document.addEventListener("DOMContentLoaded", () => {
     console.log("ok");
     const inputElement = document.getElementById("practices_ptag_name");
