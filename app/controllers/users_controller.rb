@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   before_action :profile_is_yourself?,only:[:edit,:update]
 
   def show
+    if current_user.following?(@user)
+      @relation=Relationship.find_by(user_id:current_user.id,follow_id:@user.id)
+    end
   end
   
   def edit
