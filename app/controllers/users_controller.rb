@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_action :profile_is_yourself?,only:[:edit,:update]
 
   def show
+    
+    @mylike_practices=User.find(params[:id]).liked_practices
+    @mypost_practices=Practice.where(user_id:params[:id])
+    @my_follows=User.find(params[:id]).followings
+    
     if current_user.following?(@user)
       @relation=Relationship.find_by(user_id:current_user.id,follow_id:@user.id)
     end

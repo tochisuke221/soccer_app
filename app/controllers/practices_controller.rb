@@ -13,7 +13,6 @@ class PracticesController < ApplicationController
     @pcomment=Pcomment.new
     @pcomments=Pcomment.where(practice_id:@practice.id)
     @ptags=@practice.ptags
-    
   end
 
   def new

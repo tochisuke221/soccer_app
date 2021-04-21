@@ -22,7 +22,7 @@
   <%unless current_user.id==params[:id].to_i%>
     <div class="btn-zone">
       <% if current_user.following?(@user)%>
-        <%=link_to "フォローを外す",user_relationship_path(@user,@relation), method: :delete,class: "btn btn-danger"  %>
+        <%=link_to "フォローを外す",user_relationship_path(@user,@relation), method: :delete,class: "btn btn-danger" %>
       <%else%>
         <%=link_to "フォローする",user_relationships_path(@user), method: :post,class: "btn btn-info"  %>
       <%end%>
@@ -42,34 +42,48 @@
       <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
     </div>
   <%end%>
-</div>
 
-<%#事故いいね一覧%>
-
-<div class="like">
-  <div class="like__box">
-    <div class="like__title">いいね一覧</div>
-    <% @user.liked_practices.each do |practice| %>
-      <div class="like__tweet">
-        <div class="like_tweet__user">
-         <%if practice.user.myphoto.attached?%>
-            <%=link_to (image_tag practice.user.myphoto, class: "mdround-img"),user_path(practice.user)%>
-         <%else%>
-            <%=link_to (image_tag '/default_myphoto.png' , class: "mdround-img"),user_path(practice.user)%>
-         <%end%>
-        </div>
-        <div class=like_tweet__info>
-          <div class="like_tweet__title"><%=link_to practice.title,practice_path(practice),class:"link_decoration"%></div>
-          <div class="like_mini_info flex_space_between">
-            <div id="like-<%=practice.id%>" class="m like_info">
-            <%=render partial: 'likes/like',locals: {practice:practice}%>
-            </div>
-            <div class="created_at"><i class="far fa-clock clock-icon"></i><%= time_ago_in_words(practice.created_at) %>前</div>
-          </div>
-        </div>
+  <div class="tab_container">
+<%#タブの部分ーリスト%>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="home" aria-expanded="true">いいね</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="profile">投稿</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="profile">フォロー</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="1-tab">
+      <div class="tab_inner">
+        <%=render partial: 'partial/practice',collection: @mylike_practices, as: "practice"%>
       </div>
-    <%end%>
+    </div>
+    <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="2-tab">
+      <div class="tab_inner">
+        <%=render partial: 'partial/practice',collection: @mypost_practices, as: "practice"%>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="3-tab">
+      <div class="tab_inner">
+      
+        <%=render partial: 'partial/friend_index',collection: @my_follows,as: "friend"%>
+     
+      </div>
+    </div>
   </div>
+
+
 </div>
+
+</div>
+
+<%#いいね一覧%>
+
+
+
 
 

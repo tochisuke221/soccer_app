@@ -20,6 +20,16 @@
   }
 }
 
+.tab_container {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto 0;
+}
+
+.tab_inner {
+  margin: 30px 0 0;
+}
+
 @media (min-width: 900px) {
   .user_intro {
     display: flex;

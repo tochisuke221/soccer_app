@@ -1,0 +1,26 @@
+.friend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+  &__name {
+    font-size: 15px;
+    margin-left: 8px;
+  }
+}
+
+@media (max-width: 450px) {
+  .mobile-btn {
+    font-size: 3px;
+  }
+  .friend {
+    &__name {
+      font-size: 3px;
+    }
+  }
+}
