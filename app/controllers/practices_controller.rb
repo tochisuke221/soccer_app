@@ -25,9 +25,11 @@ class PracticesController < ApplicationController
     ptag_list=params[:practices_ptag][:name].split(",")
    
     if @practice.valid?
+      flash[:notice]="投稿に成功しました"
       @practice.save(ptag_list)
       redirect_to root_path
     else
+      flash[:alert]="投稿に失敗しました"
       render :new
     end
   end
@@ -41,9 +43,11 @@ class PracticesController < ApplicationController
     ptag_list=params[:practices_ptag][:name].split(",")
     
     if @practices_ptag.valid?
+      flash[:notice]="編集に成功しました"
       @practices_ptag.update(ptag_list)
       redirect_to practice_path(@practice)
     else
+      flash[:alert]="編集に失敗しました"
       render :edit
     end
   end
