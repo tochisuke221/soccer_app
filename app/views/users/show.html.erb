@@ -1,7 +1,7 @@
 
 <div class="main">
 
-  <h1 class="page-title">マイページ</h1>
+  <h1 class="page-title"> <%=@user.name%>さんのページ</h1>
 
   <div class="user_intro">
     <div class="profile_image">
@@ -55,6 +55,9 @@
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="profile">フォロー</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="profile">フォロワー</a>
+    </li>
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="1-tab">
@@ -71,6 +74,13 @@
       <div class="tab_inner">
       
         <%=render partial: 'partial/friend_index',collection: @my_follows,as: "friend"%>
+     
+      </div>
+    </div>
+    <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="4-tab">
+      <div class="tab_inner">
+      
+        <%=render partial: 'partial/friend_index',collection: @my_followed,as: "friend"%>
      
       </div>
     </div>

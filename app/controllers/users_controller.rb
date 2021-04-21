@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @mylike_practices=User.find(params[:id]).liked_practices
     @mypost_practices=Practice.where(user_id:params[:id])
     @my_follows=User.find(params[:id]).followings
-    
+    @my_followed=User.find(params[:id]).followers
     if current_user.following?(@user)
       @relation=Relationship.find_by(user_id:current_user.id,follow_id:@user.id)
     end
