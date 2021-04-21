@@ -23,7 +23,7 @@ class Practice < ApplicationRecord
     validates :hardlevel_id
   end
 
-  def self.search(keyword)
+  def self.search(keyword) # クラスメソッド
     if keyword != ""
       split_keyword = keyword.split(/[[:blank:]]+/)
       @practices = [] 

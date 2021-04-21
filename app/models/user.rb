@@ -31,8 +31,26 @@ class User < ApplicationRecord
     validates :career_id
   end
 
+  #いいね機能
   def already_liked?(practice)
     self.likes.exists?(practice_id: practice.id)
+  end
+
+ #フォロー&フォロワー機能
+
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(other_user)# フォローしているかしてないかの有無をそもそもこれで調べたいから作成
+    self.followings.include?(other_user)
   end
 
 end
