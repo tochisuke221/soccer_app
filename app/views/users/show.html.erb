@@ -18,6 +18,18 @@
       <p>教師歴：<%=@user.career.name%></p>
     </div>
   </div>
+  
+  <%unless current_user.id==params[:id].to_i%>
+    <div class="btn-zone">
+      <% if current_user.following?(@user)%>
+        <%=link_to "フォローを外す",user_relationship_path(@user,@relation), method: :delete,class: "btn btn-danger"  %>
+      <%else%>
+        <%=link_to "フォローする",user_relationships_path(@user), method: :post,class: "btn btn-info"  %>
+      <%end%>
+    </div>
+  <%end%>
+
+
   <%if @user.id==current_user.id%>
     <div class="btn-zone">
       <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
