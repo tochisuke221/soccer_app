@@ -7,6 +7,15 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_practices, through: :likes, source: :practice
   has_one_attached :myphoto
+
+  #こっち側役
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow #架空モデル
+  #あっち側役
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy #架空モデル
+  has_many :followers, through: :reverse_of_relationships, source: :user #架空モデル
+
+
   belongs_to :career
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
