@@ -1,4 +1,4 @@
-if (location.pathname.match("/new")/*||location.pathname.match("/edit")||location.pathname.match("practices")*/){
+if (location.pathname.match("/new")||location.pathname.match("/edit")||location.pathname.match("/practices")){
   document.addEventListener("DOMContentLoaded", () => {
     console.log("ok");
     const inputElement = document.getElementById("practices_ptag_name");
@@ -10,9 +10,10 @@ if (location.pathname.match("/new")/*||location.pathname.match("/edit")||locatio
       }
 
       const XHR = new XMLHttpRequest();
-      XHR.open("GET", `ptaglist/?keyword=${keyword}`, true);
+      XHR.open("GET", `/practices/ptaglist/?keyword=${keyword}`, true);
       XHR.responseType = "json";
       XHR.send();
+      console.log("ok");
       XHR.onload=()=>{
         const searchResult = document.getElementById("search-result");
         searchResult.innerHTML = "";
