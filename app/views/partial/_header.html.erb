@@ -13,10 +13,14 @@
             <%=link_to("投稿する",new_practice_path)%>
           </li>
           <li class="header__li item">
-            <%# <i class="far fa-user-circle fa-2x"></i>
-            <%= link_to "", "#", class: "icpn fa-user-circle" %> 
+            <%if unchecked_notifications.any?%>
+              <%= link_to(content_tag(:i, '', class: 'far fa-bell fa-lg'),notifications_path)%><span class="notice">●</span>
+            <%else%>
+              <%= link_to(content_tag(:i, '', class: 'far fa-bell fa-lg'),notifications_path)%>
+            <%end%>
+          </li>
+          <li class="header__li item">
             <%= link_to(content_tag(:i, '', class: 'fa fa-user-circle fa-lg'),user_path(current_user))%>
-
           </li>
         <%else%>
           <li class="header__li item">
