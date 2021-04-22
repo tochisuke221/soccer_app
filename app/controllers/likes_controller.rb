@@ -2,11 +2,13 @@ class LikesController < ApplicationController
   before_action :authenticate_user!,only:[:create,:destroy]
 
   def create
-    
+    #いいねの作成
     @practice=Practice.find(params[:practice_id])
     like = current_user.likes.new(practice_id: @practice.id)
     like.save
-    # redirect_to  root_path
+    #いいね通知の作成
+    @practice.create_notification_by(current_user)
+    
     
   end
   
