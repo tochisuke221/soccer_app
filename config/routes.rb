@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users,only: [:show,:edit,:update] do
     resources :relationships,only:[:index,:create,:destroy]
   end
-
+  resources :notifications,only: :index
   resources :practices do
     resources :likes, only: [:create, :destroy]
     resources :pcomments, only: [:create, :destroy]
