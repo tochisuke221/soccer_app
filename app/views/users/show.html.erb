@@ -18,17 +18,9 @@
       <p>教師歴：<%=@user.career.name%></p>
     </div>
   </div>
-  
-  <%unless current_user.id==params[:id].to_i%>
-    <div class="btn-zone">
-      <% if current_user.following?(@user)%>
-        <%=link_to "フォローを外す",user_relationship_path(@user,@relation), method: :delete,class: "btn btn-danger" %>
-      <%else%>
-        <%=link_to "フォローする",user_relationships_path(@user), method: :post,class: "btn btn-info"  %>
-      <%end%>
-    </div>
-  <%end%>
-
+<div id="follow_form" class="btn-zone">
+  <%=render partial: "partial/follow_form",locals: {user: @user,relation:@relation}%>
+</div>
 
   <%if @user.id==current_user.id%>
     <div class="btn-zone">
@@ -56,7 +48,7 @@
       <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="profile">フォロー</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-controls="profile">フォロワー</a>
+      <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-controls="profile">フォロワー</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
@@ -73,14 +65,16 @@
     <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="3-tab">
       <div class="tab_inner">
       
-        <%=render partial: 'partial/friend_index',collection: @my_follows,as: "friend"%>
+        <%=render partial: 'partial/friend_index',collection: @my_follows, as: "friend"%>
      
       </div>
     </div>
     <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="4-tab">
       <div class="tab_inner">
-      
-        <%=render partial: 'partial/friend_index',collection: @my_followed,as: "friend"%>
+    
+    <div id="another_follow_form" class="btn-zone">
+        <%=render partial: 'partial/friend_index',collection: @my_followed, as: "friend"%>
+    </div>
      
       </div>
     </div>
@@ -90,10 +84,6 @@
 </div>
 
 </div>
-
-<%#いいね一覧%>
-
-
 
 
 
