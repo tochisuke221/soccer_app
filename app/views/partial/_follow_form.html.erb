@@ -1,0 +1,8 @@
+
+<%unless current_user.id==user.id%>
+  <% if current_user.following?(user)%>
+    <%=render partial: "relationships/unfollow" ,locals:{user:user,relation:relation}%>
+  <%else%>
+    <%=render partial: "relationships/follow" ,locals:{user:user}%>
+  <%end%>
+<%end%>

@@ -14,13 +14,9 @@
   }
 }
 
-@media (max-width: 450px) {
-  .mobile-btn {
-    font-size: 3px;
-  }
-  .friend {
-    &__name {
-      font-size: 3px;
-    }
+@media (max-width: 400px) {
+  .nav-link {
+    padding: 7px 8px;
+    font-size: 15px;
   }
 }
