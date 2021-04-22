@@ -15,8 +15,7 @@ class RelationshipsController < ApplicationController
     end
   end
   
-  def destroy_all
-   
+  def destroy
     @other_user=User.find(params[:user_id])
     following = current_user.unfollow(@other_user)
     if following.destroy
