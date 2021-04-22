@@ -25,7 +25,7 @@ class Practice < ApplicationRecord
     validates :hardlevel_id
   end
 
-  def self.search(keyword) # クラスメソッド
+  def self.search(keyword) # クラスメソッド,キーワードをもらって検索し、ヒットしたものを返す
     if keyword != ""
       split_keyword = keyword.split(/[[:blank:]]+/)
       @practices = [] 
@@ -36,5 +36,38 @@ class Practice < ApplicationRecord
       return @practices.uniq #重複した商品を削除する
     end
   end
+
+
+  #通知機能（コメントといいね）
+  
+  def create_notification_by(current_user)#自分がいいねしたときに、いいねした投稿、通知先、いいねしたというアクションを保存
+    notification = current_user.active_notifications.new(practice_id:id,visited_id:user_id,action:"like")
+    notification.save if notification.valid?
+  end
+
+  def create_notification_comment!(current_user,pcomment_id)
+    # ある投稿に対して、自分以外のコメント者をすべて取得し、全員に送る
+    temp_ids = Pcomment.select(:user_id).where(practice_id: id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+        save_notification_comment!(current_user, pcomment_id, temp_id['user_id'])
+    end
+    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    save_notification_comment!(current_user, pcomment_id, user_id) if temp_ids.blank?
+  end
+
+  def save_notification_comment!(current_user, comment_id, visited_id)
+    #ある投稿に、あるコメントをしたユーザを登録する
+    notification = current_user.active_notifications.new(
+      practice_id: id,
+      pcomment_id: pcomment_id,
+      visited_id: visited_id,
+      action: 'comment'
+    )
+    # 自分の投稿に対するコメントの場合は、通知済みとして通知が来ないようにする
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+ end
 
 end

@@ -55,4 +55,17 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  #通知機能
+
+  def create_notification_follow!(current_user)#自分が誰かををフォローしたときに、通知作成
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])#プレースホルダーで記載した
+    if temp.blank?#まだ登録されてないなら登録（通知）
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
 end
