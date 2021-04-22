@@ -1,6 +1,10 @@
 class PcommentsController < ApplicationController
+  before_action :set_practice,only:[:destroy]
+  before_action :set_comment,only:[:destroy]
+  before_action :authenticate_user!
+  before_action :move_to_root,only:[:destroy]
+
   def create
-    @practice=Practice.find(params[:practice_id])  
     @pcomment=Pcomment.new(pcomment_params)
     if @pcomment.save
       @practice.create_notification_comment!(current_user,@pcomment.id,@practice.user_id) #投稿に紐づくコメントが来たという通知
@@ -10,9 +14,26 @@ class PcommentsController < ApplicationController
       render "practices/show"
     end
   end
+
+  def destroy
+    @pcomment.destroy
+    redirect_to practice_path(@practice)
+  end
   
   private
+  def set_practice
+    @practice=Practice.find(params[:practice_id])
+  end
+  def set_comment
+    @pcomment=Pcomment.find(params[:id])
+  end
   def pcomment_params
     params.require(:pcomment).permit(:comment).merge(user_id:current_user.id,practice_id:params[:practice_id])
+  end
+
+  def move_to_root 
+    unless @pcomment.user_id==current_user.id
+      redirect_to root_path
+    end
   end
 end

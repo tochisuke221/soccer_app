@@ -115,7 +115,7 @@
             </div>
             <%if current_user==pcomment.user%>
               <div class="comment_trash">
-                <%= link_to(content_tag(:i, '', class: 'fas fa-trash'),"#",style:"color:#c0c0c0")%> 
+                <%= link_to(content_tag(:i, '', class: 'fas fa-trash'),practice_pcomment_path(@practice,pcomment),method: :delete,style:"color:#a9a9a9")%> 
               </div>
             <%end%>
           </div>
