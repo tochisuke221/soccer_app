@@ -45,17 +45,8 @@ class Practice < ApplicationRecord
     notification.save if notification.valid?
   end
 
-  def create_notification_comment!(current_user,pcomment_id)
-    # ある投稿に対して、自分以外のコメント者をすべて取得し、全員に送る
-    temp_ids = Pcomment.select(:user_id).where(practice_id: id).where.not(user_id: current_user.id).distinct
-    temp_ids.each do |temp_id|
-        save_notification_comment!(current_user, pcomment_id, temp_id['user_id'])
-    end
-    # まだ誰もコメントしていない場合は、投稿者に通知を送る
-    save_notification_comment!(current_user, pcomment_id, user_id) if temp_ids.blank?
-  end
-
-  def save_notification_comment!(current_user, pcomment_id, visited_id)
+ 
+  def create_notification_comment!(current_user, pcomment_id, visited_id)
     #ある投稿に、あるコメントをしたユーザを登録する
     notification = current_user.active_notifications.new(
       practice_id: id,
