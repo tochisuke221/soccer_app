@@ -55,7 +55,7 @@ class Practice < ApplicationRecord
     save_notification_comment!(current_user, pcomment_id, user_id) if temp_ids.blank?
   end
 
-  def save_notification_comment!(current_user, comment_id, visited_id)
+  def save_notification_comment!(current_user, pcomment_id, visited_id)
     #ある投稿に、あるコメントをしたユーザを登録する
     notification = current_user.active_notifications.new(
       practice_id: id,

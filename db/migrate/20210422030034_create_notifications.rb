@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.integer :visiter_id
       t.integer :visited_id
       t.integer :practice_id
-      t.integer :pcomment
+      t.integer :pcomment_id
       t.string :action
       t.boolean :checked
 
