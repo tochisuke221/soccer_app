@@ -1,0 +1,25 @@
+
+<%if notification.visiter_id!=notification.visited_id%><%#自分が自分にしたアクションは除く%>
+  <% visiter = notification.visiter %>
+  <% practice = notification.practice %>
+  <div class="notification ">
+    <div class="notification__img">
+    <%= link_to user_path(notification.visiter) do %>
+        <%if notification.visiter.myphoto.attached?%>
+          <%= image_tag notification.visiter.myphoto, class: "smround-img" %>
+        <%else%>
+          <%= image_tag '/default_myphoto.png' ,class: "smround-img"%>
+        <%end%>
+      <% end %>
+    </div>
+
+    <div class="notification__action">
+      <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)}前)" %></span>
+      <div class="notification__content">
+        <% if !@comment.nil? %>
+          <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @pcomment %></p> %>
+        <% end %>
+      </div>
+    </div>
+  </div>  
+<%end%>

@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_030034) do
     t.integer "practice_id"
     t.integer "pcomment_id"
     t.string "action"
-    t.boolean "checked"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

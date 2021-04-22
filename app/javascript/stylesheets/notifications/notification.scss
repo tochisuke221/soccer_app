@@ -1,0 +1,34 @@
+.notification {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+  margin: 5px auto 0px;
+  padding: 10px 5px;
+  &__action {
+    margin-left: 10px;
+    font-size: 15px;
+  }
+}
+
+.notice {
+  position: relative;
+  top: -9px;
+  right: 7px;
+  color: #ff6600;
+}
+
+.notice-trash {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  width: 90%;
+  max-width: 800px;
+  margin: 35px auto 0px;
+}
+.icon {
+  color: black;
+  display: inline-block;
+}
+.no-notice {
+  text-align: center;
+  margin-top: 40px;
+}

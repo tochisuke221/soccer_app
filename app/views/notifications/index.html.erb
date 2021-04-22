@@ -1,0 +1,15 @@
+<div class="notice-header">
+  <h3 class="page-title center_margin">通知</h3>
+  <div class="notice-trash">
+    <%=link_to destroy_all_notifications_path, method: :delete do %>
+        <i class="fas fa-trash" style="color: black;"></i><p class="icon">全削除</p>
+    <% end %>
+  </div>
+</div>
+<% if @notifications.exists? %>
+    <div class="users-index">
+        <%= render partial: "partial/notifications" ,collection:@notifications, as:"notification"%>
+    </div>
+<% else %>
+    <p class="no-notice">通知はありません</p>
+<% end %>
