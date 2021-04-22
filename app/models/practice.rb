@@ -5,6 +5,8 @@ class Practice < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   has_many :practice_ptag_relations
   has_many :ptags, through: :practice_ptag_relations
+
+  has_many :notifications,dependent: :destroy
   
   belongs_to :user
   belongs_to :hardlevel
