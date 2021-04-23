@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user,only:[:show,:edit,:update]
+  before_action :set_user,only:[:show,:edit,:update,:update,:destroy]
   before_action :authenticate_user!,only:[:show,:edit,:update]
   before_action :profile_is_yourself?,only:[:edit,:update]
+  before_action :ensure_normal_user,only:[:update,:destroy]
+  
+  
 
   def show
-    
     @mylike_practices=User.find(params[:id]).liked_practices
     @mypost_practices=Practice.where(user_id:params[:id])
     @my_follows=User.find(params[:id]).followings
@@ -25,6 +27,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+  end
 
   private
 
@@ -38,6 +42,11 @@ class UsersController < ApplicationController
   def profile_is_yourself?
     unless @user.id==current_user.id
       redirect_to user_path(@user)
+    end
+  end
+  def ensure_normal_user
+    if @user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
 end

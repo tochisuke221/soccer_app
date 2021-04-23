@@ -5,10 +5,10 @@
           <%= link_to "マイページ",user_path(current_user),class: "main-title"%>
         </li>
         <li class="mobile-menu__item">
-          <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
+          <%=link_to "投稿する",new_practice_path,class: "main-title"%>
         </li>
         <li class="mobile-menu__item">
-          <%=link_to "投稿する",new_practice_path,class: "main-title"%>
+          <%= link_to "ログアウト",destroy_user_session_path,method: :delete,class: "main-title"%>
         </li>
    <%else%>
       <li class="mobile-menu__item">
@@ -16,6 +16,9 @@
       </li>
       <li class="mobile-menu__item">
         <%= link_to "ログイン",new_user_session_path,class: "main-title"%>
+      </li>
+      <li class="mobile-menu__item">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post ,class: "main-title"%>
       </li>
    <%end%> 
   </ul>

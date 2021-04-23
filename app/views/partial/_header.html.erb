@@ -29,6 +29,9 @@
           <li class="header__li item">
             <%=link_to("ログイン",new_user_session_path)%>
           </li>
+          <li class="header__li item">
+            <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post%>
+          </li>
         <%end%>
       </ul>
     </nav>        

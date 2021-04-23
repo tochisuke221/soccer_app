@@ -68,4 +68,15 @@ class User < ApplicationRecord
     end
   end
 
+  #ゲストログイン機能
+  def self.guest
+    find_or_create_by!(email:'guest@example.com') do |user|
+      user.password=SecureRandom.urlsafe_base64
+      user.name="ゲスト"
+      user.team_name="ゲスト高校"
+      user.phone_num="09012341234"
+      user.career_id= 2
+    end
+  end
+  
 end
