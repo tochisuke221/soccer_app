@@ -90,7 +90,7 @@
   <div class="comments__form">
     <div class="comments__input">
       <% if user_signed_in? %>
-        <%= form_with(model: [@practice, @pcomment], local: true) do |f| %>
+        <%= form_with(model: [@practice, @pcomment]) do |f| %>
           <%=render 'partial/error_messages', model: f.object%>
           <%= f.text_area :comment, placeholder: "例）その練習とても参考になります！", class: "form-control",rows: "4" %>
           <%= f.submit "コメントする",class:"btn btn-outline-success comment-btn" %>
@@ -98,35 +98,11 @@
       <% end %>  
     </div>
     <div class="comment-line"></div>
-      <%@pcomments.each do |pcomment|%>
-        <div class="comment_box">
-          <div class="comment_box__user">
-            <div class="comment_user_info">
-              <div class="comment_box__img">
-                <%if pcomment.user.myphoto.attached?%>
-                    <%= image_tag pcomment.user.myphoto, class: "smround-img" %>
-                <%else%>
-                    <%= image_tag '/default_myphoto.png' ,class: "smround-img"%>
-                <%end%>
-              </div>
-              <div class="comment_box__name">
-                <%=pcomment.user.name%>
-              </div>  
-            </div>
-            <%if current_user==pcomment.user%>
-              <div class="comment_trash">
-                <%= link_to(content_tag(:i, '', class: 'fas fa-trash'),practice_pcomment_path(@practice,pcomment),method: :delete,style:"color:#a9a9a9")%> 
-              </div>
-            <%end%>
-          </div>
-          <div class="comment_box__comment">
-            <%=pcomment.comment%>
-          </div>
-          <div class="comment_box__time">
-            <%=l pcomment.created_at, format: :short%>
-          </div>
-        </div>
-      <%end%> 
+      <div id="comments_box">
+        
+        <%= render partial: "partial/pcomment_box",collection:@pcomments,as: "pcomment",locals:{practice:@practice}%>
+         
+      </div>
   </div>
 </div>
 

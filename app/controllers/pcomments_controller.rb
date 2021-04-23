@@ -1,5 +1,5 @@
 class PcommentsController < ApplicationController
-  before_action :set_practice,only:[:destroy]
+  before_action :set_practice,only:[:create,:destroy]
   before_action :set_comment,only:[:destroy]
   before_action :authenticate_user!
   before_action :move_to_root,only:[:destroy]
@@ -7,8 +7,9 @@ class PcommentsController < ApplicationController
   def create
     @pcomment=Pcomment.new(pcomment_params)
     if @pcomment.save
+      @pcomments=Pcomment.order("created_at DESC").where(practice_id:@practice.id)
       @practice.create_notification_comment!(current_user,@pcomment.id,@practice.user_id) #投稿に紐づくコメントが来たという通知
-      redirect_to practice_path(@practice)
+      #redirect_to practice_path(@practice)
     else
       @pcomments=Pcomment.where(practice_id:@practice.id)
       render "practices/show"
@@ -17,7 +18,8 @@ class PcommentsController < ApplicationController
 
   def destroy
     @pcomment.destroy
-    redirect_to practice_path(@practice)
+    @pcomments=Pcomment.where(practice_id:@practice.id)
+    #redirect_to practice_path(@practice)
   end
   
   private

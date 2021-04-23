@@ -1,0 +1,4 @@
+
+$('#comments_box').html('<%= j(render partial: 'partial/pcomment_box', collection:@pcomments,as:"pcomment",locals: {practice: @practice })%>');  
+
+$('#pcomment_comment').val(``)
