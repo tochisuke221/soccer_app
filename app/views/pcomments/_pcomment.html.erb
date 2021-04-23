@@ -4,13 +4,14 @@
     <div class="comment_user_info">
       <div class="comment_box__img">
         <%if pcomment.user.myphoto.attached?%>
-            <%= image_tag pcomment.user.myphoto, class: "smround-img" %>
+            <%=link_to (image_tag pcomment.user.myphoto, class: "smround-img"),user_path(pcomment.user)%>
         <%else%>
-            <%= image_tag '/default_myphoto.png' ,class: "smround-img"%>
+           <%=link_to (image_tag '/default_myphoto.png' , class: "smround-img"),user_path(pcomment.user)%>
         <%end%>
       </div>
       <div class="comment_box__name">
-        <%=pcomment.user.name%>
+        
+        <%=link_to pcomment.user.name,user_path(pcomment.user),class: "link_decoration"%>
       </div>  
     </div>
     <%if current_user==pcomment.user%>
@@ -26,3 +27,6 @@
     <%=l pcomment.created_at, format: :short%>
   </div>
 </div>
+
+
+         
