@@ -10,3 +10,8 @@
 <div class="contents">
  <%=render partial: 'partial/practice', collection: @practices %>
 </div>
+
+
+<div class="pagenation-box">
+<%= paginate @practices %>
+</div>
