@@ -17,6 +17,7 @@
       <li class="mobile-menu__item">
         <%= link_to "ログイン",new_user_session_path,class: "main-title"%>
       </li>
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
    <%end%> 
   </ul>
 </nav>
