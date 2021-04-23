@@ -78,5 +78,4 @@ class User < ApplicationRecord
       user.career_id= 2
     end
   end
-  
 end

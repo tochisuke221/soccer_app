@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    flash[:notice]="退会処理を完了しました。再度ログインする場合は新規登録をしてください"
+    redirect_to root_path
   end
 
   private
