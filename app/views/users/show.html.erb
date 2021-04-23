@@ -26,7 +26,7 @@
   <%if @user.id==current_user.id%>
     <div class="btn-zone">
       <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>
-      <%= link_to "退会する", "#", method: :get, class: "btn btn-danger" %>
+      <%= link_to "退会する", user_path(@user), method: :delete, class: "btn btn-danger" %>
     </div>
     <div class="center_margin">
     <%= link_to "戻る",root_path, method: :get, class: "btn btn-secondary center_margin" %>
