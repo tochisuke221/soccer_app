@@ -4,7 +4,7 @@ class PracticesController < ApplicationController
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
   def index
-    @practices=Practice.includes(:user).order("created_at DESC")
+    @practices=Practice.includes(:user).order("created_at DESC").page(params[:page]).per(10)
     @like = Like.new
   end
 
