@@ -19,7 +19,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
     `;
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('chat_message_content');
-    messages.insertAdjacentHTML('afterbegin', html);
+    messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
   }
 });
