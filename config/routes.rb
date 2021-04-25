@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :users,only: [:show,:edit,:update,:destroy] do
     resources :relationships,only:[:create,:destroy]
-    resources :chat_rooms,only:[:create,:show] do
+    resources :chat_rooms,only:[:index,:create,:show] do
       resources :chat_messages,only:[:create]
     end
   end
