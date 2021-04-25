@@ -21,7 +21,7 @@
   <div id="follow_form" class="btn-zone">
     <%=render partial: "partial/follow_form",locals: {user: @user,relation:@relation}%>
   </div>
-
+   <%= link_to "DMする", user_chat_rooms_path(@user), method: :post, class: "btn btn-info" %>
   <%if @user.id==current_user.id%>
     <div class="btn-zone">
       <%= link_to "編集する", edit_user_path(@user), method: :get, class: "btn btn-info" %>

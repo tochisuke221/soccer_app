@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :users,only: [:show,:edit,:update,:destroy] do
     resources :relationships,only:[:create,:destroy]
+    resources :chat_rooms,only:[:create,:show]
   end
   resources :notifications,only: [:index] do
     collection do
@@ -26,6 +27,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :chat_rooms,only:[:create,:show]
+  
 
 end
