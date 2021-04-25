@@ -7,9 +7,6 @@
       <ul class="header__ul">
         <%if user_signed_in?%>
           <li class="header__li item">
-            <%=link_to("ログアウト",destroy_user_session_path,method: :delete)%>
-          </li>
-          <li class="header__li item">
             <%=link_to("投稿する",new_practice_path)%>
           </li>
           <li class="header__li item">
@@ -21,6 +18,9 @@
           </li>
           <li class="header__li item">
             <%= link_to(content_tag(:i, '', class: 'fa fa-user-circle fa-lg'),user_path(current_user))%>
+          </li>
+          <li class="header__li item">
+             <%= link_to(content_tag(:i, '', class: 'fas fa-sign-out-alt'),destroy_user_session_path,method: :delete)%>
           </li>
         <%else%>
           <li class="header__li item">
