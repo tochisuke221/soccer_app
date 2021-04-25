@@ -1,8 +1,15 @@
 
 <div id="chat-messages">
-  <%render partial: "partial/chat_message",collection: @chat_messages%>
+  <%=render partial: "partial/chat_message",collection: @chat_messages%>
 </div>
 
-<form>
-  <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
-</form>
+
+<div id="messages">
+ <%#自分のメッセージが入る%>
+</div>
+
+
+  <%= form_with model: @chat_message,url: user_chat_room_chat_messages_path(current_user,@chat_room)  do |f| %> 
+   <%= f.text_field :content %> 
+   <%= f.submit '送信' %> 
+  <% end %> 
