@@ -1,2 +1,0 @@
-class Chatmessage < ApplicationRecord
-end
