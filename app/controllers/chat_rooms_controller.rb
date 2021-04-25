@@ -3,7 +3,7 @@ class ChatRoomsController < ApplicationController
   def create
     current_user_chat_rooms = ChatRoomUser.where(user_id: current_user.id).map(&:chat_room) #自身のチャットルーム全てを配列として集める
     chat_room = ChatRoomUser.find_by(chat_room: current_user_chat_rooms, user_id: params[:user_id])
-    binding.pry
+
     if chat_room.blank?
       chat_room = ChatRoom.create #ルームの作成してから
       #中間テーブルに登録
