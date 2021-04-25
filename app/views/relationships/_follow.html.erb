@@ -1,2 +1,2 @@
-  <%=link_to "フォローする",user_relationships_path(user), method: :post,id: "f-btn",class: "btn btn-info" ,remote:true %>
-     
+  <%=link_to "フォロー",user_relationships_path(user), method: :post,id: "f-btn",class: "btn btn-outline-primary" ,remote:true %>
+  <%= link_to "DMする", user_chat_rooms_path(user), method: :post, class: "btn btn-outline-success" %>

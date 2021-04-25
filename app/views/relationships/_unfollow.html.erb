@@ -1,3 +1,4 @@
 
 
-<%=link_to "フォロー解除",user_relationship_path(user,relation), method: :delete,id: "f-btn",class: "btn btn-danger",remote:true %>
+<%=link_to "フォロー解除",user_relationship_path(user,relation), method: :delete,id: "f-btn",class: "btn btn btn-outline-danger",remote:true %>
+<%= link_to "DMする", user_chat_rooms_path(user), method: :post, class: "btn btn-outline-success" %>
