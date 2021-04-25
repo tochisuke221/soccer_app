@@ -2,23 +2,26 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend ActiveHash::Associations::ActiveRecordExtensions
+  #投稿機能
   has_many :practices,dependent: :destroy
   has_many :pcomments,dependent: :destroy
+  #いいね機能
   has_many :likes, dependent: :destroy
   has_many :liked_practices, through: :likes, source: :practice
   has_one_attached :myphoto
-
   #フォロー（こっち）側役
   has_many :relationships, dependent: :destroy
   has_many :followings, through: :relationships, source: :follow #架空モデル
   #フォロワー（あっち）側役
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy #架空モデル
   has_many :followers, through: :reverse_of_relationships, source: :user #架空モデル
-
+  #通知機能
   has_many :active_notifications,class_name: "Notification",foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  #チャット機能
   has_many :chat_room_users
   has_many :chat_rooms, through: :chat_room_users
+  has_many :chat_messages
 
 
   belongs_to :career

@@ -1,0 +1,16 @@
+
+<div class="chat-message">
+  <%if chat_message.user_id==current_user.id%>
+    <div class="my_message_box">
+      <div class="my_message">
+        <%= chat_message.content %>
+      </div>
+    </div>
+  <%else%>
+    <div class="otheruser_message_box">
+      <div class="other_message">
+        <%= chat_message.content %>
+        </div>
+    </div>  
+  <%end%> 
+</div>

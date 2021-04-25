@@ -1,0 +1,88 @@
+#chat-messages {
+  padding: 20px 0;
+  height: 80vh;
+  overflow: scroll;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.my_message_box {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0px;
+  margin-left: auto;
+}
+
+.my_message,
+.other_message {
+  display: inline-block;
+  background-color: #ccffcc;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin: 10px;
+  //width: 60%;
+  max-width: 60%;
+  word-wrap: break-word;
+}
+
+.message_to_user {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.other_message {
+  background-color: #eeeeee; //上書き
+}
+
+.three-dot-spinner {
+  display: inline-block;
+  text-align: center;
+
+  & div {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background-color: $cBlack;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite;
+  }
+
+  & .bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  & .bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.send-message {
+  margin: 20px auto 0px;
+  width: 80%;
+  max-width: 500px;
+}
+
+@media (min-width: 800px) {
+  #chat-messages {
+    padding: 20px 10px;
+    background-color: white;
+    width: 500px;
+    height: 80vh;
+    overflow: scroll;
+    margin: 0 auto;
+  }
+}
