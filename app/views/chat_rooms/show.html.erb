@@ -1,15 +1,37 @@
-
+<div class="message_to_user">
+    <%if @chat_room_user.myphoto.attached?%>
+       <%=link_to (image_tag @chat_room_user.myphoto, class: "smround-img"),user_path(@chat_room_user)%>
+    <%else%>
+       <%=link_to (image_tag '/default_myphoto.png' , class: "smround-img"),user_path(@chat_room_user)%>
+    <%end%>
+    <br>
+    <%=@chat_room_user.name%>さんとメッセージ中
+<div class="three-dot-spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
 <div id="chat-messages">
   <%=render partial: "partial/chat_message",collection: @chat_messages%>
-</div>
-
-
 <div id="messages">
- <%#自分のメッセージが入る%>
+ 
+</div>
 </div>
 
 
-  <%= form_with model: @chat_message,url: user_chat_room_chat_messages_path(current_user,@chat_room)  do |f| %> 
-   <%= f.text_field :content %> 
-   <%= f.submit '送信' %> 
-  <% end %> 
+
+
+
+<%= form_with model: @chat_message,url: user_chat_room_chat_messages_path(current_user,@chat_room)  do |f| %> 
+
+    <%= f.text_field :content , class: "form-control send-message"%>
+<div class="actions">
+    <%= f.submit '送信', class: "btn btn-primary registration-btn message-btn"%> 
+</div>
+
+ 
+  
+<% end %> 
+
+      
