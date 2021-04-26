@@ -7,3 +7,23 @@
     margin: 0px 5px 0px;
   }
 }
+
+.game_title {
+  padding: 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.game_info {
+  padding: 10px 5px;
+  font-size: 10px;
+}
+
+@media (min-width: 800px) {
+  .game_title {
+    font-size: 20px;
+  }
+  .game_info {
+    font-size: 13px;
+  }
+}
