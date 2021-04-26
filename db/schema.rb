@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_050528) do
+ActiveRecord::Schema.define(version: 2021_04_26_022028) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,21 @@ ActiveRecord::Schema.define(version: 2021_04_25_050528) do
   create_table "chat_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "gameday", null: false
+    t.string "location", null: false
+    t.integer "gametime_id", null: false
+    t.integer "gamenum_id", null: false
+    t.integer "level_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.boolean "check", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_games_on_user_id"
   end
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -144,6 +159,7 @@ ActiveRecord::Schema.define(version: 2021_04_25_050528) do
   add_foreign_key "chat_messages", "users"
   add_foreign_key "chat_room_users", "chat_rooms"
   add_foreign_key "chat_room_users", "users"
+  add_foreign_key "games", "users"
   add_foreign_key "likes", "practices"
   add_foreign_key "likes", "users"
   add_foreign_key "pcomments", "practices"

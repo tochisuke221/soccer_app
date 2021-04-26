@@ -2,6 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend ActiveHash::Associations::ActiveRecordExtensions
+  
+  belongs_to :career
   #投稿機能
   has_many :practices,dependent: :destroy
   has_many :pcomments,dependent: :destroy
@@ -22,9 +24,14 @@ class User < ApplicationRecord
   has_many :chat_room_users
   has_many :chat_rooms, through: :chat_room_users
   has_many :chat_messages
+  #試合募集
+  has_many :games
+  belongs_to :gamenum
+  belongs_to :gametime
+  belongs_to :level
+  
 
 
-  belongs_to :career
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :games,only:[:index,:new,:create,:destroy,:show]
+
   
 
 end

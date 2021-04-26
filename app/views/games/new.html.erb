@@ -1,0 +1,54 @@
+<div class="main">
+  <div class="form_box">
+
+  <h1 class="page-title">試合を募集する</h1>
+      <%= form_with model: @game, url: games_path(@game),local: true do |f| %>
+         <%=render 'partial/error_messages', model: f.object %>
+
+         
+        <div class="form-group">
+          <label>タイトル</label>
+          <%= f.text_field :title, autofocus: true, placeholder: "例：練習試合相手募集！2月21日東京都内", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>日時</label>
+          <%#= f.datetime_select :gameday, {}, class: 'form-control' %>
+          <div class="select-date">
+           
+            <%= raw sprintf(f.datetime_select(:gameday, use_month_numbers: true, date_separator: '%s', datetime_separator: '%s'), '年', '月', '日')%>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>試合会場</label>
+          <%= f.text_field :location, autofocus: true, placeholder: "〇〇市立運動公園", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <label>1試合の時間</label>
+          <%= f.collection_select(:gametime_id, Gametime.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+
+        <div class="form-group">
+          <label>試合本数</label>
+          <%= f.collection_select(:gamenum_id, Gamenum.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+
+        <div class="form-group">
+          <label>相手に求めるレベル</label>
+          <%= f.collection_select(:level_id, Level.all, :id, :name, {}, {class:"select-box"}) %>
+        </div>
+
+        <div class="form-group">
+          <label>一言挨拶</label>
+          <%= f.text_area :description, autofocus: true, placeholder: "例：来季に向け2年生主体のチームで挑ませていただきます。よろしくお願いします", class: "form-control" %>
+        </div>
+
+
+        <div class="actions">
+          <%= f.submit "登録する", id: "submit",class: "btn btn-primary registration-btn" %>
+        </div>
+      <% end %>
+  </div>
+</div>
