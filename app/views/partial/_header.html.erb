@@ -10,6 +10,9 @@
             <%=link_to("投稿する",new_practice_path)%>
           </li>
           <li class="header__li item">
+            <%= link_to(content_tag(:i, '', class: 'fas fa-envelope-open'),user_chat_rooms_path(current_user))%>
+          </li>
+          <li class="header__li item">
             <%if unchecked_notifications.any?%>
               <%= link_to(content_tag(:i, '', class: 'far fa-bell fa-lg'),notifications_path)%><span class="notice">●</span>
             <%else%>
