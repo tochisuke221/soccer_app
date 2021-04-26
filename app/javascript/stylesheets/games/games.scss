@@ -15,10 +15,34 @@
 }
 
 .game_info {
-  padding: 10px 5px;
+  padding: 10px;
   font-size: 10px;
 }
 
+.game_show {
+  border-bottom: double 5px #ffc778;
+  width: fit-content;
+  padding: 3px 15px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.host-title {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.host__img {
+  text-align: center;
+}
+
+.host__greet {
+  margin: 10px auto;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  font-size: 10px;
+}
 @media (min-width: 800px) {
   .game_title {
     font-size: 20px;
