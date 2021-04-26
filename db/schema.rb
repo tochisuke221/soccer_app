@@ -59,12 +59,13 @@ ActiveRecord::Schema.define(version: 2021_04_26_022028) do
 
   create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.time "gameday", null: false
+    t.datetime "gameday", null: false
     t.string "location", null: false
     t.integer "gametime_id", null: false
     t.integer "gamenum_id", null: false
     t.integer "level_id", null: false
     t.string "title", null: false
+    t.text "description"
     t.boolean "check", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

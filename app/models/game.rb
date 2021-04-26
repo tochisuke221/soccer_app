@@ -1,7 +1,8 @@
 class Game < ApplicationRecord
-
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  
   belongs_to :user
-  belongs_to :gametime
+ 
   belongs_to :gamenum
   belongs_to :level
 
@@ -9,7 +10,6 @@ class Game < ApplicationRecord
     validates :gameday
     validates :location
     validates :title
-    validates :check
   end
 
   with_options numericality: { other_than: 1 } do
