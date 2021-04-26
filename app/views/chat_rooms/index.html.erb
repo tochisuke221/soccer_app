@@ -1,3 +1,5 @@
-<%@chat_room_users.each do |chat_room_user|%>
-  <p><%=chat_room_user.user.name%></p>
-<%end%>
+<div class="page-title">
+メッセージ一覧
+</div>
+
+<%=render partial: "partial/chat_room_form",collection: @chat_room_users,as:"chat_room_user"%>

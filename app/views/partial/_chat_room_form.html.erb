@@ -1,0 +1,16 @@
+<div class="tweet_box">
+  <div class=friend>
+    <div class="friend__info">
+       <div class="friend__img">
+          <%if chat_room_user.user.myphoto.attached?%>
+             <%=link_to (image_tag friend.myphoto, class: "smround-img"),user_chat_rooms_path(chat_room_user.user),method: :post%>
+          <%else%>
+             <%=link_to (image_tag '/default_myphoto.png' , class: "smround-img"),user_chat_rooms_path(chat_room_user.user),method: :post%>
+          <%end%>
+       </div>
+       <div class="friend__name">
+        <%=link_to chat_room_user.user.name,user_chat_rooms_path(chat_room_user.user),method: :post,class: "link_decoration"%>
+       </div>
+    </div>
+  </div>
+</div>
