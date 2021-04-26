@@ -3,7 +3,6 @@ class PracticesPtag
   attr_accessor :title,:content,:category_id,:hardlevel_id,:user_id ,:name,:images,:practice_id,:ptag_id
 
   with_options presence: true do
-    validates :user_id
     validates :title
     validates :content
     validates :name

@@ -15,7 +15,6 @@ class Practice < ApplicationRecord
   has_many_attached :images
   
   with_options presence: true do
-    validates :user_id
     validates :title
     validates :content
   end
