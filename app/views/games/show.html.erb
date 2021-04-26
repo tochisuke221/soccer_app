@@ -1,0 +1,18 @@
+
+<h1 class="page-title">募集掲示板</h1>
+<div class="tweet_box">
+  <div class="tweet_box__user ">
+    <div class="game_title">
+      <%=@game.title%>
+    </div>
+  </div>
+  <div class="game_info">
+    <div class="team_name">主宰：<%=@game.user.team_name%></div>
+    <div class="gameday">場所：<%=@game.location%></div>
+    <div class="location">開催日時：<%=@game.gameday.strftime("%Y年%m月%d日%H時%M分")%></div>       
+    <div class="gameday">試合時間：<%=@game.gametime.name%></div>
+    <div class="gameday">試合本数：<%=@game.gamenum.name%></div>
+    <div class="gameday">相手に求めているレベル：<%=@game.level.name%></div>
+  </div>  
+</div>
+

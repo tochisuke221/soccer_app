@@ -4,6 +4,7 @@ class Game < ApplicationRecord
   belongs_to :user
  
   belongs_to :gamenum
+  belongs_to :gametime
   belongs_to :level
 
   with_options presence: true do

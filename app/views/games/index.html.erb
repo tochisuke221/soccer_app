@@ -1,24 +1,19 @@
 
 <h1 class="page-title">募集掲示板</h1>
 <%@games.each do |game|%>
-<div class="tweet_box">
-
-  <div class="tweet_box__user ">
-    <div class="game_title">
-      <%=game.title%>
+  <div class="tweet_box">
+    <div class="tweet_box__user ">
+      <div class="game_title">
+        <%=game.title%>
+      </div>
     </div>
-  </div>
-   
-  
-   <div class="game_info">
+    <div class="game_info">
       <div class="team_name">主宰：<%=game.user.team_name%></div>
       <div class="gameday">場所：<%=game.location%></div>
       <div class="location">開催日時：<%=game.gameday.strftime("%Y年%m月%d日%H時%M分")%></div>       
-    </div>
-  
- </div>
+    </div>  
+  </div>
 <%end%>
-
 <div class="pagenation-box">
-<%= paginate @games %>
+  <%= paginate @games %>
 </div>
