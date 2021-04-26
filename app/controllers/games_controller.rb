@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   
   def index
+    @games=Game.includes(:user).where(check:false)
   end
   
   def show
