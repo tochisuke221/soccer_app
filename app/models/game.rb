@@ -8,12 +8,17 @@ class Game < ApplicationRecord
   with_options presence: true do
     validates :gameday
     validates :location
-    validates :gametime_id
-    validates :gamenum_id
-    validates :level_id
     validates :title
     validates :check
   end
+
+  with_options numericality: { other_than: 1 } do
+    validates :gametime_id
+    validates :gamenum_id
+    validates :level_id
+    validates :myperfomance_id
+  end
+  
 end
 
 
