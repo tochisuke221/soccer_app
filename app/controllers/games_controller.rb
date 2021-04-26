@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   
   def index
-    @games=Game.includes(:user).where(check:false)
+    @games=Game.includes(:user).order(created_at: "DESC").where(check:false).page(params[:page]).per(5)
   end
   
   def show
@@ -12,7 +12,6 @@ class GamesController < ApplicationController
   end
   
   def create
-   
     @game=Game.new(game_params)
     if @game.save
       flash[:notice]="募集に成功しました"
