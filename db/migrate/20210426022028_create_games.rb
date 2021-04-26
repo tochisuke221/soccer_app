@@ -7,7 +7,6 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.integer :gametime_id,         null:false
       t.integer :gamenum_id,          null:false
       t.integer :level_id,            null:false
-      t.integer :myperfomance_id,     null:false
       t.string  :title,               null:false
       t.boolean :check,               default: false, null: false
       t.timestamps

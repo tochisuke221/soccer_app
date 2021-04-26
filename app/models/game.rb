@@ -16,9 +16,8 @@ class Game < ApplicationRecord
     validates :gametime_id
     validates :gamenum_id
     validates :level_id
-    validates :myperfomance_id
   end
-  
+
 end
 
 
