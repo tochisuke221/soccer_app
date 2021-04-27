@@ -59,6 +59,11 @@ crumb :password do |user|
   parent :user_show,user
 end
 
+crumb :schedule do |user|
+  link "予定表"
+  parent :user_show,user
+end
+
 crumb :user_edit do |user|
   link "マイページ編集"
   parent :user_show,user
