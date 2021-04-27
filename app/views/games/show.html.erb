@@ -1,0 +1,53 @@
+
+<h1 class="page-title">募集詳細</h1>
+<div class="tweet_box">
+  <div class="tweet_box__user ">
+    <div class="game_title">
+      <%=@game.title%>
+    </div>
+  </div>
+  <div class="game_info">
+    <h5 class="game_show">試合の詳細</h5>
+    <div class="game_flex">
+      <div>
+        <div class="team_name">主宰：<%=@game.user.team_name%></div>
+        <div class="gameday">場所：<%=@game.location%></div>
+        <div class="location">開催日時：<%=@game.gameday.strftime("%Y年%m月%d日%H時%M分")%></div>       
+      </div>
+      <div>
+        <div class="gameday">試合時間：<%=@game.gametime.name%></div>
+        <div class="gameday">試合本数：<%=@game.gamenum.name%></div>
+        <div class="gameday">相手に求めているレベル：<%=@game.level.name%></div>
+      </div>
+    </div>
+   
+  </div>  
+</div>
+
+
+<h6 class="host-title">開催者からのご挨拶</h6>
+<div class="host">
+
+  <div class="host__img">
+    <%if @game.user.myphoto.attached?%>
+       <%=link_to (image_tag @game.user.myphoto, class: "mdround-img"),user_path(@game.user)%>
+    <%else%>
+       <%=link_to (image_tag '/default_myphoto.png' , class: "mdround-img"),user_path(@game.user)%>
+    <%end%>
+  </div>
+  <div class="host__greet">
+    <%if @game.description==""%>
+      この度はご興味を持っていただきありがとうございます。ご応募お待ちしております！！！
+    <%else%>
+      <%=@game.description%>
+    <%end%>
+  </div>
+  <div class="btn-zone">
+    <%= link_to "戻る",games_path, method: :get, class: "btn btn-outline-secondary center_margin" %>
+    <%if current_user.id==@game.user_id%>
+      <%= link_to "削除",game_path(@game), method: :delete, class: "btn btn-outline-danger center_margin" %>
+    <%else%>
+      <%= link_to "申込",challenge_game_path(@game),method: :post ,class: "btn btn-outline-success center_margin" %>
+    <%end%>
+  </div>
+</div>

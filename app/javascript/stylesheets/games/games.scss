@@ -15,8 +15,36 @@
 }
 
 .game_info {
-  padding: 10px 5px;
+  padding: 10px;
   font-size: 10px;
+}
+
+.game_show {
+  border-bottom: double 5px #ffc778;
+  width: fit-content;
+  padding: 3px 15px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  margin: 0 auto 10px;
+}
+.host-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.host {
+  &__img {
+    text-align: center;
+  }
+  &__greet {
+    margin: 10px auto 20px;
+    width: 80%;
+    max-width: 800px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    font-size: 10px;
+  }
 }
 
 @media (min-width: 800px) {
@@ -25,5 +53,10 @@
   }
   .game_info {
     font-size: 13px;
+  }
+  .game_flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 }

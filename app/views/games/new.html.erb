@@ -41,13 +41,14 @@
         </div>
 
         <div class="form-group">
-          <label>一言挨拶</label>
+          <label>ご挨拶</label>
           <%= f.text_area :description, autofocus: true, placeholder: "例：来季に向け2年生主体のチームで挑ませていただきます。よろしくお願いします", class: "form-control" %>
         </div>
 
 
         <div class="actions">
           <%= f.submit "登録する", id: "submit",class: "btn btn-primary registration-btn" %>
+          <p class="warning">※この投稿は後から編集することはできません。本当に募集内容は正しいか確認してください。（削除は可能です）</p>
         </div>
       <% end %>
   </div>

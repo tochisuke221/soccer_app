@@ -45,6 +45,12 @@ body {
   }
 }
 
+.warning {
+  color: red;
+  margin: 20px auto;
+  font-size: 15px;
+}
+
 .flex_space_between {
   display: flex;
   justify-content: space-between;

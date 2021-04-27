@@ -7,10 +7,10 @@
       <ul class="header__ul">
         <%if user_signed_in?%>
           <li class="header__li item">
-            <%=link_to("投稿する",new_practice_path)%>
+            <%=link_to("試合募集",games_path)%>
           </li>
           <li class="header__li item">
-            <%= link_to(content_tag(:i, '', class: 'fas fa-envelope-open'),user_chat_rooms_path(current_user))%>
+            <%=link_to("投稿する",new_practice_path)%>
           </li>
           <li class="header__li item">
             <%if unchecked_notifications.any?%>
@@ -19,11 +19,13 @@
               <%= link_to(content_tag(:i, '', class: 'far fa-bell fa-lg'),notifications_path)%>
             <%end%>
           </li>
-          <li class="header__li item">
-            <%= link_to(content_tag(:i, '', class: 'fa fa-user-circle fa-lg'),user_path(current_user))%>
-          </li>
-          <li class="header__li item">
-             <%= link_to(content_tag(:i, '', class: 'fas fa-sign-out-alt'),destroy_user_session_path,method: :delete)%>
+          <li class="header__li item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle fa-lg"></i>   <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%=link_to "マイページ",user_path(current_user),class: "link_decoration"%></li>
+              <li><%=link_to "チャット一覧",user_chat_rooms_path(current_user),class: "link_decoration"%></li>
+              <li><%=link_to "ログアウト",destroy_user_session_path(current_user),method: :delete,class: "link_decoration"%></li>
+            </ul>
           </li>
         <%else%>
           <li class="header__li item">
