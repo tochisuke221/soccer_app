@@ -23,7 +23,9 @@
         <%= render partial: 'partial/header'%><%#headerメニュー%>
         <%= render partial: 'partial/flash'%><%#フラッシュ部分%>
        <div class="main-text">
-       <%= breadcrumbs separator: " &rsaquo; " %>
+         <div class="breadcrumb">
+          <%= breadcrumbs separator: " &rsaquo; " %>
+         </div>   
          <%= yield %>  <%#本文%>
        </div>
        
