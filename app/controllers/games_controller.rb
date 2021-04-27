@@ -34,9 +34,11 @@ class GamesController < ApplicationController
   end
 
   def challenge
+    binding.pry
     @game.check=true
-    flash[:notice]="申し込みを完了しました"
-    redirect_to  controller: :chat_rooms, action: :create
+    @game.save
+    flash[:notice]="申し込みを完了しました!!!開催者にDMを送りましょう"
+    redirect_to  user_path(@game.user_id)
   end
 
   private

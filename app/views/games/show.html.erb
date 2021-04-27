@@ -47,7 +47,7 @@
     <%if current_user.id==@game.user_id%>
       <%= link_to "削除",game_path(@game), method: :delete, class: "btn btn-outline-danger center_margin" %>
     <%else%>
-      <%= link_to "申込",challenge_game_path(@game), class: "btn btn-outline-success center_margin" %>
+      <%= link_to "申込",challenge_game_path(@game),method: :post ,class: "btn btn-outline-success center_margin" %>
     <%end%>
   </div>
 </div>

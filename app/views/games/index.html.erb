@@ -4,7 +4,8 @@
   <div class="tweet_box">
     <div class="tweet_box__user ">
       <div class="game_title">
-        <%=game.title%>
+      <%=link_to game.title,game_path(game),class:"link_decoration"%>
+       
       </div>
     </div>
     <div class="game_info">
