@@ -1,21 +1,21 @@
+<% breadcrumb :search%>
+
 
 <%= form_with(url: search_practices_path, local: true, method: :get, class: "search-form") do |form| %>
   <%= form.text_field :keyword, placeholder: "投稿を検索する(例：効率　面白い　最強)", class: "form-control search-input" %>
   <%= form.submit "検索", class: "btn btn-success search-btn" %>
 <% end %>
-<div class="to_ranking">
-みんなが「いいね」した投稿は<%=link_to "こちら",rank_practices_path%>
-</div>
+
 <div class="to_ranking">
 一覧に<%=link_to "戻る",root_path%>
 </div>
 <div class="contents">
-<%if @practices!=nil%>
- <%=render partial: 'partial/practice', collection: @practices %>
-<%else %>
+<%if @practices==nil || @practices==[]%>
   <div class="no-result">
     <h4>検索結果は0件です</h4>
   </div>
+<%else %>
+ <%=render partial: 'partial/practice', collection: @practices %>
   
 <%end%>
 </div>

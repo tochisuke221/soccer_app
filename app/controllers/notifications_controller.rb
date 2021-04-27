@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     #自分宛の通知を一気に集める
     @notifications=current_user.passive_notifications
