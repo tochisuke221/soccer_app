@@ -1,6 +1,6 @@
 class ChatRoomsController < ApplicationController
-  before_action :set_current_user_chat_rooms,only:[:index,:create]
   before_action :authenticate_user!,only:[:index,:create,:show]
+  before_action :set_current_user_chat_rooms,only:[:index,:create]
   before_action :are_you_current_user?,only:[:index]
   before_action :your_message_form?,only:[:show]#自分でないメッセージフォームには行かせない
 

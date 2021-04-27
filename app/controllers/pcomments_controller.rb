@@ -1,7 +1,7 @@
 class PcommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_practice,only:[:create,:destroy]
   before_action :set_comment,only:[:destroy]
-  before_action :authenticate_user!
   before_action :move_to_root,only:[:destroy]
 
   def create

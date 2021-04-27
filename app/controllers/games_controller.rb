@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_action :set_game,only:[:show,:challenge,:destroy]
   before_action :authenticate_user!,only:[:new,:create,:destroy]
+  before_action :set_game,only:[:show,:challenge,:destroy]
   before_action :are_you_host?,only:[:destroy]
 
 
