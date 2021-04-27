@@ -28,28 +28,26 @@
 <h6 class="host-title">開催者からのご挨拶</h6>
 <div class="host">
 
-<div class="host__img">
-  <%if @game.user.myphoto.attached?%>
-     <%=link_to (image_tag @game.user.myphoto, class: "mdround-img"),user_path(@game.user)%>
-  <%else%>
-     <%=link_to (image_tag '/default_myphoto.png' , class: "mdround-img"),user_path(@game.user)%>
-  <%end%>
-</div>
-<div class="host__greet">
-  <%if @game.description==""%>
-    この度はご興味を持っていただきありがとうございます。ご応募お待ちしております！！！
-  <%else%>
-    <%=@game.description%>
-  <%end%>
-</div>
-<div class="btn-zone">
-
-<%= link_to "戻る",root_path, method: :get, class: "btn btn-outline-secondary center_margin" %>
-<%if current_user.id==@game.user_id%>
-  <%= link_to "削除",root_path, method: :get, class: "btn btn-outline-danger center_margin" %>
-<%else%>
-  <%= link_to "申込",root_path, class: "btn btn-outline-success center_margin" %>
-<%end%>
-</div>
-
+  <div class="host__img">
+    <%if @game.user.myphoto.attached?%>
+       <%=link_to (image_tag @game.user.myphoto, class: "mdround-img"),user_path(@game.user)%>
+    <%else%>
+       <%=link_to (image_tag '/default_myphoto.png' , class: "mdround-img"),user_path(@game.user)%>
+    <%end%>
+  </div>
+  <div class="host__greet">
+    <%if @game.description==""%>
+      この度はご興味を持っていただきありがとうございます。ご応募お待ちしております！！！
+    <%else%>
+      <%=@game.description%>
+    <%end%>
+  </div>
+  <div class="btn-zone">
+    <%= link_to "戻る",games_path, method: :get, class: "btn btn-outline-secondary center_margin" %>
+    <%if current_user.id==@game.user_id%>
+      <%= link_to "削除",game_path(@game), method: :delete, class: "btn btn-outline-danger center_margin" %>
+    <%else%>
+      <%= link_to "申込",challenge_game_path(@game), class: "btn btn-outline-success center_margin" %>
+    <%end%>
+  </div>
 </div>

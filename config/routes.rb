@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :games,only:[:index,:new,:create,:destroy,:show]
+  resources :games,only:[:index,:new,:create,:destroy,:show] do 
+      member do
+        post "challenge"
+      end
+  end
 
   
 
