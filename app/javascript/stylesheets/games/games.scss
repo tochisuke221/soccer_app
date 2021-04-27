@@ -60,3 +60,11 @@
     align-items: center;
   }
 }
+
+@media (max-width: 450px) {
+  .select-date > select {
+    height: 24px;
+    font-size: 10px;
+    margin: 1px;
+  }
+}

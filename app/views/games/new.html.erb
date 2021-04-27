@@ -13,9 +13,8 @@
 
         <div class="form-group">
           <label>日時</label>
-          <%#= f.datetime_select :gameday, {}, class: 'form-control' %>
+
           <div class="select-date">
-           
             <%= raw sprintf(f.datetime_select(:gameday, use_month_numbers: true, date_separator: '%s', datetime_separator: '%s'), '年', '月', '日')%>
           </div>
         </div>
