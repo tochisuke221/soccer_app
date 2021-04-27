@@ -52,6 +52,10 @@
   }
 }
 
+.dropdown-menu > li {
+  padding: 5px;
+}
+
 //以下でメニューの展開方法を切り替えている
 @media (min-width: 900px) {
   .header {

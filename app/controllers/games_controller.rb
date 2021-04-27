@@ -20,7 +20,7 @@ class GamesController < ApplicationController
     @game=Game.new(game_params)
     if @game.save
       flash[:notice]="募集に成功しました"
-      redirect_to root_path
+      redirect_to games_path
     else
       flash[:alert]="募集投稿に失敗しました"
       render :new
@@ -34,7 +34,6 @@ class GamesController < ApplicationController
   end
 
   def challenge
-    binding.pry
     @game.check=true
     @game.save
     flash[:notice]="申し込みを完了しました!!!開催者にDMを送りましょう"
