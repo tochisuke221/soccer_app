@@ -28,7 +28,7 @@
       <%= link_to "退会する", user_path(@user), method: :delete, class: "btn btn-outline-danger goodbye",data: { confirm: '本当に退会しますか?退会後は全てのデータが削除されます。' } %>
     </div>
     <div class="center_margin">
-      <%= link_to "戻る",root_path, method: :get, class: "btn btn-outline-secondary center_margin" %>
+      <%= link_to "マイスケジュール",user_events_path(@user), method: :get, class: "btn btn-outline-success center_margin" %>
     </div>
     <div class="btn-zone">
       <%= link_to "パスワードを変更したい方はこちら",edit_user_registration_path%>
