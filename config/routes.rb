@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
   resources :users,only: [:show,:edit,:update,:destroy] do
-    resources :events
+    resources :events,only:[:index,:create,:destroy]
     resources :relationships,only:[:create,:destroy]
     resources :chat_rooms,only:[:index,:create,:show] do
       resources :chat_messages,only:[:create]
