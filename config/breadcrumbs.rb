@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :practice_new do
-  link "新規登録", new_user_registration_path
+  link "新規投稿", new_user_registration_path
   parent :root
 end
 crumb :login do
@@ -11,7 +11,7 @@ crumb :login do
   parent :root
 end
 crumb :user_new do
-  link "新規投稿", new_practice_path
+  link "新規登録", new_practice_path
   parent :root
 end
 
