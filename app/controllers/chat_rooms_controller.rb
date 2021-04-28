@@ -14,8 +14,8 @@ class ChatRoomsController < ApplicationController
     if @chat_room.blank?
       @chat_room = ChatRoom.create #ルームの作成してから
       #中間テーブルに登録
-      ChatRoomUser.create(chat_room: chat_room, user_id: current_user.id)
-      ChatRoomUser.create(chat_room: chat_room, user_id: params[:user_id])
+      ChatRoomUser.create(chat_room: @chat_room, user_id: current_user.id)
+      ChatRoomUser.create(chat_room: @chat_room, user_id: params[:user_id])
     end
     redirect_to action: :show, id: @chat_room.id
   end
