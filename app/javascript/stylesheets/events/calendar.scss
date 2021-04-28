@@ -9,9 +9,11 @@
 
 .table {
   width: 90%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto 40px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  table-layout: fixed;
+  font-size: 10px;
 }
 
 .mobile-calendar {
@@ -22,6 +24,11 @@
 }
 .mobile-calendar {
   display: block;
+}
+.today {
+  background-color: #ddf;
+}
+.day {
 }
 
 @media (min-width: 800px) {

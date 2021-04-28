@@ -8,7 +8,7 @@
 <%= month_calendar events: @events do |date, events| %>
   <%= date.day %>
    <% events.each do |event| %>
-    <div>
+    <div class="title">
       <%= link_to event.title,user_event_path(current_user,event), method: :delete,data: { confirm: '本当に予定を削除してもいいですか？' } ,class:"link_decoration"%>
     </div>
   <% end %>
