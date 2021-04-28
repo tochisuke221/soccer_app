@@ -24,6 +24,7 @@
             <ul class="dropdown-menu">
               <li><%=link_to "マイページ",user_path(current_user),class: "link_decoration"%></li>
               <li><%=link_to "チャット一覧",user_chat_rooms_path(current_user),class: "link_decoration"%></li>
+              <li><%=link_to "予定表",user_events_path(current_user),class: "link_decoration"%></li>
               <li><%=link_to "ログアウト",destroy_user_session_path,method: :delete,class: "link_decoration"%></li>
             </ul>
           </li>
