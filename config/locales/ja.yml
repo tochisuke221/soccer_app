@@ -22,6 +22,11 @@ ja:
         gamenum_id: 試合本数
         gametime_id: 試合時間
         level_id: 相手に求めるレベル
+  activerecord:
+     attributes:
+      event:
+        title: タイトル
+        start_time: 日時
   activemodel:
     attributes:
       practices_ptag:

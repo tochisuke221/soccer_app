@@ -1,0 +1,65 @@
+
+<% breadcrumb :schedule, current_user %>
+
+
+<h1 class="page-title">予定表</h1>
+
+
+<%= month_calendar events: @events do |date, events| %>
+  <%= date.day %>
+   <% events.each do |event| %>
+    <div class="title">
+      <%= link_to event.title,user_event_path(current_user,event), method: :delete,data: { confirm: '本当に予定を削除してもいいですか？' } ,class:"link_decoration"%>
+    </div>
+  <% end %>
+<% end %>
+
+ 
+
+
+
+
+<div class="mobile-calendar">
+  <table class="table table-striped">
+     <thead>
+       <tr>
+        <th>タイトル</th>
+        <th>日時</th>
+       </tr>
+     </thead>
+     <tbody>
+       <% @events.each do |event| %>
+         <%if Date.today < event.start_time%>
+           <tr>
+             <td>
+              <%= link_to event.title,user_event_path(current_user,event), method: :delete,data: { confirm: '本当に予定を削除してもいいですか？' } ,class:"link_decoration"%>
+             </td>
+             <td>
+              <%=event.start_time.strftime("%m月%d日%H時%M分")%>
+             </td>
+           </tr>
+         <%end%>
+       <%end%>
+     </tbody>
+   </table>
+</div>
+
+
+<div class="form_box">
+  <%= form_with model: @add_event, url: user_events_path(current_user),local: true do |f| %>
+      <%=render 'partial/error_messages', model: f.object %>
+      
+     <div class="form-group">
+       <%= f.text_field :title, autofocus: true, placeholder: "予定を追加する", class: "form-control" %>
+     </div>
+     <div class="form-group">
+       <div class="select-date">
+         <%= raw sprintf(f.datetime_select(:start_time, use_month_numbers: true, date_separator: '%s', datetime_separator: '%s'), '年', '月', '日')%>
+       </div>
+     </div>
+     <div class="actions">
+       <%= f.submit "追加", id: "submit",class: "btn btn-primary registration-btn" %>
+       <p class="warning">削除したい場合は、該当の予定の部分をクリックしてください</p>
+     </div>
+  <% end %>
+</div>  

@@ -29,6 +29,8 @@ class User < ApplicationRecord
   belongs_to :gamenum
   belongs_to :gametime
   belongs_to :level
+  #カレンダー機能
+  has_many :events
   
 
 

@@ -1,0 +1,41 @@
+.calendar-heading {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.calendar-title {
+  padding: 0 5px;
+}
+
+.table {
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  table-layout: fixed;
+  font-size: 10px;
+}
+
+.mobile-calendar {
+  font-size: 10px;
+}
+.simple-calendar {
+  display: none;
+}
+.mobile-calendar {
+  display: block;
+}
+.today {
+  background-color: #ddf;
+}
+.day {
+}
+
+@media (min-width: 800px) {
+  .simple-calendar {
+    display: block;
+  }
+  .mobile-calendar {
+    display: none;
+  }
+}

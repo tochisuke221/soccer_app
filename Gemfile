@@ -62,3 +62,4 @@ gem 'image_processing', '~> 1.2'
 gem 'rails-i18n'
 gem 'kaminari'
 gem "gretel"
+gem 'simple_calendar', '~> 2.0'
