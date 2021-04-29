@@ -2,6 +2,10 @@ ja:
   activerecord:
     attributes:
       user:
+        name: 名前
+        team_name: 高校名（チーム名）
+        phone_num: 電話番号
+        career_id: 教師歴
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻

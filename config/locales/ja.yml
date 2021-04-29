@@ -6,20 +6,12 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+
   activerecord:
-     attributes:
-      user:
-        name: 名前
-        team_name: 高校名（チーム名）
-        phone_num: 電話番号
-        career_id: 教師歴
-  activerecord:
-     attributes:
+    attributes:
       event:
         title: タイトル
         start_time: 日時
-  activerecord:
-     attributes:
       game:
         title: タイトル
         location: 試合会場
@@ -152,7 +144,7 @@ ja:
       greater_than: は%{count}より大きい値にしてください
       greater_than_or_equal_to: は%{count}以上の値にしてください
       inclusion: は一覧にありません
-      invalid: は不正な値です
+      invalid: は正しくありません
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: "バリデーションに失敗しました: %{errors}"
