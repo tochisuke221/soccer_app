@@ -21,16 +21,16 @@ class User < ApplicationRecord
   has_many :active_notifications,class_name: "Notification",foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
   #チャット機能
-  has_many :chat_room_users
+  has_many :chat_room_users,dependent: :destroy
   has_many :chat_rooms, through: :chat_room_users
   has_many :chat_messages
   #試合募集
-  has_many :games
+  has_many :games,dependent: :destroy
   belongs_to :gamenum
   belongs_to :gametime
   belongs_to :level
   #カレンダー機能
-  has_many :events
+  has_many :events,dependent: :destroy
   
 
 
