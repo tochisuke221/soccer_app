@@ -1,0 +1,14 @@
+footer {
+  background-color: #3e3e3e;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10px;
+  color: #fff;
+
+  & > div {
+    margin: auto;
+  }
+}
