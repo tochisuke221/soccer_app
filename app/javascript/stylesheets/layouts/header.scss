@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100px;
-  background-color: rgb(075, 178, 066);
+  background-color: #55c500;
   display: flex;
   align-items: center;
   z-index: 100;
@@ -13,6 +13,13 @@
   &.triggered {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 10px 0 25px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .soccer_logo {
+    width: 120px;
+    position: absolute;
+    top: -20px;
+    left: 5%;
   }
 
   &__nav {
