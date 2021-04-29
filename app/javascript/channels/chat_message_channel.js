@@ -21,5 +21,10 @@ consumer.subscriptions.create("ChatMessageChannel", {
     const newMessage = document.getElementById('chat_message_content');
     messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
-  }
+    // const chat=document.getElementById("chat-messages");
+    // $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+     const chat=document.getElementById("chat-messages");
+     let height=chat.scrollHeight 
+     chat.scrollTop=height;
+    }
 });

@@ -9,32 +9,24 @@
     <%end%>
     <br>
     <%=@chat_room_user.name%>さんとメッセージ中
-<div class="three-dot-spinner">
+    <div class="three-dot-spinner">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div class="bounce3"></div>
     </div>
 </div>
 <div id="chat-messages">
-  <%=render partial: "partial/chat_message",collection: @chat_messages%>
-<div id="messages">
- 
+    <%=render partial: "partial/chat_message",collection: @chat_messages%>
+    <div id="messages">
+    </div>
 </div>
-</div>
-
-
-
-
 
 <%= form_with model: @chat_message,url: user_chat_room_chat_messages_path(current_user,@chat_room)  do |f| %> 
-
     <%= f.text_field :content, placeholder: "メッセージを入力してください", class: "form-control send-message"%>
-<div class="actions">
-    <%= f.submit '送信', class: "btn btn-primary registration-btn message-btn"%> 
-</div>
-
- 
-  
+    <div class="actions">
+        <%= f.submit '送信', class: "btn btn-primary registration-btn message-btn"%> 
+    </div>
 <% end %> 
 
+<%= javascript_pack_tag 'chat_scroll' %>
       
