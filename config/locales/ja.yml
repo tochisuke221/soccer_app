@@ -15,18 +15,17 @@ ja:
         career_id: 教師歴
   activerecord:
      attributes:
-      game:
-        title: タイトル
-        location: 試合会場
-        gameday: 日時
-        gamenum_id: 試合本数
-        gametime_id: 試合時間
-        level_id: 相手に求めるレベル
-  activerecord:
-     attributes:
       event:
         title: タイトル
         start_time: 日時
+  activerecord:
+     attributes:
+      game:
+        title: タイトル
+        location: 試合会場
+        gamenum_id: 試合本数
+        gametime_id: 試合時間
+        level_id: 相手に求めるレベル
   activemodel:
     attributes:
       practices_ptag:

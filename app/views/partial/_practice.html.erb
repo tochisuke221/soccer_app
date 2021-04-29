@@ -28,7 +28,7 @@
     </div>
   </div>
   <%=link_to(practice_path(practice)) do%>
-    <div class="tweet_box__img img_black" style="background-image: url(<%= rails_blob_path(practice.images[0]) if practice.images[0].present?%>);"> <%#投稿写真とタイトル%>
+    <div class="tweet_box__img img_black" style="background-image: url(<%= rails_blob_path(practice.images.first) if practice.images[0].present?%>);"> <%#投稿写真とタイトル%>
       <div class="tweet_title">
         <%=practice.title%>
       </div> 
