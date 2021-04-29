@@ -1,16 +1,31 @@
+
+<%= link_to(user_chat_rooms_path(chat_room_user.user),method: :post,class: "link_decoration") do %>
 <div class="tweet_box">
   <div class=friend>
     <div class="friend__info">
        <div class="friend__img">
           <%if chat_room_user.user.myphoto.attached?%>
-             <%=link_to (image_tag chat_room_user.user.myphoto, class: "smround-img"),user_chat_rooms_path(chat_room_user.user),method: :post%>
+             <%= image_tag chat_room_user.user.myphoto, class: "smround-img" %>
           <%else%>
-             <%=link_to (image_tag '/default_myphoto.png' , class: "smround-img"),user_chat_rooms_path(chat_room_user.user),method: :post%>
+              <%= image_tag '/default_myphoto.png' ,class: "smround-img"%>
           <%end%>
        </div>
+       <div>
+      
+       </div>
+       
+       
        <div class="friend__name">
-        <%=link_to chat_room_user.user.name,user_chat_rooms_path(chat_room_user.user),method: :post,class: "link_decoration"%>
+       <%=chat_room_user.user.name%>
+        <%#=link_to chat_room_user.user.name,user_chat_rooms_path(chat_room_user.user),method: :post,class: "link_decoration"%>
        </div>
     </div>
+
+       <%if chat_messages.where(chat_room_id:chat_room_user.chat_room_id,user_id:chat_room_user.user_id,check:false).exists?%>
+         <div class="chat_notification">
+            <%=chat_messages.where(chat_room_id:chat_room_user.chat_room_id,user_id:chat_room_user.user_id,check:false).length%>
+         </div>
+       <%end%>
   </div>
 </div>
+<%end%>

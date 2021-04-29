@@ -7,6 +7,8 @@ class ChatRoomsController < ApplicationController
   
   def index
     @chat_room_users=ChatRoomUser.includes(:user).where(chat_room: @current_user_chat_rooms).where.not(user_id:current_user.id) #自身がが入るチャットルームにいる相手の中間テーブルを持ってくる
+    @chat_messages = ChatMessage.all
+    
   end
   
   def create
