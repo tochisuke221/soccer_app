@@ -18,10 +18,17 @@
   background-color: #ccffcc;
   padding: 3px 8px;
   border-radius: 5px;
-  margin: 10px;
-  //width: 60%;
+  margin: 10px 10px 0;
   max-width: 60%;
   word-wrap: break-word;
+}
+.check_message {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1px;
+  margin: 3px 10px 0 0;
+  color: #808080;
 }
 
 .message_to_user {

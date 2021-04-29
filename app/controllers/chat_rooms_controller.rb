@@ -24,6 +24,7 @@ class ChatRoomsController < ApplicationController
     @chat_room = ChatRoom.find(params[:id]) #ルーム取得
     @chat_room_user = @chat_room.chat_room_users.where.not(user_id: current_user.id).first.user #ルーム相手の情報
     @chat_messages = ChatMessage.where(chat_room: @chat_room) #message内容を取得
+    are_you_check?
     @chat_message=ChatMessage.new
   end
 
@@ -42,6 +43,14 @@ class ChatRoomsController < ApplicationController
   def your_message_form?
     unless ChatRoomUser.find_by(chat_room_id:params[:id],user_id:current_user)
       redirect_to root_path
+    end
+  end
+
+  def are_you_check? #既読チェッカー
+    @messages_to_me= ChatMessage.where(chat_room: @chat_room,user_id:@chat_room_user)#相手から自分宛のメッセのみ取得
+    @messages_to_me.each do |message|  #開いた時点で自分宛のメッセをcheckをtrueにする
+      message.check=true
+      message.save
     end
   end
 end
