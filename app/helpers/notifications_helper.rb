@@ -18,8 +18,8 @@ module NotificationsHelper
     end
   end
 
-  def unchecked_notifications #未読の通知があるかどうか
-    @notifications = current_user.passive_notifications.where(checked: false)
-end
+  def unchecked_notifications #自分以外の反応で未読の通知があるかどうか
+    @notifications = current_user.passive_notifications.where(checked: false).where.not(visiter_id:current_user.id)
+  end
 
 end
