@@ -4,8 +4,6 @@ body {
 }
 
 #container {
-  padding-bottom: 50px;
-  //margin-bottom: 50px;
   position: relative;
   z-index: 10;
   transition: transform 0.5s, box-shadow 0.5s;
@@ -13,14 +11,12 @@ body {
 
 .main-text {
   padding-top: 166px;
-  width: 100vw;
 }
 
 .lground-img {
   border-radius: 50%;
   width: 200px;
   height: 200px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .mdround-img {
@@ -46,21 +42,6 @@ body {
   }
 }
 
-.warning {
-  color: red;
-  margin: 20px auto;
-  font-size: 10px;
-}
-
-.flex_space_between {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.center_margin {
-  margin: 0px auto 10px;
-  text-align: center;
-}
 @media (min-width: 900px) {
   .smround-img {
     width: 40px;

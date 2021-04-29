@@ -17,4 +17,10 @@
 #error_explanation {
   color: red;
 }
+
+@media (max-width: 450px) {
+  #error_explanation {
+    font-size: 8px;
+  }
+}
 /*# sourceMappingURL=error_messages.css.map */
