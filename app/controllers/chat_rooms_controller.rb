@@ -24,7 +24,7 @@ class ChatRoomsController < ApplicationController
     @chat_room = ChatRoom.find(params[:id]) #ルーム取得
     @chat_room_user = @chat_room.chat_room_users.where.not(user_id: current_user.id).first.user #ルーム相手の情報
     @chat_messages = ChatMessage.where(chat_room: @chat_room) #message内容を取得
-    are_you_check?
+    are_you_check?#既読したかどうか
     @chat_message=ChatMessage.new
   end
 
