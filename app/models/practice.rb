@@ -14,15 +14,15 @@ class Practice < ApplicationRecord
   belongs_to :career
   has_many_attached :images
   
-  with_options presence: true do
-    validates :title,length:{maximum:25}
-    validates :content
-  end
+  # with_options presence: true do
+  #   validates :title,length:{maximum:25}
+  #   validates :content
+  # end
 
-  with_options numericality: { other_than: 1 } do
-    validates :category_id
-    validates :hardlevel_id
-  end
+  # with_options numericality: { other_than: 1 } do
+  #   validates :category_id
+  #   validates :hardlevel_id
+  # end
 
   def self.search(keyword) # クラスメソッド,キーワードをもらって検索し、ヒットしたものを返す
     if keyword != ""

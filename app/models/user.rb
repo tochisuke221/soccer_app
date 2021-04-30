@@ -39,8 +39,8 @@ class User < ApplicationRecord
 
 
   with_options presence: true do
-    validates :name
-    validates :team_name
+    validates :name,length:{maximum:9}
+    validates :team_name,length:{maximum:20}
     validates :phone_num, format: { with: /\A\d{11}\z/ }
   end
 

@@ -3,9 +3,9 @@ class PracticesPtag
   attr_accessor :title,:content,:category_id,:hardlevel_id,:user_id ,:name,:images,:practice_id,:ptag_id
 
   with_options presence: true do
-    validates :title
+    validates :title,length:{maximum:25}
     validates :content
-    validates :name
+    validates :name,uniqueness: true
   end
 
   with_options numericality: { other_than: 1 } do
