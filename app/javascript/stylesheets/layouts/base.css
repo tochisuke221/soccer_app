@@ -4,6 +4,7 @@ body {
 }
 
 #container {
+  padding-bottom: 50px;
   position: relative;
   z-index: 10;
   -webkit-transition: -webkit-transform 0.5s, -webkit-box-shadow 0.5s;
@@ -14,12 +15,14 @@ body {
 
 .main-text {
   padding-top: 166px;
+  width: 100vw;
 }
 
 .lground-img {
   border-radius: 50%;
   width: 200px;
   height: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .mdround-img {
@@ -46,6 +49,29 @@ body {
 .link_decoration:hover {
   color: black;
   text-decoration: none;
+}
+
+.warning {
+  color: red;
+  margin: 20px auto;
+  font-size: 10px;
+}
+
+.flex_space_between {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.center_margin {
+  margin: 0px auto 10px;
+  text-align: center;
 }
 
 @media (min-width: 900px) {
