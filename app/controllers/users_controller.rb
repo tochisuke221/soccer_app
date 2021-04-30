@@ -40,7 +40,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    binding.pry
     @user=User.find(params[:id])
   end
   def profile_is_yourself?

@@ -9,8 +9,8 @@ class Game < ApplicationRecord
 
   with_options presence: true do
     validates :gameday
-    validates :location
-    validates :title
+    validates :location,length:{maximum:30}
+    validates :title,length:{maximum:40}
   end
 
   with_options numericality: { other_than: 1 } do

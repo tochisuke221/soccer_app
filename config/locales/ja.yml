@@ -10,7 +10,7 @@ ja:
   activerecord:
     attributes:
       event:
-        title: タイトル
+        title: 予定内容
         start_time: 日時
       game:
         title: タイトル
