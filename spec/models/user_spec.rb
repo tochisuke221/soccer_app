@@ -2,17 +2,224 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
-    it 'nicknameが空では登録できない' do
-      user = FactoryBot.build(:user)  # Userのインスタンス生成
-      user.nickname = ''  # nicknameの値を空にする
-      user.valid?
-      expect(user.errors.full_messages).to include "Nickname can't be blank"
+    before do
+      @user = FactoryBot.build(:user)
     end
-    it 'emailが空では登録できない' do
-      user = FactoryBot.build(:user)  # Userのインスタンス生成
-      user.email = ''  # emailの値を空にする
-      user.valid?
-      expect(user.errors.full_messages).to include "Email can't be blank"
+    context '新規登録できるとき' do
+      it 'すべての情報が正しく存在すれば登録できる' do
+        expect(@user).to be_valid
+      end
+      it 'nameが9文字以下であれば登録できる' do
+        @user.name="123456789"
+        expect(@user).to be_valid
+      end
+      it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
+        @user.password="123456"
+        @user.password_confirmation=@user.password
+        expect(@user).to be_valid
+      end
+      it 'phone_numが整数11桁で入力されていれば登録できる' do
+        @user.phone_num='09012341234'
+        expect(@user).to be_valid
+      end
+    end
+    context '新規登録できないとき' do
+      it 'nameが空では登録できない' do
+        @user.name=''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("名前を入力してください");
+      end
+      it 'nameが10文字以上では登録できない' do
+        @user.name='やまとみことのたける'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("名前は9文字以内で入力してください");
+      end
+      it 'emailが空では登録できない' do
+        @user.email=''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("メールアドレスを入力してください");
+      end
+      it '重複したemailが存在する場合登録できない' do
+        another=FactoryBot.create(:user)
+        @user.email=another.email
+        @user.valid?
+        expect(@user.errors.full_messages).to include("メールアドレスはすでに存在します");
+      end
+      it 'passwordが5文字以下では登録できない' do
+        @user.password="12345"
+        @user.password_confirmation="12345"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードは6文字以上で入力してください");
+      end
+      it 'passwordが空では登録できない' do
+        @user.password=""
+        @user.password_confirmation=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードを入力してください");
+      end
+      it 'passwordが存在してもpassword_confirmationが空では登録できない' do
+        @user.password="123456"
+        @user.password_confirmation=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません");
+      end
+      it 'passwordとpassword_confirmationが一致してないと登録できない' do
+        @user.password="123456"
+        @user.password_confirmation="abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません");
+      end
+      it 'team_nameが空では登録できない' do
+        @user.team_name=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("高校名（チーム名）を入力してください");
+      end
+      it 'team_nameが21文字以上では登録できない' do
+        @user.team_name="チーム絶対にすげえエンジニアになるんだぜ！社会貢献するんだああ！！！！！"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("高校名（チーム名）は20文字以内で入力してください");
+      end
+      it 'career_idが1では登録できない' do
+        @user.career_id="1"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("教師歴を入力してください");
+      end
+      it 'phone_numが11桁で登録できない' do
+        @user.phone_num="0901234123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numが13桁で登録できない' do
+        @user.phone_num="090123412345"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numに数字以外が入力されていると登録できない' do
+        @user.phone_num="電話番号：09012345123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numにハイフンがあると登録できない' do
+        @user.phone_num="090-1234-1234"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+    end
+  end
+
+  describe 'ユーザ編集登録' do #基本的には新規登録時と同じ
+    before do
+      @user = FactoryBot.create(:user)
+      #
+    end
+    context '編集登録できるとき' do
+      it 'すべての情報が正しく存在すれば登録できる' do
+        #既存のものを全て更新
+        @user.name="ユーザ1"
+        @user.team_name="東京中学"
+        @user.career_id="2"
+        @user.phone_num="09012341234"
+        @email="abc@gmail.com"
+        password="123456"
+        password_confirmation=password
+
+        expect(@user).to be_valid
+      end
+      it 'nameが9文字以下であれば登録できる' do
+        @user.name="123456789"
+        expect(@user).to be_valid
+      end
+      it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
+        @user.password="123456"
+        @user.password_confirmation=@user.password
+        expect(@user).to be_valid
+      end
+      it 'phone_numが整数11桁で入力されていれば登録できる' do
+        @user.phone_num='09012341234'
+        expect(@user).to be_valid
+      end
+    end
+    context '編集登録できないとき' do
+      it 'nameが空では登録できない' do
+        @user.name=''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("名前を入力してください");
+      end
+      it 'nameが10文字以上では登録できない' do
+        @user.name='やまとみことのたける'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("名前は9文字以内で入力してください");
+      end
+      it 'emailが空では登録できない' do
+        @user.email=''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("メールアドレスを入力してください");
+      end
+      it '重複したemailが存在する場合登録できない' do
+        another=FactoryBot.create(:user)
+        @user.email=another.email
+        @user.valid?
+        expect(@user.errors.full_messages).to include("メールアドレスはすでに存在します");
+      end
+      it 'passwordが5文字以下では登録できない' do
+        @user.password="12345"
+        @user.password_confirmation="12345"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードは6文字以上で入力してください");
+      end
+      it 'passwordが空では登録できない' do
+        @user.password=""
+        @user.password_confirmation=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワードを入力してください");
+      end
+      it 'passwordが存在してもpassword_confirmationが空では登録できない' do
+        @user.password="123456"
+        @user.password_confirmation=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません");
+      end
+      it 'passwordとpassword_confirmationが一致してないと登録できない' do
+        @user.password="123456"
+        @user.password_confirmation="abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません");
+      end
+      it 'team_nameが空では登録できない' do
+        @user.team_name=""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("高校名（チーム名）を入力してください");
+      end
+      it 'team_nameが21文字以上では登録できない' do
+        @user.team_name="チーム絶対にすげえエンジニアになるんだぜ！社会貢献するんだああ！！！！！"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("高校名（チーム名）は20文字以内で入力してください");
+      end
+      it 'career_idが1では登録できない' do
+        @user.career_id="1"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("教師歴を入力してください");
+      end
+      it 'phone_numが11桁で登録できない' do
+        @user.phone_num="0901234123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numが13桁で登録できない' do
+        @user.phone_num="090123412345"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numに数字以外が入力されていると登録できない' do
+        @user.phone_num="電話番号：09012345123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
+      it 'phone_numにハイフンがあると登録できない' do
+        @user.phone_num="090-1234-1234"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("電話番号は正しくありません");
+      end
     end
   end
 end
