@@ -53,6 +53,7 @@
 }
 
 .tweet_title {
+  word-break: break-all;
   color: white;
   text-align: center;
   padding-top: 20px;

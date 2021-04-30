@@ -20,9 +20,14 @@ crumb :search do
   parent :root
 end
 
-crumb :chat_room do
-  link "チャットルーム一覧"
+crumb :chat_room do |user|
+  link "チャットルーム一覧",user_chat_rooms_path(user)
   parent :root
+end
+
+crumb :chat do |user|
+  link "チャットルーム"
+  parent :chat_room,current_user
 end
 
 crumb :rank do
@@ -69,10 +74,7 @@ crumb :user_edit do |user|
   parent :user_show,user
 end
 
-crumb :chat do |chat_room_user|  
-  link "チャットルーム"
-  parent :user_show,chat_room_user
-end
+
 
 
 crumb :game_index do 

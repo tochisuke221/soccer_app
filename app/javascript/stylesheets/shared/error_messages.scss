@@ -5,10 +5,20 @@
 }
 
 .error-message {
-  font-size: 1.3vw;
   list-style: circle;
   color: rgb(182, 48, 0);
 }
 #error_explanation {
   color: red;
+  padding: 5px;
+  > ul {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 450px) {
+  #error_explanation {
+    font-size: 8px;
+  }
 }

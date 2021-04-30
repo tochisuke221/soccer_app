@@ -1,11 +1,16 @@
 .select-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: baseline;
-  & > select {
-    height: 30px;
-    font-size: 15px;
-    margin: 0px 5px 0px;
-  }
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.select-date > select {
+  height: 30px;
+  font-size: 15px;
+  margin: 0px 5px 0px;
 }
 
 .game_title {
@@ -22,35 +27,39 @@
 
 .game_show {
   border-bottom: double 5px #ffc778;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   padding: 3px 15px;
   margin-bottom: 10px;
   font-size: 15px;
   margin: 0 auto 10px;
 }
+
 .host-title {
   text-align: center;
   margin: 20px 0;
 }
 
-.host {
-  &__img {
-    text-align: center;
-  }
-  &__greet {
-    word-break: break-all;
-    margin: 10px auto 20px;
-    width: 80%;
-    max-width: 800px;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 5px;
-    font-size: 10px;
-  }
+.host__img {
+  text-align: center;
 }
+
+.host__greet {
+  word-break: break-all;
+  margin: 10px auto 20px;
+  width: 80%;
+  max-width: 800px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 5px;
+  font-size: 10px;
+}
+
 .location {
   word-break: break-all;
 }
+
 .location {
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -64,9 +73,14 @@
     font-size: 13px;
   }
   .game_flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .host__greet {
     font-size: 13px;
@@ -80,3 +94,4 @@
     margin: 1px;
   }
 }
+/*# sourceMappingURL=games.css.map */

@@ -4,7 +4,7 @@ class PracticesController < ApplicationController
   before_action :move_to_root,only:[:edit,:update,:destroy]
 
   def index
-    @practices=Practice.includes(:user).order("created_at DESC").page(params[:page]).per(1)
+    @practices=Practice.includes(:user).order("created_at DESC").page(params[:page]).per(10)
     @like = Like.new
   end
 
@@ -41,7 +41,6 @@ class PracticesController < ApplicationController
   def update
     @practices_ptag=PracticesPtag.new(update_params)
     ptag_list=params[:practices_ptag][:name].split(",")
-    
     if @practices_ptag.valid?
       flash[:notice]="編集に成功しました"
       @practices_ptag.update(ptag_list)

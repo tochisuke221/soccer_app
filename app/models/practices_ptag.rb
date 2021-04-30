@@ -3,7 +3,7 @@ class PracticesPtag
   attr_accessor :title,:content,:category_id,:hardlevel_id,:user_id ,:name,:images,:practice_id,:ptag_id
 
   with_options presence: true do
-    validates :title
+    validates :title,length:{maximum:25}
     validates :content
     validates :name
   end
@@ -22,7 +22,6 @@ class PracticesPtag
     ptag.save
     PracticePtagRelation.create(practice_id:practice.id,ptag_id:ptag.id)
     end
-    
   end
 
   def update(ptag_list)
