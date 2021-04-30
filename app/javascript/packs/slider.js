@@ -1,14 +1,3 @@
-
-
-
-  
-  // $('.slider').not('.slick-initialized').slick({
-  //   adaptiveHeight: true,
-  //   dots: true,
-  //   infinite: false,
-  //   lazyLoad: 'progressive',
-  // });
-  
   
     $(document).ready(function(){
       $('.slick-images').slick({
