@@ -5,7 +5,7 @@ class PracticesPtag
   with_options presence: true do
     validates :title,length:{maximum:25}
     validates :content
-    validates :name,uniqueness: true
+    validates :name
   end
 
   with_options numericality: { other_than: 1 } do
@@ -22,7 +22,6 @@ class PracticesPtag
     ptag.save
     PracticePtagRelation.create(practice_id:practice.id,ptag_id:ptag.id)
     end
-    
   end
 
   def update(ptag_list)
