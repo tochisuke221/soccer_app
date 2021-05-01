@@ -6,6 +6,7 @@ class PracticesPtag
     validates :title,length:{maximum:25}
     validates :content
     validates :name
+    validates :user_id
   end
 
   with_options numericality: { other_than: 1 } do
