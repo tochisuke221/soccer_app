@@ -13,6 +13,7 @@ class PracticesController < ApplicationController
     @pcomment=Pcomment.new
     @pcomments=Pcomment.order("created_at DESC").where(practice_id:@practice.id)
     @ptags=@practice.ptags
+
   end
 
   def new

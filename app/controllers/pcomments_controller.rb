@@ -9,9 +9,10 @@ class PcommentsController < ApplicationController
     if @pcomment.save
       @pcomments=Pcomment.order("created_at DESC").where(practice_id:@practice.id)
       @practice.create_notification_comment!(current_user,@pcomment.id,@practice.user_id) #投稿に紐づくコメントが来たという通知
-      #redirect_to practice_path(@practice)
+
     else
       @pcomments=Pcomment.where(practice_id:@practice.id)
+      @ptags=@practice.ptags
       render "practices/show"
     end
   end

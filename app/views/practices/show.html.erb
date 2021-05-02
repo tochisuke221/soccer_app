@@ -56,6 +56,7 @@
     </div>
 
   </div>
+  
   <div class="tweet_box__info">
     <div class="m tag_info">
        タグ:
@@ -89,17 +90,17 @@
 
 
 <div class="comments">
-    <h2 class="comment_title">コメント</h2>
-  <div class="comments__form">
-    <div class="comments__input">
-      <% if user_signed_in? %>
-        <%= form_with(model: [@practice, @pcomment]) do |f| %>
-          <%=render 'partial/error_messages', model: f.object%>
-          <%= f.text_area :comment, placeholder: "例）その練習とても参考になります！", class: "form-control",rows: "4" %>
-          <%= f.submit "コメントする",class:"btn btn-outline-success comment-btn" %>
-        <% end %>
-      <% end %>  
-    </div>
+  <h2 class="comment_title">コメント</h2>
+    <div class="comments__form">
+      <div class="comments__input">
+        <% if user_signed_in? %>
+          <%= form_with(model: [@practice, @pcomment]) do |f| %>
+            <%=render 'partial/error_messages', model: f.object %>
+            <%= f.text_area :comment, placeholder: "※空のままではコメントできません", class: "form-control",rows: "4" %>
+            <%= f.submit "コメントする",class:"btn btn-outline-success comment-btn" %>
+          <% end %>
+        <% end %>  
+      </div>
     <div class="comment-line"></div>
       <div id="comments_box">
         
