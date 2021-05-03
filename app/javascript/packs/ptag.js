@@ -1,4 +1,5 @@
 if (location.pathname.match("/new")||location.pathname.match("/edit")||location.pathname.match("/practices")){
+
   document.addEventListener("DOMContentLoaded", () => {
     const inputElement = document.getElementById("practices_ptag_name");
     inputElement.addEventListener("keyup", () => {
@@ -17,11 +18,15 @@ if (location.pathname.match("/new")||location.pathname.match("/edit")||location.
         searchResult.innerHTML = "";
         if (XHR.response) {
           const tagName = XHR.response.keyword;
+          console.log(tagName)
           tagName.forEach((ptag) => {
             //2語目以降、重複キーワードは表示しない
-            if(keyword.includes(',')){
+            let inputValue=document.getElementById("practices_ptag_name").value;
+            if(inputValue.includes(',')){
+              console.log(`ptag=${ptag}`);
+              console.log(`inputValue=${inputValue}`);
               let flag=false;
-              words=inputElement.value.split(",");
+              words=inputValue.split(",");
               words.forEach((word)=>{
                 if(ptag.name==word){
                     flag=true;
