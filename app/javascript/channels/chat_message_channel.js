@@ -11,10 +11,11 @@ consumer.subscriptions.create("ChatMessageChannel", {
 
   received(data) {
     let html;
-    console.log(`今見ている人は${data.current_user.id}`);
-    console.log(`今見ている人は${data.current_user.name}`);
-    console.log(`送り主のid${data.content.user_id}`);
-    if(data.current_user.id==data.content.user_id){
+    //console.log(`今見ている人は${data.current_user.id}`);
+    //console.log(`今見ている人は${data.current_user.name}`);
+    console.log(`相手のid${data.another_user.id}`);
+    console.log(`送ったひとのid${data.content.user_id}`);
+    if(data.another_user.id==data.content.user_id){
       html = `
       <div class="my_message_box">
         <div class="my_message">
