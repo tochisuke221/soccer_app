@@ -53,5 +53,4 @@ RSpec.describe "Relationships", type: :system do
       end
     end
   end
-
 end
