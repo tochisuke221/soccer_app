@@ -13,9 +13,9 @@ consumer.subscriptions.create("ChatMessageChannel", {
     let html;
     //console.log(`今見ている人は${data.current_user.id}`);
     //console.log(`今見ている人は${data.current_user.name}`);
-    console.log(`相手のid${data.another_user.ids[0]}`);
+    console.log(`相手のid${data.another_id}`);
     console.log(`送ったひとのid${data.content.user_id}`);
-    if(data.another_user.ids[0]==data.content.user_id){
+    if(data.another_id==data.content.user_id){
       html = `
       <div class="my_message_box">
         <div class="my_message">
