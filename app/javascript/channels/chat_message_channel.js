@@ -28,7 +28,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
       </div>
       `;
     }
-
+    console.log(html);
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('chat_message_content');
     messages.insertAdjacentHTML('beforeend', html);
