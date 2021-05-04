@@ -23,7 +23,7 @@ class User < ApplicationRecord
   #チャット機能
   has_many :chat_room_users,dependent: :destroy
   has_many :chat_rooms, through: :chat_room_users
-  has_many :chat_messages
+  has_many :chat_messages,dependent: :destroy
   #試合募集
   has_many :games,dependent: :destroy
   belongs_to :gamenum

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!,only:[:show,:edit,:update]
+  before_action :authenticate_user!,only:[:show,:edit,:update,:destroy]
   before_action :set_user,only:[:show,:edit,:update,:update,:destroy]
   before_action :profile_is_yourself?,only:[:edit,:update]
   before_action :ensure_normal_user,only:[:update,:destroy]

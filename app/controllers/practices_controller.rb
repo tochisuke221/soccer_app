@@ -53,8 +53,13 @@ class PracticesController < ApplicationController
   end
   
   def destroy
-    @practice.destroy
-    redirect_to root_path
+    if @practice.destroy
+      flash[:notice]="削除に成功しました"
+      redirect_to root_path
+    else
+      flash[:alert]="削除に失敗しました"
+      redirect_to root_path
+    end
   end
 
   def search
