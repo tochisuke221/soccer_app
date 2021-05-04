@@ -11,6 +11,6 @@ class ChatMessagesController < ApplicationController
   private
 
   def chat_message_params
-    params.require(:chat_message).permit(:content).merge(user_id: current_user.id, chat_room_id: params[:chat_room_id])
+    params.require(:chat_message).permit(:content).merge(user_id: params[:user_id], chat_room_id: params[:chat_room_id])
   end
 end
