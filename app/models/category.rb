@@ -7,7 +7,7 @@ class Category < ActiveHash::Base
     { id: 5, name:  'フィジカルトレーニング' },
     { id: 6, name:  'メンタルトレーニング' },
     { id: 7, name:  '食育トレーニング' },
-    { id: 8, name:  'その他' },
+    { id: 8, name:  'その他' }
   ]
   include ActiveHash::Associations
   has_many :practices

@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "Games", type: :request do
-  describe "GET #index" do
+RSpec.describe 'Games', type: :request do
+  describe 'GET #index' do
     before do
-     @game=FactoryBot.create(:game)
+      @game = FactoryBot.create(:game)
     end
-    it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do 
+    it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do
       get games_path
       expect(response.status).to eq 200
     end
-    it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのタイトルが存在する' do 
+    it 'indexアクションにリクエストするとレスポンスに投稿済みのツイートのタイトルが存在する' do
       get games_path
       expect(response.body).to include(@game.title)
     end
