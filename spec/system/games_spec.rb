@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Games", type: :system do
+  before do
+    @user=FactoryBot.create(:user)
+  end
   describe '新規投稿' do
     before do
-      @user=FactoryBot.create(:user)
       @game=FactoryBot.build(:game)
     end
     context '新規投稿できるとき' do
@@ -65,7 +67,6 @@ RSpec.describe "Games", type: :system do
 
     describe '投稿削除' do
      before do
-      @user=FactoryBot.create(:user)
       @game=FactoryBot.create(:game,user_id:@user.id)   
      end
      context '投稿削除できるとき' do
@@ -91,7 +92,6 @@ RSpec.describe "Games", type: :system do
     end  
     describe '試合申し込み' do
       before do
-        @user=FactoryBot.create(:user)
         @game=FactoryBot.create(:game,user_id:@user.id)   
        end
       context '試合の申し込みができる時' do

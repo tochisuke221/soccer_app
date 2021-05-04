@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "ChatRooms", type: :system do
+  before do
+    @user=FactoryBot.create(:user)
+    @another=FactoryBot.create(:user)
+  end
   describe 'チャットルーム作成' do
-    before do
-      @user=FactoryBot.create(:user)
-      @another=FactoryBot.create(:user)
-    end
     context 'チャットルームの作成ができるとき' do
       it 'ユーザは他ユーザの詳細ページの「DMする」を押すと、新規にチャットルームが作成される' do
         sign_in(@user)

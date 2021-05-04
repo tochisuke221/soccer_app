@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Practices", type: :system do
+  before do
+    @user=FactoryBot.create(:user)
+  end
+  end
   describe '新規投稿' do
     before do
-      @user=FactoryBot.create(:user)
       @practices_ptag=FactoryBot.build(:practices_ptag)
     end
     context '新規練習投稿ができるとき' do
@@ -45,7 +48,6 @@ RSpec.describe "Practices", type: :system do
   end
   describe '投稿編集' do
     before do
-      @user=FactoryBot.create(:user)
       @practice=FactoryBot.create(:practice,user_id:@user.id)
     end
     context '投稿編集できるとき' do
@@ -121,7 +123,6 @@ RSpec.describe "Practices", type: :system do
   end
   describe '投稿削除' do 
     before do
-      @user=FactoryBot.create(:user)
       @practice=FactoryBot.create(:practice,user_id:@user.id)
     end
     context '投稿を削除できる' do
