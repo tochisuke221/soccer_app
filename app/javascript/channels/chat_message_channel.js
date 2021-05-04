@@ -10,17 +10,28 @@ consumer.subscriptions.create("ChatMessageChannel", {
   },
 
   received(data) {
-    const html = `
-    <div class="my_message_box">
-      <div class="my_message">
-      ${data.content.content}
+    if(current.user.id==data.content.user.id){
+      const html = `
+      <div class="my_message_box">
+        <div class="my_message">
+        ${data.content.content}
+        </div>
       </div>
-    </div>
-    `;
+      `;
+    }else{
+      const html = `
+      <div class="otheruser_message_box">
+        <div class="other_message">
+        ${data.content.content}
+        </div>
+      </div>
+      `;
+    }
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('chat_message_content');
     messages.insertAdjacentHTML('beforeend', html);
     newMessage.value='';
+    
     // const chat=document.getElementById("chat-messages");
     // $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
      const chat=document.getElementById("chat-messages");
