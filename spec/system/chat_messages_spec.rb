@@ -5,10 +5,10 @@ RSpec.describe "ChatMessages", type: :system do
     before do
       @user=FactoryBot.create(:user)
       @another=FactoryBot.create(:user)
-      @another=FactoryBot.create(:user)
+
       @chat_room=FactoryBot.create(:chat_room)
-      @chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
-      @chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
+      chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
+      chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
       @chat_message=FactoryBot.build(:chat_message)
     end
     context 'メッセージを送れる時' do
@@ -65,8 +65,8 @@ RSpec.describe "ChatMessages", type: :system do
       @another=FactoryBot.create(:user)
       @another=FactoryBot.create(:user)
       @chat_room=FactoryBot.create(:chat_room)
-      @chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
-      @chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
+      chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
+      chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
       @chat_message=FactoryBot.create(:chat_message,user_id:@another.id,chat_room_id:@chat_room.id)
     end
     context 'メッセージの受信ができる時' do
@@ -100,8 +100,8 @@ RSpec.describe "ChatMessages", type: :system do
       @another=FactoryBot.create(:user)
       @another=FactoryBot.create(:user)
       @chat_room=FactoryBot.create(:chat_room)
-      @chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
-      @chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
+      chat_room_user_first=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@user.id)
+      chat_room_user_second=FactoryBot.create(:chat_room_user,chat_room_id:@chat_room.id,user_id:@another.id)
     end
     context 'メッセージの既読通知を受け取ることがができる時' do
       it 'ユーザが送ったメッセージを他ユーザが見た時、既読通知を受け取れる' do
@@ -121,5 +121,4 @@ RSpec.describe "ChatMessages", type: :system do
     end
   end
 
-  
 end
