@@ -10,8 +10,9 @@ consumer.subscriptions.create("ChatMessageChannel", {
   },
 
   received(data) {
-    if(current.user.id==data.content.user.id){
-      const html = `
+    let html;
+    if(data.current_user.id==data.content.user_id){
+      html = `
       <div class="my_message_box">
         <div class="my_message">
         ${data.content.content}
@@ -19,7 +20,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
       </div>
       `;
     }else{
-      const html = `
+       html = `
       <div class="otheruser_message_box">
         <div class="other_message">
         ${data.content.content}
@@ -27,6 +28,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
       </div>
       `;
     }
+
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('chat_message_content');
     messages.insertAdjacentHTML('beforeend', html);

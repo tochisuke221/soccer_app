@@ -3,7 +3,7 @@ class ChatMessagesController < ApplicationController
 
   def create
     @chat_message = ChatMessage.new(chat_message_params)
-    ActionCable.server.broadcast 'chat_message_channel', content: @chat_message if @chat_message.save
+    ActionCable.server.broadcast 'chat_message_channel', content: @chat_message,current_user:current_user if @chat_message.save
   end
 
   private
