@@ -13,7 +13,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
     let html;
     //console.log(`今見ている人は${data.current_user.id}`);
     //console.log(`今見ている人は${data.current_user.name}`);
-    console.log(`相手のid${data.another_user.id}`);
+    console.log(`相手のid${data.another_user.ids[0]}`);
     console.log(`送ったひとのid${data.content.user_id}`);
     if(data.another_user.ids[0]==data.content.user_id){
       html = `
