@@ -11,18 +11,6 @@ consumer.subscriptions.create("ChatMessageChannel", {
 
   received(data) {
     let html;
-    //console.log(`今見ている人は${data.current_user.id}`);
-    //console.log(`今見ている人は${data.current_user.name}`);
-    //  console.log(`今見ている人=${data.current_user.name}`);
-    //  console.log(`今見ている人=${data.current_user.id}`);
-    //  console.log(`送信者(今見ている人)=${data.current_user_id}`);
-    //  console.log(`相手＝${data.another_id}`);
-     console.log(`送信者=${data.current_user_id}`);
-     var url = location.href
-     var path = location.pathname
-     //console.log(`url=${url}`);
-     console.log(`path=${path}`);
-    console.log(`/users/${data.content.user_id}`);
      if (document.URL.match( `/users/${data.content.user_id}`)){
        html = `
        <div class="otheruser_message_box">
@@ -40,24 +28,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
         </div>
         `;
     }
-    // if(data.content.user_id==data.current_user.id){
-    //   html = `
-    //   <div class="my_message_box">
-    //     <div class="my_message">
-    //     ${data.content.content}
-    //     </div>
-    //   </div>
-    //   `;
-    // }else{
-    //   html = `
-    //   <div class="otheruser_message_box">
-    //     <div class="other_message">
-    //     ${data.content.content}
-    //     </div>
-    //   </div>
-    //   `;
-    // }
-    // console.log(html);
+  
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('chat_message_content');
     messages.insertAdjacentHTML('beforeend', html);
