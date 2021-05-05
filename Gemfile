@@ -67,3 +67,4 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem "gretel"
 gem 'simple_calendar', '~> 2.0'
+gem "aws-sdk-s3", require: false
