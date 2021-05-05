@@ -23,7 +23,7 @@ consumer.subscriptions.create("ChatMessageChannel", {
      //console.log(`url=${url}`);
      console.log(`path=${path}`);
     console.log(`/users/${data.content.user_id}`);
-     if (document.URL.match( `/users/${data.current_user_id}`)){
+     if (document.URL.match( `/users/${data.content.user_id}`)){
        html = `
        <div class="otheruser_message_box">
          <div class="other_message">
