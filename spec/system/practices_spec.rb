@@ -90,7 +90,7 @@ RSpec.describe "Practices", type: :system do
       end
     end
     context '投稿編集できないとき' do
-      it 'ログイン後、トップページの投稿にある歯車をクリックして編集ページで、誤った情報が入力されているとエラー' do
+      it 'ログイン後、編集ページで、誤った情報が入力されているとエラー' do
         sign_in(@user)
         expect(page).to have_content(@practice.title)
         find(".gear_icon").hover
