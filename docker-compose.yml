@@ -3,11 +3,10 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: "password"
     ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
+      - "4306:3306"
+
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -22,6 +21,3 @@ services:
     environment:
       BASIC_AUTH_USER: ${BASIC_AUTH_USER:-default}
       BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD-default}
-volumes:
-  mysql-data:
-    driver: local

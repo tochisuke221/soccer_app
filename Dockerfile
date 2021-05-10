@@ -14,10 +14,3 @@ COPY . /soccer_app
 RUN yarn install --check-files
 RUN bundle exec rails webpacker:compile
 
-# Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
