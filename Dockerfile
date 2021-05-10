@@ -13,4 +13,3 @@ COPY . /soccer_app
 
 RUN yarn install --check-files
 RUN bundle exec rails webpacker:compile
-

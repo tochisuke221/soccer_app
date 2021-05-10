@@ -3,7 +3,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-
+  
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -43,9 +43,13 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
-  ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = "wss://rakukatsu-app.herokuapp.com/cable" 
-  config.action_cable.allowed_request_origins = ['https://rakukatsu-app.herokuapp.com', 'http://rakukatsu-app.herokuapp.com']
+ # ActionCable.server.config.disable_request_forgery_protection = true
+ # config.action_cable.url = "wss://rakukatsu-app.herokuapp.com/cable" 
+ # config.action_cable.allowed_request_origins = ['https://rakukatsu-app.herokuapp.com', 'http://rakukatsu-app.herokuapp.com']
+ ActionCable.server.config.disable_request_forgery_protection = true
+ config.action_cable.url = "ws://35.74.38.127/cable" 
+ config.action_cable.allowed_request_origins = ['http://35.74.38.127']
+ 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
