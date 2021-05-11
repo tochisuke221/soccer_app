@@ -15,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: bundler install
+          command: gem install bundler
+      - run:
           name: bundle install
           command: bundle install --path vendor/bundle
       - run:
