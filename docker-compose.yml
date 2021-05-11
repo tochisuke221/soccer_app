@@ -21,3 +21,7 @@ services:
     environment:
       BASIC_AUTH_USER: ${BASIC_AUTH_USER:-default}
       BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD-default}
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/ hub" # 追記
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug # 追記
