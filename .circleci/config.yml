@@ -1,91 +1,88 @@
-version: 2.1 # バージョン指定
 
-executors:
-  default:
-    working_directory: ~/webapp
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
     docker:
-      - image: circleci/ruby:2.6.5-node
+      # specify the version you desire here
+      # ruby2.5.1を使ったアプリのため
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
-          BUNDLER_VERSION: 2.1.4
-          RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: "root"
-          DB_PASSWORD: ""
+#  ①注意！！ bundlerのバージョンが2.0.1以上だと、bundle installに失敗します。ここに環境として指定します。
+          - BUNDLER_VERSION: 2.0.2
+#  ②注意！！ circleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要があります。
+          - RAILS_ENV: 'test'
+      # Mysqlのバージョン5.6で動かしていたため、5.6を指定
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ROOT_HOST: "%"
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_ROOT_HOST: '%'
 
-commands:
-  setup:
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
     steps:
       - checkout
-      - run:
-          name: Update bundler # bundlerのバージョン２へのアップデート
-          command: gem update bundler
 
-      - run:
-          name: Which bundler? # バージョン確認
-          command: bundle -v
-
-      - restore_cache: # キャッシュを読み込む
-          keys:
-            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
-            - gem-cache-v1-
-
-      - run:
-          name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
-
-      - save_cache: # キャッシュを保存する
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-
-      # 以下はRails6でWebpackerを使う場合は必須
+      # Download and cache dependencies
       - restore_cache:
           keys:
-            - yarn-cache-v1-{{ checksum "yarn.lock" }}
-            - yarn-cache-v1-
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
+          name: install dependencies
+          command: |
+# ①bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要があります。
+            gem install bundler -v 2.0.2
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-jobs:
-  test:
-    executor: default
-    environment:
-      RAILS_ENV: test
-    steps:
-      - checkout
-      - setup
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 90s
+# ②ちょっと無理やりですが、database.ymlとdatabase.yml.ciを入れ替える記述です。
+      - run: mv config/database.yml.ci config/database.yml 
 
-      - run:
-          name: Use specific database.yml # CircleCI用のデータベース設定を使う
-          command: mv config/database.yml.ci config/database.yml
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
+# rubocopを走らせる記述です。
       - run:
-          name: Database setup
+          name: Rubocop
+          command: bundle exec rubocop
+
+# rspecを走らせる記述です。
+      # run tests!
+      - run:
+          name: run tests
           command: |
-            bin/rails db:create
-            bin/rails db:schema:load --trace
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
-      - run: # 普通のテストとシステムテストを実行する
-          name: Rails Test
-          command: |
-            bin/rails test  
-            bin/rails test:system
 
-workflows:
-  build_and_test:
-    jobs:
-      - test
+# ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
