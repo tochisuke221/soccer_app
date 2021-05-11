@@ -1,38 +1,58 @@
-version: 2
+version: 2.1
 
-jobs:
-  test:
-    docker:
-      - image: circleci/ruby:2.6.5-node
-        environment:
-          RAILS_ENV: test
-          DATABASE_HOST: 127.0.0.1
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_DATABASE: soccer_app_test
-    working_directory: ~/soccer_app
+orbs:
+  ruby: circleci/ruby@1.1.2
+  node: circleci/node@2
+
+# setup
+commands:
+  setup:
     steps:
       - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7-node
+    steps:
+      - setup
+  test:
+    docker:
+      - image: circleci/ruby:2.7-node
+      - image: circleci/postgres:11.6-alpine
+        name: "db"
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD: ""
+    environment:
+      BUNDLE_JOBS: "4"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: ""
+      RAILS_ENV: test
+    steps:
+      - setup
       - run:
-          name: "bundle install"
-          command: bundle install --path vendor/bundle
-      # MySQLと接続できるまで待ちます
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
       - run:
-          name: "waiting DB start"
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - run:
-          name: "initialize DB"
-          command: |
-            bundle exec rake db:create
-            bundle exec rake db:migrate
-      - run:
-          name: RSpec
+          name: Rspec
           command: bundle exec rspec
 
 workflows:
   version: 2
-  workflows:
+  test_and_deploy:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
