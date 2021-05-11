@@ -8,14 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
       # ruby2.5.1を使ったアプリのため
-      - image: circleci/ruby:2.5.1-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           #  ①注意！！ bundlerのバージョンが2.0.1以上だと、bundle installに失敗します。ここに環境として指定します。
           - BUNDLER_VERSION: 2.0.2
           #  ②注意！！ circleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要があります。
           - RAILS_ENV: "test"
       # Mysqlのバージョン5.6で動かしていたため、5.6を指定
-      - image: circleci/mysql:5.6
+      - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           - MYSQL_ROOT_HOST: "%"
