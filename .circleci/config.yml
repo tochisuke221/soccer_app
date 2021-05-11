@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Run test
-          command: bundle exec rspec spec/models/like_spec.rb
+          command: ruby spec/models/like_spec.rb
 
 workflows:
   version: 2
