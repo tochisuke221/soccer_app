@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: bundle install
-          command: bundle install --path vendor/bundle
+            command: bundle check --path=vendor/bundle || bundle install --path vendor/bundle --clean --jobs 4 --retry 3
       - run:
           name: データベースの起動を待機
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
