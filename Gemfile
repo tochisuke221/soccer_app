@@ -55,9 +55,7 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production, :staging do
-    gem 'unicorn'
-end
+
 
 
 
@@ -74,4 +72,4 @@ gem 'kaminari'
 gem "gretel"
 gem 'simple_calendar', '~> 2.0'
 gem "aws-sdk-s3", require: false
-gem 'dotenv-rails'
+

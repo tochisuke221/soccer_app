@@ -14,8 +14,9 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
+  password: password
   socket: /tmp/mysql.sock
+  host: db
 
 development:
   <<: *default
@@ -49,10 +50,11 @@ test:
 #
 production:
   <<: *default
-  #database: soccer_app_production
-  #username: soccer_app
-  #password: <%= ENV['SOCCER_APP_DATABASE_PASSWORD'] %>
-  database: <%= ENV['DB_NAME'] %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOSTNAME'] %>
+  database: soccer_app_production
+  username: soccer_app
+  password: <%= ENV['SOCCER_APP_DATABASE_PASSWORD'] %>
+  #以下、AWS側での記述
+  # database: <%= ENV['DB_NAME'] %>
+  # username: <%= ENV['DB_USERNAME'] %>
+  # password: <%= ENV['DB_PASSWORD'] %>
+  # host: <%= ENV['DB_HOSTNAME'] %>
