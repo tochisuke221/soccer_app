@@ -16,7 +16,7 @@ default: &default
   username: root
   password:
   socket: /tmp/mysql.sock
-  host: 127.0.0.1 # <-追記
+  host: db
 
 development:
   <<: *default

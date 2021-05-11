@@ -1,37 +1,91 @@
-version: 2
+version: 2.1 # バージョン指定
 
-jobs:
-  test:
+executors:
+  default:
+    working_directory: ~/webapp
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.5-node
         environment:
+          BUNDLER_VERSION: 2.1.4
           RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          DB_USERNAME: "root"
+          DB_PASSWORD: ""
       - image: circleci/mysql:5.7
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_DATABASE: soccer_app_test
-    working_directory: ~/repo
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+
+commands:
+  setup:
     steps:
       - checkout
       - run:
-          name: bundler install
-          command: gem install bundler
+          name: Update bundler # bundlerのバージョン２へのアップデート
+          command: gem update bundler
+
       - run:
-          name: bundle install
-          command: bundle install --path vendor/bundle
+          name: Which bundler? # バージョン確認
+          command: bundle -v
+
+      - restore_cache: # キャッシュを読み込む
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
+
       - run:
-          name: データベースの起動を待機
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      - save_cache: # キャッシュを保存する
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # 以下はRails6でWebpackerを使う場合は必須
+      - restore_cache:
+          keys:
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}
+            - yarn-cache-v1-
+
       - run:
-          name: データベースのセットアップ
-          command: bundle exec rake db:schema:load
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+jobs:
+  test:
+    executor: default
+    environment:
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - setup
       - run:
-          name: テストの実行
-          command: bundle exec rspec
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 90s
+
+      - run:
+          name: Use specific database.yml # CircleCI用のデータベース設定を使う
+          command: mv config/database.yml.ci config/database.yml
+
+      - run:
+          name: Database setup
+          command: |
+            bin/rails db:create
+            bin/rails db:schema:load --trace
+
+      - run: # 普通のテストとシステムテストを実行する
+          name: Rails Test
+          command: |
+            bin/rails test  
+            bin/rails test:system
 
 workflows:
-  version: 2
-  workflows:
+  build_and_test:
     jobs:
       - test

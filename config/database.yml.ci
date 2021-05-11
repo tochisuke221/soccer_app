@@ -2,7 +2,7 @@ test:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  timeout: 10000
-  database: test
-  username: ubuntu
-
+  username: 'root'
+  port: 3306
+  host: '127.0.0.1'
+  database: soccer_app
