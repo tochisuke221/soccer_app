@@ -60,7 +60,6 @@ jobs:
           command: bundle exec rubocop
 
       # rspecを走らせる記述です。
-      # run tests!
       - run:
           name: run tests
           command: |
