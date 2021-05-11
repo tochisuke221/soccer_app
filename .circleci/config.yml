@@ -17,12 +17,12 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7-node
+      - image: circleci/ruby:2.6-node
     steps:
       - setup
   test:
     docker:
-      - image: circleci/ruby:2.7-node
+      - image: circleci/ruby:2.6-node
       - image: circleci/postgres:11.6-alpine
         name: "db"
         environment:
