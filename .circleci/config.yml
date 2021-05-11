@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run:
           name: "bundle install"
-          command: bundle install --path vendor/bundle
+          command: bundle install
       # MySQLと接続できるまで待ちます
       - run:
           name: "waiting DB start"
