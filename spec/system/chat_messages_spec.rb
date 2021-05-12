@@ -24,6 +24,7 @@ RSpec.describe 'ChatMessages', type: :system do
           find('input[name="commit"]').click
           sleep 1
         end.to change { ChatMessage.count }.by(1)
+        visit user_chat_room_path(@another, @chat_room)
         expect(page).to have_content(@chat_message.content)
       end
       it 'ユーザはすでにあるチャットルームから、指定の相手にメッセージを送ることができる' do
@@ -37,6 +38,7 @@ RSpec.describe 'ChatMessages', type: :system do
           find('input[name="commit"]').click
           sleep 1
         end.to change { ChatMessage.count }.by(1)
+        visit user_chat_room_path(@another, @chat_room)
         expect(page).to have_content(@chat_message.content)
       end
     end

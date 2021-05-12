@@ -1,23 +1,35 @@
-version: "3"
+version: '3'
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: "password"
-    ports:
-      - "4306:3306"
-
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
-      - .:/soccer_app
+      - .:/app
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
-    stdin_open: true
+      - chrome
     tty: true
+    stdin_open: true
+    environment: #以下追記
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
     environment:
       BASIC_AUTH_USER: ${BASIC_AUTH_USER:-default}
       BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD-default}
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
+  db:
+    image: mysql:5.7
+    volumes:
+      - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
+volumes:
+  db-volume:

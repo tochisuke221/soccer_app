@@ -52,7 +52,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'webdrivers', require: !ENV['SELENIUM_DRIVER_URL']
 end
 
 
@@ -72,4 +72,5 @@ gem 'kaminari'
 gem "gretel"
 gem 'simple_calendar', '~> 2.0'
 gem "aws-sdk-s3", require: false
+
 

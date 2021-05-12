@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Practices", type: :system do
+RSpec.describe "Practices",js: true, type: :system do
   before do
     @user=FactoryBot.create(:user)
-  end
   end
   describe '新規投稿' do
     before do
@@ -70,7 +69,7 @@ RSpec.describe "Practices", type: :system do
         visit root_path
         expect(page).to have_content("変更した")
       end
-      it 'ログイン後、トップページの自身の投稿にある歯車をクリックして編集ページにいって、正しく情報が入力されていれば編集できる' do
+      it 'ログイン後、トップページの自身の投稿にある歯車をクリックして編集ページにいって、正しく情報が入力されていれば編集できる' , js: true do
         sign_in(@user)
         expect(page).to have_content(@practice.title)
         find(".gear_icon").hover
