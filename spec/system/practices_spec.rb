@@ -4,7 +4,7 @@ RSpec.describe "Practices", type: :system do
   before do
     @user=FactoryBot.create(:user)
   end
-  end
+
   describe '新規投稿' do
     before do
       @practices_ptag=FactoryBot.build(:practices_ptag)
