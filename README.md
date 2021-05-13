@@ -68,7 +68,7 @@
 # DB 設計
 
 ![er_soccer_app](https://user-images.githubusercontent.com/81346474/117126305-8bcc6680-add5-11eb-8d7e-52ce81d2ab46.png)
-<img width="100" alt="スクリーンショット 2020-05-07 0 06 18" src="https://user-images.githubusercontent.com/81346474/117126305-8bcc6680-add5-11eb-8d7e-52ce81d2ab46.png">
+
 
 # テスト
 
