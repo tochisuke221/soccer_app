@@ -11,9 +11,7 @@
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
 - MySQL 5.6
-  (以下予定)
 - Nginx
-- Puma
 - AWS
   - VPC
   - EC2
@@ -21,10 +19,12 @@
   - Route53
 　- ALB
 　- SSL化
+- RSpec
+(以下予定)
 - Docker/Docker-compose
 - CircleCi CI/CD
 - Capistrano3
-- RSpec
+
 
 # 機能一覧
 
