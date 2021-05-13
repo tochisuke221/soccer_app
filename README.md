@@ -65,11 +65,11 @@
   - 予定追加機能
 - レスポンシブ対応
 
+
+#インフラ構成図
+![AWSinfra](https://user-images.githubusercontent.com/81346474/118098762-42040180-b40f-11eb-9c7a-1912f7ce7ed7.png)
 # DB 設計
-
 ![er_soccer_app](https://user-images.githubusercontent.com/81346474/117126305-8bcc6680-add5-11eb-8d7e-52ce81d2ab46.png)
-
-
 # テスト
 
 - RSpec
