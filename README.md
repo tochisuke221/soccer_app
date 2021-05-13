@@ -17,8 +17,8 @@
   - EC2
   - RDS
   - Route53
-　- ALB
-　- SSL化
+  - ALB
+  - ACM
 - RSpec
 (以下予定)
 - Docker/Docker-compose
