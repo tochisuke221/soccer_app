@@ -37,7 +37,7 @@ RSpec.describe 'Events', type: :system do
   end
   describe '予定削除' do
     context '予定削除できるとき' do
-      it 'ユーザは予定追加済みの予定をクリックすると削除できる' do
+      it 'ユーザは予定追加済みの予定をクリックすると削除できる', js: true do
         @event = FactoryBot.create(:event, user_id: @user.id)
         sign_in(@user)
         visit user_events_path(@user)

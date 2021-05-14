@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Notifications', type: :system do
+RSpec.describe 'Notifications', js: true, type: :system do
   before do
     @user = FactoryBot.create(:user)
     @second_user = FactoryBot.create(:user)

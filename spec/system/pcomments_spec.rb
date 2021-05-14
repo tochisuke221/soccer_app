@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Pcomments', type: :system do
+RSpec.describe 'Pcomments', js: true, type: :system do
   before do
     @user = FactoryBot.create(:user)
     @another = FactoryBot.create(:user)

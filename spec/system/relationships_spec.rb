@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Relationships', type: :system do
+RSpec.describe 'Relationships', js: true, type: :system do
   before do
     @user = FactoryBot.create(:user)
     @another = FactoryBot.create(:user)

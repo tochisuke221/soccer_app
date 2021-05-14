@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Practices", type: :system do
+RSpec.describe "Practices", js: true, type: :system do
   before do
     @user=FactoryBot.create(:user)
-  end
   end
   describe '新規投稿' do
     before do
@@ -123,7 +122,7 @@ RSpec.describe "Practices", type: :system do
   end
   describe '投稿削除' do 
     before do
-      @practice=FactoryBot.create(:practice,user_id:@user.id)
+      @practice=FactoryBot.create(:practice,user_id: @user.id)
     end
     context '投稿を削除できる' do
       it '自身の投稿詳細ページの削除ボタンから削除する' do
@@ -152,6 +151,7 @@ RSpec.describe "Practices", type: :system do
         expect(current_path).to eq(root_path)
         expect(page).to have_content("削除に成功しました")
       end
+    end
     context '削除できないとき' do
       it '自分以外の投稿は歯車がないので削除できない' do
         @another=FactoryBot.create(:user)
@@ -164,7 +164,6 @@ RSpec.describe "Practices", type: :system do
         visit practice_path(@practice)
         expect(page).to have_no_content("削除")
       end
-    end
     end
   end
 end

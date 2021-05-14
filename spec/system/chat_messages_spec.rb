@@ -12,7 +12,7 @@ RSpec.describe 'ChatMessages', type: :system do
     before do
       @chat_message = FactoryBot.build(:chat_message)
     end
-    context 'メッセージを送れる時' do
+    context 'メッセージを送れる時', js: true do
       it 'ユーザは他ユーザの詳細ページのDMボタンを押して、チャットルームからメッセージを送れる' do
         sign_in(@user)
         visit user_path(@another)
