@@ -1,0 +1,17 @@
+name: CI
+on:
+  - push
+
+jobs:
+  spec:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: docker compose build
+      - run: docker compose run --rm web rails db:create
+      - run: docker compose run --rm web rails db:migrate
+      - run: docker compose run --rm web yarn install --cache-files
+      - run: docker compose run --rm web rails webpacker:compile
+      - run: docker compose run --rm web rails webpacker:compile RAILS_ENV=test
+      - run: docker compose run --rm web bundle exec rspec
