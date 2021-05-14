@@ -102,7 +102,7 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
-  describe 'ユーザログイン' do
+  describe 'ユーザログイン', js: true, type: :system do
     before do
       @user = FactoryBot.create(:user)
     end
@@ -143,7 +143,7 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
-  describe 'ユーザログアウト' do
+  describe 'ユーザログアウト', js: true, type: :system do
     before do
       @user = FactoryBot.create(:user)
     end
@@ -154,7 +154,7 @@ RSpec.describe 'Users', type: :system do
         # クリックするとログアウトボタンがあることを確認する
         expect(find('.dropdown').click).to have_content('ログアウト')
         # ログアウトボタンを押すとトップページ偽にすること確認
-        click_on('ログアウト')
+        click_on 'ログアウト', match: :first
         expect(current_path).to eq(root_path)
         # トップページには新規登録ボタン、ログインボタンがあることを確認する
         expect(page).to have_content('新規登録')
@@ -174,12 +174,13 @@ RSpec.describe 'Users', type: :system do
       @user = FactoryBot.create(:user)
     end
     context '退会できる時' do
-      it 'ログインして、マイページから退会ボタンを押して、OKを押すと退会できる' do
+      it 'ログインして、マイページから退会ボタンを押して、OKを押すと退会できる', js: true do
         sign_in(@user)
         visit user_path(@user)
         expect do
-          click_on('退会する')
-          expect(page.accept_confirm).to eq '本当に退会しますか?退会後は全てのデータが削除されます。'
+          page.accept_confirm("本当に退会しますか?退会後は全てのデータが削除されます。") do
+            click_on('退会する')
+          end
           sleep 0.5
         end.to change { User.count }.by(-1)
         expect(current_path).to eq(root_path)
