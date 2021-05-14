@@ -11,7 +11,7 @@ RSpec.describe 'Events', type: :system do
     end
     context '予定追加できるとき' do
       it 'ユーザは正しい情報を入力すれば、予定を追加できる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(find('.dropdown').click).to have_content('予定表')
         visit user_events_path(@user)
         fill_in 'event_title', with: @event.title
@@ -24,7 +24,7 @@ RSpec.describe 'Events', type: :system do
     end
     context '予定追加できないとき' do
       it 'ユーザは正しく情報を入力できない時、予定を追加できない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_events_path(@user)
         fill_in 'event_title', with: ''
         expect  do
@@ -39,7 +39,7 @@ RSpec.describe 'Events', type: :system do
     context '予定削除できるとき' do
       it 'ユーザは予定追加済みの予定をクリックすると削除できる', js: true do
         @event = FactoryBot.create(:event, user_id: @user.id)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_events_path(@user)
         expect(page).to have_content(@event.title)
         expect do

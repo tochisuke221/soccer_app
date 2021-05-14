@@ -8,7 +8,7 @@ RSpec.describe 'Searches', type: :system do
   describe '投稿検索機能' do
     context '検索できる時' do
       it 'ログインユーザはトップページの検索窓口から任意のワードを入力して、投稿を検索することができる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         fill_in 'keyword', with: @practice.title
         click_on '検索'
         expect(current_path).to eq(search_practices_path)
@@ -16,7 +16,7 @@ RSpec.describe 'Searches', type: :system do
         expect(page).to have_content('一覧に戻る')
       end
       it '検索条件に一致した投稿がない場合は、検索結果が0件である旨を表示する' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         fill_in 'keyword', with: ''
         click_on '検索'
         expect(current_path).to eq(search_practices_path)

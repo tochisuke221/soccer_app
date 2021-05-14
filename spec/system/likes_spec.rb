@@ -9,7 +9,7 @@ RSpec.describe 'Likes', js: true, type: :system do
   describe 'いいね機能' do
     context 'いいねできるとき' do
       it 'ユーザは他ユーザの投稿にトップページからいいねできる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect do
           find('.practice_like').click
           sleep 1
@@ -19,7 +19,7 @@ RSpec.describe 'Likes', js: true, type: :system do
     context 'いいねできないとき' do
       it 'ユーザはすでにいいねした投稿にはいいねできない' do
         @like = FactoryBot.create(:like, user_id: @user.id, practice_id: @practice.id)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect do
           find('.practice_like').click
           sleep 1
@@ -38,7 +38,7 @@ RSpec.describe 'Likes', js: true, type: :system do
     context 'いいね解除できるとき' do
       it 'ユーザはいい済みの他ユーザの投稿にトップページからいいね解除できる' do
         @like = FactoryBot.create(:like, user_id: @user.id, practice_id: @practice.id)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect do
           find('.practice_like').click
           sleep 1
@@ -47,7 +47,7 @@ RSpec.describe 'Likes', js: true, type: :system do
     end
     context 'いいね解除できないとき' do
       it 'ユーザはすでにいいね解除した投稿にはいいね解除できない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect do
           find('.practice_like').click
           sleep 1
