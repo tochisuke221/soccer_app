@@ -10,7 +10,7 @@ RSpec.describe 'Games', type: :system do
     end
     context '新規投稿できるとき' do
       it 'ユーザは試合募集一覧の中にあるリンクをクリックして、新規投稿ページから正しい情報を入力すると投稿でき,それが一覧に表示される' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_link('試合募集')
         visit games_path
         expect(page).to have_link('開催者として募集したい方はこちら')
@@ -34,7 +34,7 @@ RSpec.describe 'Games', type: :system do
     end
     context '新規投稿できないとき' do
       it 'ユーザは試合募集一覧の中にあるリンクをクリックして、新規投稿ページから誤った情報を入力すると投稿できない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_link('試合募集')
         visit games_path
         expect(page).to have_link('開催者として募集したい方はこちら')
@@ -71,7 +71,7 @@ RSpec.describe 'Games', type: :system do
       end
       context '投稿削除できるとき' do
         it 'ユーザはログイン後、自身の投稿であれば詳細ページの削除ボタンを押して削除できる' do
-          sign_in(@user)
+          sign_in_on_browser(@user)
           visit game_path(@game)
           expect(page).to have_content('削除')
           expect do
@@ -84,7 +84,7 @@ RSpec.describe 'Games', type: :system do
       context '投稿削除できないとき' do
         it 'ユーザは他人の投稿を削除できない' do
           @another = FactoryBot.create(:user)
-          sign_in(@another)
+          sign_in_on_browser(@another)
           visit game_path(@game)
           expect(page).to have_no_content('削除')
         end
@@ -97,7 +97,7 @@ RSpec.describe 'Games', type: :system do
       context '試合の申し込みができる時' do
         it 'ユーザは田ユーザが投稿した試合募集の詳細ページから試合の申し込みができる' do
           @another = FactoryBot.create(:user)
-          sign_in(@another)
+          sign_in_on_browser(@another)
           visit game_path(@game)
           expect(page).to have_content('申込')
           click_on '申込'
@@ -109,7 +109,7 @@ RSpec.describe 'Games', type: :system do
       end
       context '試合の申し込みができない時' do
         it 'ユーザは自身が投稿した試合募集には申し込みができない' do
-          sign_in(@user)
+          sign_in_on_browser(@user)
           visit(game_path(@game))
           expect(page).to have_no_content('申込')
         end

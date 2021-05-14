@@ -13,7 +13,7 @@ RSpec.describe 'Pcomments', js: true, type: :system do
         @pcomment = FactoryBot.build(:pcomment)
       end
       it 'ユーザは他ユーザの投稿にコメントできる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@another_practice)
         fill_in 'pcomment_comment', with: @pcomment.comment
         expect  do
@@ -23,7 +23,7 @@ RSpec.describe 'Pcomments', js: true, type: :system do
         expect(page).to have_content(@pcomment.comment)
       end
       it 'ユーザは自分の投稿に対してもコメントできる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@my_practice)
         fill_in 'pcomment_comment', with: @pcomment.comment
         expect  do
@@ -35,7 +35,7 @@ RSpec.describe 'Pcomments', js: true, type: :system do
     end
     context 'コメントできないとき' do
       it 'ユーザは文字を入力しないでコメントしてもコメントできない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@another_practice)
         fill_in 'pcomment_comment', with: ''
         expect  do
@@ -52,7 +52,7 @@ RSpec.describe 'Pcomments', js: true, type: :system do
     end
     context 'コメント削除できるとき' do
       it 'ユーザは自身のコメントであれば削除できる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@another_practice)
         expect(page).to have_content(@my_pcomment.comment)
         expect do
@@ -63,7 +63,7 @@ RSpec.describe 'Pcomments', js: true, type: :system do
     end
     context 'コメント削除できないとき' do
       it 'ユーザは他人のコメントを削除することはできない(ゴミ箱マークがない)' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@my_practice)
         expect(page).to have_content(@another_pcomment.comment)
         expect(page).to have_no_selector('.fa-trash')

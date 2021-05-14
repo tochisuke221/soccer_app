@@ -14,7 +14,7 @@ RSpec.describe 'ChatMessages', type: :system do
     end
     context 'メッセージを送れる時', js: true do
       it 'ユーザは他ユーザの詳細ページのDMボタンを押して、チャットルームからメッセージを送れる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@another)
         expect(page).to have_content('DMする')
         click_on 'DMする'
@@ -27,7 +27,7 @@ RSpec.describe 'ChatMessages', type: :system do
         expect(page).to have_content(@chat_message.content)
       end
       it 'ユーザはすでにあるチャットルームから、指定の相手にメッセージを送ることができる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_chat_rooms_path(@user)
         expect(page).to have_content(@another.name)
         click_on @another.name
@@ -42,12 +42,12 @@ RSpec.describe 'ChatMessages', type: :system do
     end
     context 'メッセージを送れない時' do
       it 'ユーザは自分自身にDMは送ることができない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@user)
         expect(page).to have_no_content('DMする')
       end
       it 'ユーザは空白のDMは送ることができない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@another)
         expect(page).to have_content('DMする')
         click_on 'DMする'
@@ -66,7 +66,7 @@ RSpec.describe 'ChatMessages', type: :system do
     end
     context 'メッセージの受信ができる時' do
       it 'ユーザは他ユーザが送ったメッセージに対して、メッセージ一覧から受信・確認することができる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_chat_rooms_path(@user)
         expect(page).to have_content(@another.name)
         expect(page).to have_content('1')
@@ -79,7 +79,7 @@ RSpec.describe 'ChatMessages', type: :system do
       it 'ユーザは他ユーザ間でやりとりしているメッセージは受信できない' do
         @another_chat_room = ChatRoom.create
         @another_chat_message = FactoryBot.create(:chat_message, user_id: @another.id, chat_room_id: @another_chat_room.id)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_chat_rooms_path(@user)
         expect(page).to have_content(@another.name)
         click_on @another.name
@@ -93,7 +93,7 @@ RSpec.describe 'ChatMessages', type: :system do
     context 'メッセージの既読通知を受け取ることがができる時' do
       it 'ユーザが送ったメッセージを他ユーザが見た時、既読通知を受け取れる' do
         @chat_message = FactoryBot.create(:chat_message, user_id: @user.id, chat_room_id: @chat_room.id, check: true)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_chat_room_path(@another, @chat_room)
         expect(page).to have_content('既読')
       end
@@ -101,7 +101,7 @@ RSpec.describe 'ChatMessages', type: :system do
     context 'メッセージの既読通知を受け取ることができない時' do
       it 'ユーザが送ったメッセージを他ユーザがまだ見てない時、既読通知を受け取れない' do
         @chat_message = FactoryBot.create(:chat_message, user_id: @user.id, chat_room_id: @chat_room.id, check: false)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_chat_room_path(@another, @chat_room)
         expect(page).to have_no_content('既読')
       end

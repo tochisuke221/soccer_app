@@ -67,7 +67,7 @@ RSpec.describe 'Users', type: :system do
     end
     context 'ユーザの編集ができるとき' do
       it '正しい情報を入力すれば、編集を完了し、ユーザ詳細ページでその内容が更新されている' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@user)
         expect(page).to have_content('編集する')
         visit edit_user_path(@user)
@@ -84,7 +84,7 @@ RSpec.describe 'Users', type: :system do
     end
     context 'ユーザの編集ができないとき' do
       it '正しく情報が入力されていないと、編集ページにてエラー文が表示される' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@user)
         expect(page).to have_content('編集する')
         visit edit_user_path(@user)
@@ -115,7 +115,7 @@ RSpec.describe 'Users', type: :system do
         # ログインページへ移動する
         visit new_user_session_path
         # ユーザー情報を入力する
-        sign_in(@user)
+        sign_in_on_browser(@user)
         # クリックするとログアウトボタンが表示されることを確認する
         expect(find('.dropdown').click).to have_content('ログアウト')
         # 新規登録ページへ遷移するボタンや、ログインページへ遷移するボタンが表示されていないことを確認する
@@ -150,7 +150,7 @@ RSpec.describe 'Users', type: :system do
     context 'ログアウトできるとき' do
       it 'ログイン状態から、ログアウトボタンを押すとログアウトできる' do
         # ログインする
-        sign_in(@user)
+        sign_in_on_browser(@user)
         # クリックするとログアウトボタンがあることを確認する
         expect(find('.dropdown').click).to have_content('ログアウト')
         # ログアウトボタンを押すとトップページ偽にすること確認
@@ -175,7 +175,7 @@ RSpec.describe 'Users', type: :system do
     end
     context '退会できる時' do
       it 'ログインして、マイページから退会ボタンを押して、OKを押すと退会できる', js: true do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@user)
         expect do
           page.accept_confirm("本当に退会しますか?退会後は全てのデータが削除されます。") do

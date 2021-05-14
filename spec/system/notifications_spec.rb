@@ -12,7 +12,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
   describe 'コメントに関しての通知' do
     context 'コメント通知が来る時' do
       it '他ユーザが自分の投稿にコメントした時、ユーザは通知を受け取ることができる' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         visit practice_path(@my_practice)
         fill_in 'pcomment_comment', with: 'Good'
         expect  do
@@ -20,7 +20,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_selector('.notice')
         visit notifications_path
         expect(page).to have_content("#{@second_user.name}があなたの投稿にコメントしました")
@@ -28,7 +28,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
     end
     context 'コメント通知がこないとき' do
       it 'ユーザは自分自身の投稿に自分がコメントしても通知を受け取ることはできない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit practice_path(@my_practice)
         fill_in 'pcomment_comment', with: 'Good'
         expect  do
@@ -40,7 +40,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
         expect(page).to have_no_content("#{@user.name}があなたの投稿にコメントしました")
       end
       it 'ユーザはユーザ2がユーザ3にコメントしても通知を受け取ることはできない' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         visit practice_path(@third_practice)
         fill_in 'pcomment_comment', with: 'Good'
         expect  do
@@ -48,7 +48,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_no_selector('.notice')
       end
     end
@@ -56,13 +56,13 @@ RSpec.describe 'Notifications', js: true, type: :system do
   describe 'いいねに関しての通知' do
     context 'いいね通知が来る時' do
       it '他ユーザが自分の投稿にいいねした時、ユーザは通知を受け取ることができる' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         expect do
           find("#like-#{@my_practice.id}").find('.practice_like').click
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_selector('.notice')
         visit notifications_path
         expect(page).to have_content("#{@second_user.name}があなたの投稿にいいねしました")
@@ -70,7 +70,7 @@ RSpec.describe 'Notifications', js: true, type: :system do
     end
     context 'いいね通知がこないとき' do
       it 'ユーザは自分自身の投稿に自分がいいねしても通知を受け取ることはできない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect do
           find("#like-#{@my_practice.id}").find('.practice_like').click
           sleep 1
@@ -78,13 +78,13 @@ RSpec.describe 'Notifications', js: true, type: :system do
         expect(page).to have_no_selector('.notice')
       end
       it 'ユーザはユーザ2がユーザ3の投稿をいいねしても通知を受け取ることはできない' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         expect do
           find("#like-#{@third_practice.id}").find('.practice_like').click
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_no_selector('.notice')
       end
     end
@@ -92,14 +92,14 @@ RSpec.describe 'Notifications', js: true, type: :system do
   describe 'フォローに関しての通知' do
     context 'フォロー通知が来る時' do
       it '他ユーザが自分をフォローした時、ユーザは通知を受け取ることができる' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         visit user_path(@user)
         expect do
           find('#f-btn').click
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_selector('.notice')
         visit notifications_path
         expect(page).to have_content("#{@second_user.name}があなたをフォローしました")
@@ -107,14 +107,14 @@ RSpec.describe 'Notifications', js: true, type: :system do
     end
     context 'フォロー通知がこないとき' do
       it '他ユーザが他ユーザをフォローしても第三者は通知を受け取らない' do
-        sign_in(@second_user)
+        sign_in_on_browser(@second_user)
         visit user_path(@third_user)
         expect do
           find('#f-btn').click
           sleep 1
         end.to change { Notification.count }.by(1)
         sign_out(@second_user)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_no_selector('.notice')
       end
     end

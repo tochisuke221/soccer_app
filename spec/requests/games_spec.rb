@@ -5,7 +5,7 @@ RSpec.describe 'Games', type: :request do
     before do
       @game = FactoryBot.create(:game)
       @user = FactoryBot.create(:user)
-      login_as @user
+      sign_in @user
     end
     it 'indexアクションにリクエストすると正常にレスポンスが返ってくる' do
       get games_path

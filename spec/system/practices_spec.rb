@@ -10,7 +10,7 @@ RSpec.describe "Practices", js: true, type: :system do
     end
     context '新規練習投稿ができるとき' do
       it 'ログインして、投稿画面にいき、正しい情報を入力するとトップページでその投稿が表示される' do
-         sign_in(@user)
+         sign_in_on_browser(@user)
          expect(page).to have_content("投稿する")
          visit new_practice_path
          fill_in 'practices_ptag_title', with: @practices_ptag.title
@@ -28,7 +28,7 @@ RSpec.describe "Practices", js: true, type: :system do
     end
     context '新規練習投稿できないとき' do
       it 'ログインして、投稿画面で正しくない情報を入力すると同じページにてエラー文が表示される' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
          expect(page).to have_content("投稿する")
          visit new_practice_path
          fill_in 'practices_ptag_title', with: ""
@@ -51,7 +51,7 @@ RSpec.describe "Practices", js: true, type: :system do
     end
     context '投稿編集できるとき' do
       it '自身の投稿詳細ページの編集ボタンから編集ページにいき、正しく情報が入力されていれば編集できる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_content(@practice.title)
         visit practice_path(@practice)
         expect(page).to have_content("編集")
@@ -70,7 +70,7 @@ RSpec.describe "Practices", js: true, type: :system do
         expect(page).to have_content("変更した")
       end
       it 'ログイン後、トップページの自身の投稿にある歯車をクリックして編集ページにいって、正しく情報が入力されていれば編集できる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_content(@practice.title)
         find(".gear_icon").hover
         expect(page).to have_link '編集',href: edit_practice_path(@practice)
@@ -90,7 +90,7 @@ RSpec.describe "Practices", js: true, type: :system do
     end
     context '投稿編集できないとき' do
       it 'ログイン後、編集ページで、誤った情報が入力されているとエラー' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_content(@practice.title)
         find(".gear_icon").hover
         expect(page).to have_link '編集',href: edit_practice_path(@practice)
@@ -109,12 +109,12 @@ RSpec.describe "Practices", js: true, type: :system do
       end
       it '自分以外の投稿には歯車がないので編集できない' do
         @another=FactoryBot.create(:user)
-        sign_in(@another)
+        sign_in_on_browser(@another)
         expect(page).to have_no_selector ".gear_icon"
       end
       it '自分以外の投稿詳細ページには編集ボタンがないので削除できない' do
         @another=FactoryBot.create(:user)
-        sign_in(@another)
+        sign_in_on_browser(@another)
         visit practice_path(@practice)
         expect(page).to have_no_content("編集")
       end
@@ -126,7 +126,7 @@ RSpec.describe "Practices", js: true, type: :system do
     end
     context '投稿を削除できる' do
       it '自身の投稿詳細ページの削除ボタンから削除する' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_content(@practice.title)
         visit practice_path(@practice)
         expect(page).to have_content("削除")
@@ -139,7 +139,7 @@ RSpec.describe "Practices", js: true, type: :system do
         expect(page).to have_content("削除に成功しました")
       end
       it 'トップページの歯車から削除ボタン押して削除する' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         expect(page).to have_content(@practice.title)
         find(".gear_icon").hover
         expect(page).to have_link '削除',href: practice_path(@practice)
@@ -155,12 +155,12 @@ RSpec.describe "Practices", js: true, type: :system do
     context '削除できないとき' do
       it '自分以外の投稿は歯車がないので削除できない' do
         @another=FactoryBot.create(:user)
-        sign_in(@another)
+        sign_in_on_browser(@another)
         expect(page).to have_no_selector ".gear_icon"
       end
       it '自分以外の投稿詳細ページには削除ボタンがないので削除できない' do
         @another=FactoryBot.create(:user)
-        sign_in(@another)
+        sign_in_on_browser(@another)
         visit practice_path(@practice)
         expect(page).to have_no_content("削除")
       end

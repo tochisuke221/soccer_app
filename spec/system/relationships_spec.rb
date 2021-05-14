@@ -8,7 +8,7 @@ RSpec.describe 'Relationships', js: true, type: :system do
   describe 'フォロー機能' do
     context 'フォローできるとき' do
       it '他ユーザの詳細ページでフォローボタンを押すとフォローできる' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@another)
         expect(page).to have_content('フォロー')
         expect do
@@ -20,7 +20,7 @@ RSpec.describe 'Relationships', js: true, type: :system do
     end
     context 'フォローできないとき' do
       it '自分のことはフォローできない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@user)
         expect(page).to have_no_selector('#f-btn')
       end
@@ -35,7 +35,7 @@ RSpec.describe 'Relationships', js: true, type: :system do
     context 'フォロー解除できるとき' do
       it '他ユーザの詳細ページでフォロー解除ボタンを押すとフォローできる' do
         @relationship = Relationship.create(user_id: @user.id, follow_id: @another.id)
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@another)
         expect(page).to have_content('フォロー解除')
         expect do
@@ -47,7 +47,7 @@ RSpec.describe 'Relationships', js: true, type: :system do
     end
     context 'フォロー解除できないとき' do
       it 'まだフォローしていないユーザにのことはフォロー解除できない' do
-        sign_in(@user)
+        sign_in_on_browser(@user)
         visit user_path(@another)
         expect(page).to have_no_content('フォロー解除')
       end
