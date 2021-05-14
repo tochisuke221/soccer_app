@@ -10,6 +10,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker-compose build
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
       - run: docker-compose run --rm web yarn install --cache-files
       - run: docker-compose run --rm web rails webpacker:compile
       - run: docker-compose run --rm web rails webpacker:compile RAILS_ENV=test
