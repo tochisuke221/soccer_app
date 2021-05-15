@@ -12,6 +12,9 @@ https://www.rakukatsu.work/
 username: tochi<br>
 password: 2222
 
+<サイト一部紹介><br>
+<img src="https://user-images.githubusercontent.com/81346474/118359027-6ea94c00-b5bc-11eb-8671-b7165422d18f.png" width="700">
+<img src="https://user-images.githubusercontent.com/81346474/118359033-71a43c80-b5bc-11eb-8855-0960a5ef9638.png" width="700">
 
 # 機能一覧
 
