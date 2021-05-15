@@ -74,7 +74,7 @@ password: 2222
 ![AWS](https://user-images.githubusercontent.com/81346474/118099142-ca82a200-b40f-11eb-9ae9-9138af3bef06.png)
 
 # DB 設計
-![er_soccer_app](https://user-images.githubusercontent.com/81346474/117126305-8bcc6680-add5-11eb-8d7e-52ce81d2ab46.png)
+<img src="https://user-images.githubusercontent.com/81346474/117126305-8bcc6680-add5-11eb-8d7e-52ce81d2ab46.png" width="700">
 # テスト
 
 - RSpec
