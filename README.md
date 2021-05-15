@@ -9,6 +9,10 @@
 # URL
 https://www.rakukatsu.work/
 
+username: tochi
+password: 2222
+
+
 # 使用技術
 
 - Ruby 2.6.5
