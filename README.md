@@ -20,10 +20,8 @@
   - ALB
   - ACM
 - RSpec
-(以下予定)
 - Docker/Docker-compose
-- CircleCi CI/CD
-- Capistrano3
+- CircleCi CI/CD　（現在構築中）
 
 
 # 機能一覧
