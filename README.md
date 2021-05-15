@@ -1,34 +1,16 @@
-# ラクカツ
+# ラクカツ概要
 
-担当競技経験が浅い or 未経験の中学校教職員による部活動負担の軽減を目的とした一元管理サービスです。
-主に部活動は"選手の指導"と”試合等のチーム運営"の 2 つに分けられますが、
-これらの負担を軽くするために当サービスではユーザ間で練習メニューの共有や試合相手募集、予定管理が行えます。
+担当競技経験が浅い or 未経験の中学校教職員による部活動負担の軽減を目的とした一元管理サービスです。<br>
+主に部活動は"選手の指導"と”試合等のチーム運営"の 2 つに分けられます。これらの負担を軽くするために当サービス"ラクカツ"ではユーザ間で練習メニューの共有や試合相手募集、予定管理が行えます。
 また、ユーザ間で直接やり取りできる DM 機能もあるため、学外での人脈形成を容易に行えます。
 なお、レスポンジブ対応しておりますので、スマホからもご確認いただけます。
+
 
 # URL
 https://www.rakukatsu.work/
 
 username: tochi<br>
 password: 2222
-
-
-# 使用技術
-
-- Ruby 2.6.5
-- Ruby on Rails 6.0.0
-- MySQL 5.6
-- Nginx
-- AWS
-  - VPC
-  - EC2
-  - RDS
-  - Route53
-  - ALB
-  - ACM
-- RSpec
-- Docker/Docker-compose
-- CircleCi CI/CD　（現在構築中）
 
 
 # 機能一覧
@@ -71,6 +53,22 @@ password: 2222
 - レスポンシブ対応
   - ハンバーガーメニュー等
 
+# 使用技術
+
+- Ruby 2.6.5
+- Ruby on Rails 6.0.0
+- MySQL 5.6
+- Nginx
+- AWS
+  - VPC
+  - EC2
+  - RDS
+  - Route53
+  - ALB
+  - ACM
+- RSpec
+- Docker/Docker-compose
+- CircleCi CI/CD　（現在構築中）
 
 # インフラ構成図
 ![AWS](https://user-images.githubusercontent.com/81346474/118099142-ca82a200-b40f-11eb-9ae9-9138af3bef06.png)
