@@ -16,7 +16,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - chrome 
+      - chrome
     stdin_open: true
     tty: true
     environment:
@@ -24,22 +24,22 @@ services:
       BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD-default}
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub
 
-  webpacker:
-    <<: *app_base
-    command: bash -c "bundle exec bin/webpack-dev-server"
-    depends_on:
-      - web
-    ports:
-      - '3035:3035'
-    tty: false
-    stdin_open: false
-    environment:
-      BUNDLE_APP_CONFIG: ./.bundle
-      NODE_ENV: development
-      RAILS_ENV: development
-      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  # webpacker:
+  #   <<: *app_base
+  #   command: bash -c "bundle exec bin/webpack-dev-server"
+  #   depends_on:
+  #     - web
+  #   ports:
+  #     - "3035:3035"
+  #   tty: false
+  #   stdin_open: false
+  #   environment:
+  #     BUNDLE_APP_CONFIG: ./.bundle
+  #     NODE_ENV: development
+  #     RAILS_ENV: development
+  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
 
-  chrome:    #Chromeでのテスト実行用コンテナ
-    image: selenium/standalone-chrome    #Chromeがインストールされたイメージ
+  chrome: #Chromeでのテスト実行用コンテナ
+    image: selenium/standalone-chrome #Chromeがインストールされたイメージ
     ports:
-      - '4444:4444'
+      - "4444:4444"
