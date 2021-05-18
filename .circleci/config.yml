@@ -1,4 +1,19 @@
-version: 2
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+  node: circleci/node@2
+
+# setup
+commands:
+  setup:
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+
 jobs:
   build:
     docker:
@@ -6,44 +21,32 @@ jobs:
         environment:
           - BUNDLER_VERSION: 2.0.2
           - RAILS_ENV: "test"
+    steps:
+      - setup
+  test:
+    docker:
+      - image: circleci/ruby:2.7-node
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           - MYSQL_ROOT_HOST: "127.0.0.1"
-
-    working_directory: ~/soccer_app #自身のアプリディレクトリ名を設定
-
     steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-
+      - setup
       - run:
-          name: install dependencies
-          command: |
-            gem install bundler -v 2.0.2
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # Database setup
-      - run: mv ./config/database.yml.ci ./config/database.yml
-
-      # Database setup
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
       - run:
-          name: Databasesetup
-          command: |
-            sudo docker-compose build
-            sudo docker-compose run --rm web rails db:create
-            sudo docker-compose run --rm web rails db:migrate
-
-      # run tests!
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
       - run:
-          name: Run rspec
-          command: sudo docker-compose run --rm web bundle exec rspec
+          name: Rspec
+          command: bundle exec rspec
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
