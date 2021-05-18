@@ -39,10 +39,11 @@ jobs:
       - run:
           name: Databasesetup
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
+            sudo docker-compose build
+            sudo docker-compose run --rm web rails db:create
+            sudo docker-compose run --rm web rails db:migrate
 
       # run tests!
       - run:
           name: Run rspec
-          command: docker-compose run --rm web bundle exec rspec
+          command: sudo docker-compose run --rm web bundle exec rspec
