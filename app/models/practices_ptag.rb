@@ -36,7 +36,6 @@ class PracticesPtag
     @old_relations.each do |relation|
       relation.delete
     end
-
     # ptagの更新
     ptag_list.each do |ptag_name|
       @ptag = Ptag.where(name: ptag_name).first_or_initialize

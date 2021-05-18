@@ -26,7 +26,7 @@ class ChatRoomsController < ApplicationController
     @chat_messages = ChatMessage.where(chat_room: @chat_room) # message内容を取得
     are_you_check? # 既読したかどうか
     @chat_message = ChatMessage.new
-    $current_user_id=params[:user_id]#最終扇
+    $current_user_id = params[:user_id] # 最終扇
   end
 
   private

@@ -178,7 +178,7 @@ RSpec.describe 'Users', type: :system do
         sign_in_on_browser(@user)
         visit user_path(@user)
         expect do
-          page.accept_confirm("本当に退会しますか?退会後は全てのデータが削除されます。") do
+          page.accept_confirm('本当に退会しますか?退会後は全てのデータが削除されます。') do
             click_on('退会する')
           end
           sleep 0.5

@@ -1,68 +1,41 @@
-version: 2.1
+version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          - BUNDLER_VERSION: 2.1.4
-          - RAILS_ENV: "test"
-
-      - image: circleci/mysql:5.6
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-          - MYSQL_ROOT_HOST: "127.0.0.1"
-
-    working_directory: ~/sample_app
-
+    machine:
+      image: circleci/classic:edge
+    working_directory: ~/repo
     steps:
       - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-
       - run:
-          name: install dependencies
+          name: Install Docker Compose
           command: |
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-      # database setup
-      - run: mv ./config/database.yml.ci ./config/database.yml
-
-      # database setup
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: setup database
+          name: docker-compose up
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
-
-      # install yarn
+            set -x
+            docker-compose up --build -d
       - run:
-          name: install yarn
-          command: yarn install
-
-      # #run rubocop
-      # - run:
-      #     name: Rubocop
-      #     command: |
-      #       bundle exec rubocop -a
-      #       bundle exec rubocop -A
-
-      # run tests
+          name: docker-compose stop
+          command: |
+            set -x
+            docker-compose stop
       - run:
-          name: run rspec
-          command: bundle exec rspec
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: test
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
+            docker-compose exec rails_api bin/rspec --format progress \
+                                                                  --format RspecJunitFormatter \
+                                                                  --out /tmp/test-results/rspec.xml \
+                                                                  $TEST_FILES
+      - run:
+          name: docker-compose down
+          command: docker-compose down
