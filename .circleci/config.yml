@@ -18,36 +18,68 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
-        environment:
-          - BUNDLER_VERSION: 2.0.2
-          - RAILS_ENV: "test"
     steps:
       - setup
   test:
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
+        environment:
+          - BUNDLER_VERSION: 2.2.17
+          - RAILS_ENV: "test"
       - image: circleci/mysql:5.7
         environment:
-          - DATABASE_HOST: db
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           - MYSQL_ROOT_HOST: "127.0.0.1"
+
     steps:
-      - setup
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
       - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
+          name: install dependencies
+          command: |
+            gem install bundler -v 2.1.4
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # database setup
+      - run: mv ./config/database.yml.ci ./config/database.yml
+
+      # database setup
       - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          name: setup database
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+
+      # install yarn
       - run:
-          name: Rspec
+          name: install yarn
+          command: yarn install
+
+      #run rubocop
+      - run:
+          name: Rubocop
+          command: |
+            bundle exec rubocop -a
+            bundle exec rubocop -A
+
+      # run tests
+      - run:
+          name: run rspec
           command: bundle exec rspec
 
-workflows:
-  version: 2
-  test_and_deploy:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
