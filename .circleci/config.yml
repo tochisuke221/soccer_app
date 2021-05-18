@@ -28,14 +28,30 @@ jobs:
             set -x
             docker-compose up -d
       - run:
-          name: test
+          name: docker-compose run web bundle exec rails db:create
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
-            docker-compose exec rails_api bin/rspec --format progress \
-                                                                  --format RspecJunitFormatter \
-                                                                  --out /tmp/test-results/rspec.xml \
-                                                                  $TEST_FILES
+            set -x
+            docker-compose run web bundle exec rails db:create
+      - run:
+          name: docker-compose run web bundle exec rails db:migrate
+          command: |
+            set -x
+            docker-compose run web bundle exec rails db:migrate
+      - run:
+          name: docker-compose run web bundle exec rspec
+          command: |
+            set -x
+            docker-compose run web bundle exec rspec
+
+      # - run:
+      #     name: test
+      #     command: |
+      #       mkdir /tmp/test-results
+      #       TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
+      #       docker-compose exec rails_api bin/rspec --format progress \
+      #                                                             --format RspecJunitFormatter \
+      #                                                             --out /tmp/test-results/rspec.xml \
+      #                                                             $TEST_FILES
       - run:
           name: docker-compose down
           command: docker-compose down
