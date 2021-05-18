@@ -23,6 +23,16 @@ jobs:
             set -x
             docker-compose stop
       - run:
+          name: docker-compose run --rm web yarn install --cache-files
+          command: |
+            set -x
+            docker-compose run --rm web yarn install --cache-files
+      - run:
+          name: ocker-compose run --rm web rails webpacker:compile
+          command: |
+            set -x
+            ocker-compose run --rm web rails webpacker:compile
+      - run:
           name: docker-compose up
           command: |
             set -x
