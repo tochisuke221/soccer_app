@@ -28,6 +28,7 @@ jobs:
       - image: circleci/ruby:2.6.5-node-browsers
       - image: circleci/mysql:5.7
         environment:
+          - DATABASE_HOST: db
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           - MYSQL_ROOT_HOST: "127.0.0.1"
     steps:
