@@ -8,8 +8,8 @@ module ApplicationCable
 
     private
 
-      def find_verified_user
-        self.current_user = env['warden'].user
-      end
+    def find_verified_user
+      self.current_user = env['warden'].user
+    end
   end
 end
