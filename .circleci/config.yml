@@ -47,12 +47,12 @@ jobs:
           name: install yarn
           command: yarn install
 
-      #run rubocop
-      - run:
-          name: Rubocop
-          command: |
-            bundle exec rubocop -a
-            bundle exec rubocop -A
+      # #run rubocop
+      # - run:
+      #     name: Rubocop
+      #     command: |
+      #       bundle exec rubocop -a
+      #       bundle exec rubocop -A
 
       # run tests
       - run:
