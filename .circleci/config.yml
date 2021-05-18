@@ -1,35 +1,18 @@
 version: 2.1
-
-orbs:
-  ruby: circleci/ruby@1.1.2
-  node: circleci/node@2
-
-# setup
-commands:
-  setup:
-    steps:
-      - checkout
-      - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
-
 jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
-    steps:
-      - setup
-  test:
-    docker:
-      - image: circleci/ruby:2.6.5-node-browsers
         environment:
-          - BUNDLER_VERSION: 2.2.17
+          - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: "test"
-      - image: circleci/mysql:5.7
+
+      - image: circleci/mysql:5.6
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
           - MYSQL_ROOT_HOST: "127.0.0.1"
+
+    working_directory: ~/sample_app
 
     steps:
       - checkout
