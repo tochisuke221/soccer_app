@@ -164,7 +164,7 @@ password: 2222
   - 機能テスト(request)
   - 統合テスト(system)
 
-# ローカル環境で動かすためにコマンド
+# ローカル環境で動かすためのコマンド
 
 ```:terminal
 % mkdir rakukatsu
