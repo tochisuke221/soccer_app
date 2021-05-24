@@ -147,7 +147,8 @@ password: 2222
 <br>
 
 # インフラ構成図
-![AWS](https://user-images.githubusercontent.com/81346474/118099142-ca82a200-b40f-11eb-9ae9-9138af3bef06.png)
+
+![AWS-infra](https://user-images.githubusercontent.com/81346474/119281603-44692580-bc71-11eb-9cc0-fc1eef024673.png)
 
 <br>
 
