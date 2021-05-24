@@ -163,3 +163,18 @@ password: 2222
   - 単体テスト(model)
   - 機能テスト(request)
   - 統合テスト(system)
+
+# ローカル環境で動かすためにコマンド
+
+```:terminal
+% mkdir rakukatsu
+% cd rakukatsu 
+% git clone https://github.com/tochisuke221/soccer_app.git
+% docker-compose build
+% docker-compose run web bundle exec rails db:create
+% docker-compose run web bundle exec rails db:migrate
+% docker-compose up -d
+
+#テスト実行は上記コマンド実行後、以下のコマンドを実行
+% docker-compose run web bundle exec rspec
+```
