@@ -13,7 +13,7 @@
 **＊本サービスではサッカー部顧問を対象にしています。**
 
 # 本番環境URL
-https://www.rakukatsu.work/
+https://www.rakukatsu.work/ (閉鎖済み)
 
 <Basic認証><br>
 username: tochi<br>
